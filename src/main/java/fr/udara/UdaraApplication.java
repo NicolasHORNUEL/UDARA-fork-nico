@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.udara.model.CurrentWeatherData;
 
 @SpringBootApplication
-//@EnableWebMvc
+@EnableWebMvc
 public class UdaraApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
