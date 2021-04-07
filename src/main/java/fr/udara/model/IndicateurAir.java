@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author udara
@@ -24,9 +26,9 @@ public class IndicateurAir {
 
 	private LocalDateTime dateReleve;
 	
-//	@ManyToOne
-//	@JoinColumn(name="Commune_id")
-//	private Commune commune;
+	@ManyToOne
+	@JoinColumn(name="Commune_id")
+	private Commune commune;
 	
 	
 	/** Constructeur VIDE

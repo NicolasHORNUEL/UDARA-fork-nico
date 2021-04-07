@@ -1,57 +1,40 @@
 package fr.udara.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 
 public class CurrentWeatherData {
-
-	@JsonProperty("main")
-	private NiveauMeteo niveauMeteo;
 	
-	@JsonProperty("dt")
-	private String dateReleve;
+	 @JsonRawValue
+	 private String json;
 
-	
+	 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CurrentWeatherData [niveauMeteo=");
-		builder.append(niveauMeteo);
-		builder.append(", dateReleve=");
-		builder.append(dateReleve);
+		builder.append("CurrentWeatherData [json=");
+		builder.append(json);
 		builder.append("]");
 		return builder.toString();
 	}
 
 	/** Getter
-	 * @return the niveauMeteo
+	 * @return the json
 	 */
-	public NiveauMeteo getNiveauMeteo() {
-		return niveauMeteo;
+	public String getJson() {
+		return json;
 	}
 
 	/** Setter
-	 * @param niveauMeteo the niveauMeteo to set
+	 * @param json the json to set
 	 */
-	public void setNiveauMeteo(NiveauMeteo niveauMeteo) {
-		this.niveauMeteo = niveauMeteo;
+	public void setJson(String json) {
+		this.json = json;
 	}
 
-	/** Getter
-	 * @return the dateReleve
-	 */
-	public String getDateReleve() {
-		return dateReleve;
-	}
-
-	/** Setter
-	 * @param dateReleve the dateReleve to set
-	 */
-	public void setDateReleve(String dateReleve) {
-		this.dateReleve = dateReleve;
-	}
-
-
+	 
+	 
 	
+
 
 
 

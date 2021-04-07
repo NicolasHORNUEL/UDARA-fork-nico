@@ -20,7 +20,7 @@ public class Rubrique {
 	private Integer id;
 	private String nom;
 	
-	@OneToMany(mappedBy="Rubrique")
+	@OneToMany(mappedBy="rubrique")
 	private List<FilConversation>filConversation;
 
 	/**

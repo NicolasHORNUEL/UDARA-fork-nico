@@ -22,7 +22,7 @@ public class FilConversation {
 	private Integer id;
 	private String nom;
 	
-	@OneToMany(mappedBy="FilConversation")
+	@OneToMany(mappedBy="filConversation")
 	private List<Message>message;
 	
 	@ManyToOne

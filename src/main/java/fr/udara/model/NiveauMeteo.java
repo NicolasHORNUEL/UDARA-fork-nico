@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author udara
@@ -22,14 +22,13 @@ public class NiveauMeteo {
 	
 	private String nom;
 	
-	@JsonProperty("feels_like")
 	private Float valeur;
 
 	private LocalDateTime dateReleve;
 	
-//	@ManyToOne
-//	@JoinColumn(name="Commune_id")
-//	private Commune commune;
+	@ManyToOne
+	@JoinColumn(name="Commune_id")
+	private Commune commune;
 	
 	
 	/** Constructeur VIDE
