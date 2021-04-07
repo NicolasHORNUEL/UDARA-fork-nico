@@ -10,45 +10,59 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- * @author udara
- * Entité IndicateurAir
+ * @author udara Entité IndicateurAir
  */
 @Entity
 public class IndicateurAir {
-	
+
+	/** id : Long */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	/** nom : String */
 	private String nom;
-	
+
+	/** valeur : Float */
 	private Float valeur;
 
+	/** dateReleve : LocalDateTime */
 	private LocalDateTime dateReleve;
-	
+
+	////////// RELATIONS //////////
+
+	/** commune : Commune : relation */
 	@ManyToOne
-	@JoinColumn(name="Commune_id")
+	@JoinColumn(name = "Commune_id")
 	private Commune commune;
-	
-	
-	/** Constructeur VIDE
-	 * 
-	 */
+
+	////////// CONTROLEURS //////////
+
+	/** Constructeur VIDE */
 	private IndicateurAir() {
 
 	}
+
 	
-	/** Constructeur
-	 * 
+	/**
+	 * Constructeur sans id
+	 * @param nom
+	 * @param valeur
+	 * @param dateReleve
 	 */
 	private IndicateurAir(String nom, Float valeur, LocalDateTime dateReleve) {
 		this.nom = nom;
 		this.valeur = valeur;
 		this.dateReleve = dateReleve;
 	}
+
 	
-	/** Constructeur AVEC ID
-	 * 
+	/**
+	 * Constructor complet
+	 * @param id
+	 * @param nom
+	 * @param valeur
+	 * @param dateReleve
 	 */
 	private IndicateurAir(Long id, String nom, Float valeur, LocalDateTime dateReleve) {
 		this.id = id;
@@ -57,76 +71,89 @@ public class IndicateurAir {
 		this.dateReleve = dateReleve;
 	}
 
+	////////// TO STRING //////////
+
+	/**
+	 * Méthode toString pour afficher la valeur des attributs de l'instance
+	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("NiveauMeteo [id=");
-		builder.append(id);
-		builder.append(", nom=");
-		builder.append(nom);
-		builder.append(", valeur=");
-		builder.append(valeur);
-		builder.append(", dateReleve=");
-		builder.append(dateReleve);
-		builder.append("]");
-		return builder.toString();
+		return "IndicateurAir n°" + id + ":\nNom : " + nom + "\nValeur : " + valeur + "\nDate de Releve : " + dateReleve
+				+ "\nCommune : " + commune;
 	}
 
-	/** Getter
+	////////// GETTERS & SETTERS //////////
+
+	/**
+	 * Getter
+	 * 
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the nom
 	 */
 	public String getNom() {
 		return nom;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the valeur
 	 */
 	public Float getValeur() {
 		return valeur;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param valeur the valeur to set
 	 */
 	public void setValeur(Float valeur) {
 		this.valeur = valeur;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the dateReleve
 	 */
 	public LocalDateTime getDateReleve() {
 		return dateReleve;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param dateReleve the dateReleve to set
 	 */
 	public void setDateReleve(LocalDateTime dateReleve) {
 		this.dateReleve = dateReleve;
 	}
-	
-	
+
 }

@@ -3,48 +3,64 @@
  */
 package fr.udara.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 /**
  * @author Udara
- * Entité Commune
  */
 @Entity
 public class Commune {
-	
-	/** id */
+
+	/** id : Long */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	/** nom */
+
+	/** nom : String */
 	@NotEmpty
 	private String nom;
-	
-	/** departement */
+
+	/** departement : String */
 	private String departement;
-	
-	/** region */
+
+	/** region : String */
 	private String region;
-	
-	/** population */
+
+	/** population : Integer */
 	private Integer population;
-	
-	/** xCoordonnee */
+
+	/** xCoordonnee : Float */
 	@NotEmpty
 	private Float xCoordonnee;
-	
-	/** yCoordonnee */
+
+	/** yCoordonnee : Float */
 	@NotEmpty
 	private Float yCoordonnee;
-	
-	/**
-	 * Constructeur vide
-	 */
+
+	////////// RELATIONS //////////
+
+	/** indicateurAirs : List<IndicateurAir> */
+	@OneToMany(mappedBy = "commune")
+	private List<IndicateurAir> indicateurAirs;
+
+	/** niveauMeteos : List<NiveauMeteo> */
+	@OneToMany(mappedBy = "commune")
+	private List<NiveauMeteo> niveauMeteos;
+
+	/** favories : List<Favori> */
+	@OneToMany(mappedBy = "commune")
+	private List<Favori> favoris;
+
+	////////// CONTROLEURS //////////
+
+	/** Constructeur vide */
 	public Commune() {
 	}
 
@@ -58,8 +74,8 @@ public class Commune {
 	 * @param xCoordonnee
 	 * @param yCoordonnee
 	 */
-	public Commune(String nom, String departement, String region, Integer population,
-			Float xCoordonnee, Float yCoordonnee) {
+	public Commune(String nom, String departement, String region, Integer population, Float xCoordonnee,
+			Float yCoordonnee) {
 		this.nom = nom;
 		this.departement = departement;
 		this.region = region;
@@ -69,7 +85,6 @@ public class Commune {
 	}
 
 	/**
-	 * 
 	 * Constructeur complet, avec id
 	 * 
 	 * @param id
@@ -80,8 +95,8 @@ public class Commune {
 	 * @param xCoordonnee
 	 * @param yCoordonnee
 	 */
-	public Commune(Long id, String nom, String departement, String region, Integer population,
-			Float xCoordonnee, Float yCoordonnee) {
+	public Commune(Long id, String nom, String departement, String region, Integer population, Float xCoordonnee,
+			Float yCoordonnee) {
 		this.id = id;
 		this.nom = nom;
 		this.departement = departement;
@@ -90,18 +105,24 @@ public class Commune {
 		this.xCoordonnee = xCoordonnee;
 		this.yCoordonnee = yCoordonnee;
 	}
-	
+
+	////////// TO STRING //////////
+
 	/**
 	 * Méthode toString pour afficher la valeur des attributs de l'instance
 	 */
 	@Override
 	public String toString() {
-		return "Commune [id=" + id + ", nom=" + nom + ", departement=" + departement + ", region=" + region
-				+ ", population=" + population + ", xCoordonnee=" + xCoordonnee + ", yCoordonnee=" + yCoordonnee + "]";
+		return "Commune n°" + id + ":\nNom : " + nom + "\nDepartement : " + departement + "\nRegion : " + region
+				+ "\nPopulation : " + population + "\nCoordonnee x : " + xCoordonnee + "\nCoordonnee y : "
+				+ yCoordonnee;
 	}
+
+	////////// GETTERS & SETTERS //////////
 
 	/**
 	 * Getter
+	 * 
 	 * @return id de la commune
 	 */
 	public Long getId() {
@@ -110,6 +131,7 @@ public class Commune {
 
 	/**
 	 * Setter
+	 * 
 	 * @param id id à modifier
 	 */
 	public void setId(Long id) {
@@ -118,6 +140,7 @@ public class Commune {
 
 	/**
 	 * Getter
+	 * 
 	 * @return nom de la commune
 	 */
 	public String getNom() {
@@ -126,6 +149,7 @@ public class Commune {
 
 	/**
 	 * Setter
+	 * 
 	 * @param nom nom à modifier
 	 */
 	public void setNom(String nom) {
@@ -134,6 +158,7 @@ public class Commune {
 
 	/**
 	 * Getter
+	 * 
 	 * @return département dont dépend la commune courante
 	 */
 	public String getDepartement() {
@@ -142,6 +167,7 @@ public class Commune {
 
 	/**
 	 * Setter
+	 * 
 	 * @param departement département à modifier
 	 */
 	public void setDepartement(String departement) {
@@ -150,6 +176,7 @@ public class Commune {
 
 	/**
 	 * Getter
+	 * 
 	 * @return région dont dépend la commune courante
 	 */
 	public String getRegion() {
@@ -158,6 +185,7 @@ public class Commune {
 
 	/**
 	 * Setter
+	 * 
 	 * @param region région à modifier
 	 */
 	public void setRegion(String region) {
@@ -166,6 +194,7 @@ public class Commune {
 
 	/**
 	 * Getter
+	 * 
 	 * @return population de la commune
 	 */
 	public Integer getPopulation() {
@@ -174,6 +203,7 @@ public class Commune {
 
 	/**
 	 * Setter
+	 * 
 	 * @param population population à modifier
 	 */
 	public void setPopulation(Integer population) {
@@ -182,14 +212,16 @@ public class Commune {
 
 	/**
 	 * Getter
+	 * 
 	 * @return coordonnée en x
 	 */
 	public Float getxCoordonnee() {
 		return xCoordonnee;
 	}
-	
+
 	/**
 	 * Setter
+	 * 
 	 * @param xCoordonnee coordonnée en x à modifier
 	 */
 	public void setxCoordonnee(Float xCoordonnee) {
@@ -198,6 +230,7 @@ public class Commune {
 
 	/**
 	 * Getter
+	 * 
 	 * @return yCoordonnee coordonnée en y
 	 */
 	public Float getyCoordonnee() {
@@ -206,10 +239,11 @@ public class Commune {
 
 	/**
 	 * Setter
+	 * 
 	 * @param yCoordonnee coordonnée en y à modifier
 	 */
 	public void setyCoordonnee(Float yCoordonnee) {
 		this.yCoordonnee = yCoordonnee;
 	}
-	
+
 }

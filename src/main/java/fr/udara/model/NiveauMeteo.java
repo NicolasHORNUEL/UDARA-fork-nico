@@ -10,45 +10,58 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- * @author udara
- * Entité NiveauMétéo
+ * @author udara Entité NiveauMétéo
  */
 @Entity
 public class NiveauMeteo {
-	
+
+	/** id : Long */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	/** nom : String */
 	private String nom;
-	
+
+	/** valeur : Float */
 	private Float valeur;
 
+	/** dateReleve : LocalDateTime */
 	private LocalDateTime dateReleve;
-	
-	@ManyToOne
-	@JoinColumn(name="Commune_id")
-	private Commune commune;
-	
-	
-	/** Constructeur VIDE
-	 * 
-	 */
-	private NiveauMeteo() {
 
+	////////// RELATIONS //////////
+
+	/** commune : Commune */
+	@ManyToOne
+	@JoinColumn(name = "Commune_id")
+	private Commune commune;
+
+	////////// CONTROLEURS //////////
+
+	/** Constructeur VIDE */
+	private NiveauMeteo() {
 	}
-	
-	/** Constructeur
+
+	/**
+	 * Constructor sans id
 	 * 
+	 * @param nom
+	 * @param valeur
+	 * @param dateReleve
 	 */
 	private NiveauMeteo(String nom, Float valeur, LocalDateTime dateReleve) {
 		this.nom = nom;
 		this.valeur = valeur;
 		this.dateReleve = dateReleve;
 	}
-	
-	/** Constructeur AVEC ID
+
+	/**
+	 * Constructor complet
 	 * 
+	 * @param id
+	 * @param nom
+	 * @param valeur
+	 * @param dateReleve
 	 */
 	private NiveauMeteo(Long id, String nom, Float valeur, LocalDateTime dateReleve) {
 		this.id = id;
@@ -57,6 +70,11 @@ public class NiveauMeteo {
 		this.dateReleve = dateReleve;
 	}
 
+	////////// TO STRING //////////
+
+	/**
+	 * Méthode toString pour afficher la valeur des attributs de l'instance
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -72,61 +90,78 @@ public class NiveauMeteo {
 		return builder.toString();
 	}
 
-	/** Getter
+	////////// GETTERS & SETTERS //////////
+
+	/**
+	 * Getter
+	 * 
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the nom
 	 */
 	public String getNom() {
 		return nom;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the valeur
 	 */
 	public Float getValeur() {
 		return valeur;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param valeur the valeur to set
 	 */
 	public void setValeur(Float valeur) {
 		this.valeur = valeur;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the dateReleve
 	 */
 	public LocalDateTime getDateReleve() {
 		return dateReleve;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param dateReleve the dateReleve to set
 	 */
 	public void setDateReleve(LocalDateTime dateReleve) {
 		this.dateReleve = dateReleve;
 	}
-	
-	
+
 }

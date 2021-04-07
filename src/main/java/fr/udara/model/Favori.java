@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -17,30 +19,48 @@ import javax.validation.constraints.NotEmpty;
  */
 @Entity
 public class Favori {
-	
+
+	/** id : Long */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	/** nom : String */
 	@NotEmpty
 	private String nom;
-	
+
+	/** niveauMeteo : String */
 	@NotEmpty
 	private String niveauMeteo;
-	
+
+	/** indicateurAir : Boolean */
 	@NotEmpty
 	private Boolean indicateurAir;
-	
+
+	/** echelleTemps : EchelleTemps */
 	@Enumerated(EnumType.STRING)
 	private EchelleTemps echelleTemps;
 
-	
+	////////// RELATIONS //////////
+
+	/** commune : Commune */
+	@ManyToOne
+	@JoinColumn(name = "Commune_id")
+	private Commune commune;
+
+	/** compteUtilisateur : CompteUtilisateur */
+	@ManyToOne
+	@JoinColumn(name = "CompteUtilisateur_id")
+	private CompteUtilisateur compteUtilisateur;
+
+	////////// CONTROLEURS //////////
+
 	/**
 	 * Constructeur vide
 	 */
 	public Favori() {
 	}
-	
+
 	/**
 	 * Constructeur sans id
 	 * 
@@ -49,8 +69,7 @@ public class Favori {
 	 * @param indicateurAir
 	 * @param echelleTemps
 	 */
-	public Favori(String nom, String niveauMeteo, Boolean indicateurAir,
-			EchelleTemps echelleTemps) {
+	public Favori(String nom, String niveauMeteo, Boolean indicateurAir, EchelleTemps echelleTemps) {
 		this.nom = nom;
 		this.niveauMeteo = niveauMeteo;
 		this.indicateurAir = indicateurAir;
@@ -66,26 +85,30 @@ public class Favori {
 	 * @param indicateurAir
 	 * @param echelleTemps
 	 */
-	public Favori(Long id, String nom, String niveauMeteo, Boolean indicateurAir,
-			EchelleTemps echelleTemps) {
+	public Favori(Long id, String nom, String niveauMeteo, Boolean indicateurAir, EchelleTemps echelleTemps) {
 		this.id = id;
 		this.nom = nom;
 		this.niveauMeteo = niveauMeteo;
 		this.indicateurAir = indicateurAir;
 		this.echelleTemps = echelleTemps;
 	}
-	
+
+	////////// TO STRING //////////
+
 	/**
 	 * Méthode toString pour afficher la valeur des attributs de l'instance
 	 */
 	@Override
 	public String toString() {
-		return "Favori [id=" + id + ", nom=" + nom + ", niveauMeteo=" + niveauMeteo + ", indicateurAir=" + indicateurAir
-				+ ", echelleTemps=" + echelleTemps + "]";
+		return "Favori n°" + id + "\nNom=" + nom + "\nNiveauMeteo : " + niveauMeteo + "\nIndicateurAir : "
+				+ indicateurAir + "\nEchelleTemps : " + echelleTemps;
 	}
+
+	////////// GETTERS & SETTERS //////////
 
 	/**
 	 * Getter
+	 * 
 	 * @return l'id
 	 */
 	public Long getId() {
@@ -94,6 +117,7 @@ public class Favori {
 
 	/**
 	 * Setter
+	 * 
 	 * @param id l'id à modifier
 	 */
 	public void setId(Long id) {
@@ -102,6 +126,7 @@ public class Favori {
 
 	/**
 	 * Getter
+	 * 
 	 * @return le nom
 	 */
 	public String getNom() {
@@ -110,6 +135,7 @@ public class Favori {
 
 	/**
 	 * Setter
+	 * 
 	 * @param nom le nom à modifier
 	 */
 	public void setNom(String nom) {
@@ -118,6 +144,7 @@ public class Favori {
 
 	/**
 	 * Getter
+	 * 
 	 * @return le niveauMeteo
 	 */
 	public String getNiveauMeteo() {
@@ -126,6 +153,7 @@ public class Favori {
 
 	/**
 	 * Setter
+	 * 
 	 * @param niveauMeteo le niveauMeteo à modifier
 	 */
 	public void setNiveauMeteo(String niveauMeteo) {
@@ -134,6 +162,7 @@ public class Favori {
 
 	/**
 	 * Getter
+	 * 
 	 * @return l'indicateurAir
 	 */
 	public Boolean getIndicateurAir() {
@@ -142,6 +171,7 @@ public class Favori {
 
 	/**
 	 * Setter
+	 * 
 	 * @param indicateurAir l'indicateurAir à modifier
 	 */
 	public void setIndicateurAir(Boolean indicateurAir) {
@@ -150,6 +180,7 @@ public class Favori {
 
 	/**
 	 * Getter
+	 * 
 	 * @return l'echelleTemps
 	 */
 	public EchelleTemps getEchelleTemps() {
@@ -158,6 +189,7 @@ public class Favori {
 
 	/**
 	 * Setter
+	 * 
 	 * @param echelleTemps l'echelleTemps à modifier
 	 */
 	public void setEchelleTemps(EchelleTemps echelleTemps) {

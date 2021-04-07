@@ -1,28 +1,29 @@
-/**
- * 
- */
 package fr.udara.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
 /**
- * @author udara
+ * @author Udara
  *
  */
 @Entity
-@Table( name = "Compte_utilisateur", uniqueConstraints = { 
-		@UniqueConstraint( columnNames = {"mail"} ),
-		@UniqueConstraint( columnNames = {"nomUtilisateur"} )
-})
+@Table(name = "Compte_utilisateur", uniqueConstraints = { @UniqueConstraint(columnNames = { "mail" }),
+		@UniqueConstraint(columnNames = { "nomUtilisateur" }) })
 public class CompteUtilisateur {
 
 	/** id : Long */
@@ -47,10 +48,26 @@ public class CompteUtilisateur {
 	private String codePostal;
 
 	/** role : Role */
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	////////// RELATIONS //////////
+
+	/** favoris : List<Favori> */
+	@OneToMany(mappedBy = "compteUtilisateur")
+	private List<Favori> favoris;
+
+	/** messages : List<Message> */
+	@OneToMany(mappedBy = "compteUtilisateur")
+	private List<Message> messages;
+
+	/** notifications : List<Notification> */
+	@ManyToMany
+	@JoinTable(name = "REL_COMPTE_NOTIFICATION", 
+		joinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "id"), 
+		inverseJoinColumns = @JoinColumn(name = "ID_NOTIF", referencedColumnName = "id")
+	)
+	private List<Notification> notifications;
 
 	////////// CONTROLEURS //////////
 
@@ -62,7 +79,34 @@ public class CompteUtilisateur {
 	}
 
 	/**
-	 * Construsteur avec tous les attribus
+	 * Constructeurs sans id
+	 * 
+	 * @param nom
+	 * @param prenom
+	 * @param nomUtilisateur
+	 * @param mail
+	 * @param codePostal
+	 * @param role
+	 * @param favoris
+	 * @param messages
+	 * @param notifications
+	 */
+	public CompteUtilisateur(String nom, String prenom, String nomUtilisateur, String mail, @Max(5) String codePostal,
+			Role role, List<Favori> favoris, List<Message> messages, List<Notification> notifications) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.nomUtilisateur = nomUtilisateur;
+		this.mail = mail;
+		this.codePostal = codePostal;
+		this.role = role;
+		this.favoris = favoris;
+		this.messages = messages;
+		this.notifications = notifications;
+	}
+
+	/**
+	 * Constructeurs complet
 	 * 
 	 * @param id
 	 * @param nom
@@ -71,9 +115,13 @@ public class CompteUtilisateur {
 	 * @param mail
 	 * @param codePostal
 	 * @param role
+	 * @param favoris
+	 * @param messages
+	 * @param notifications
 	 */
-	public CompteUtilisateur(Long id, String nom, String prenom, @UniqueElements String nomUtilisateur,
-			@UniqueElements String mail, @Max(5) String codePostal, Role role) {
+	public CompteUtilisateur(Long id, String nom, String prenom, String nomUtilisateur, String mail,
+			@Max(5) String codePostal, Role role, List<Favori> favoris, List<Message> messages,
+			List<Notification> notifications) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -82,45 +130,25 @@ public class CompteUtilisateur {
 		this.mail = mail;
 		this.codePostal = codePostal;
 		this.role = role;
+		this.favoris = favoris;
+		this.messages = messages;
+		this.notifications = notifications;
 	}
 
-	/**
-	 * Constructeur sans id
-	 * 
-	 * @param nom
-	 * @param prenom
-	 * @param nomUtilisateur
-	 * @param mail
-	 * @param codePostal
-	 * @param role
-	 */
-	public CompteUtilisateur(String nom, String prenom, @UniqueElements String nomUtilisateur,
-			@UniqueElements String mail, @Max(5) String codePostal, Role role) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.nomUtilisateur = nomUtilisateur;
-		this.mail = mail;
-		this.codePostal = codePostal;
-		this.role = role;
-	}
+	////////// TO STRING //////////
 
-	
-	//////////TO STRING //////////
-	
-	/**
-	 *ToString
-	 */
 	@Override
 	public String toString() {
-		return "CompteUtilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", nomUtilisateur="
-				+ nomUtilisateur + ", mail=" + mail + ", codePostal=" + codePostal + ", role=" + role + "]";
+		return "CompteUtilisateur n°" + id + "\nNom : " + nom + "\\nPrenom : " + prenom + "\\nNomUtilisateur : "
+				+ nomUtilisateur + "\\nMail : " + mail + "\\nCode Postal : " + codePostal + "\\nRole : " + role
+				+ "\\nFavoris : " + favoris + "\\nMessages : " + messages + "\\nNotifications : " + notifications;
 	}
-	
-	//////////GETTERS & SETTERS //////////
+
+	////////// GETTERS & SETTERS //////////
 
 	/**
 	 * Getter
+	 * 
 	 * @return {@link Long} the id
 	 */
 	public Long getId() {
@@ -129,6 +157,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
@@ -137,6 +166,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the nom
 	 */
 	public String getNom() {
@@ -145,6 +175,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
@@ -153,6 +184,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the prenom
 	 */
 	public String getPrenom() {
@@ -161,6 +193,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param prenom the prenom to set
 	 */
 	public void setPrenom(String prenom) {
@@ -169,6 +202,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the nomUtilisateur
 	 */
 	public String getNomUtilisateur() {
@@ -177,6 +211,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param nomUtilisateur the nomUtilisateur to set
 	 */
 	public void setNomUtilisateur(String nomUtilisateur) {
@@ -185,6 +220,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the mail
 	 */
 	public String getMail() {
@@ -193,6 +229,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param mail the mail to set
 	 */
 	public void setMail(String mail) {
@@ -201,6 +238,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the codePostal
 	 */
 	public String getCodePostal() {
@@ -209,6 +247,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param codePostal the codePostal to set
 	 */
 	public void setCodePostal(String codePostal) {
@@ -217,6 +256,7 @@ public class CompteUtilisateur {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the role
 	 */
 	public Role getRole() {
@@ -225,10 +265,65 @@ public class CompteUtilisateur {
 
 	/**
 	 * Setter
+	 * 
 	 * @param role the role to set
 	 */
 	public void setRole(Role role) {
 		this.role = role;
-	}	
-	
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the favoris
+	 */
+	public List<Favori> getFavoris() {
+		return favoris;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param favoris the favoris to set
+	 */
+	public void setFavoris(List<Favori> favoris) {
+		this.favoris = favoris;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the messages
+	 */
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param messages the messages to set
+	 */
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the notifications
+	 */
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param notifications the notifications to set
+	 */
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
 }
