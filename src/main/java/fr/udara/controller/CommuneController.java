@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.Commune;
+import fr.udara.service.CommuneService;
 
 /**
  * Controller associé à la classe Commune
@@ -40,7 +42,7 @@ public class CommuneController {
 	 * @param communeService
 	 */
 	@Autowired
-	public CommuneController(communeService communeService) {
+	public CommuneController(CommuneService communeService) {
 		this.communeService = communeService;
 	}
 
@@ -92,7 +94,7 @@ public class CommuneController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return communeService.create(commune);
+		return communeService.save(commune);
 	}
 
 	/**
@@ -106,7 +108,7 @@ public class CommuneController {
 	@PutMapping("{id}")
 	public Commune update(@PathVariable(name = "id") Long id, @RequestBody Commune commune) {
 		commune.setId(id);
-		return communeService.update(commune);
+		return communeService.save(commune);
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class CommuneController {
 	 * @param id l'id de la commune à supprimer
 	 */
 	@DeleteMapping("{id}")
-	public void delete(@PathVariable Long id) {
+	public void deleteById(@PathVariable Long id) {
 		communeService.deleteById(id);
 	}
 
