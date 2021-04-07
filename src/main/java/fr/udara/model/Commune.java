@@ -16,22 +16,29 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class Commune {
 	
+	/** id */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	/** nom */
 	@NotEmpty
 	private String nom;
 	
+	/** departement */
 	private String departement;
 	
+	/** region */
 	private String region;
 	
+	/** population */
 	private Integer population;
 	
+	/** xCoordonnee */
 	@NotEmpty
 	private Float xCoordonnee;
 	
+	/** yCoordonnee */
 	@NotEmpty
 	private Float yCoordonnee;
 	
