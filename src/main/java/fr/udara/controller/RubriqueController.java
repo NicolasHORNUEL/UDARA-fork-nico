@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.Rubrique;
+import fr.udara.service.RubriqueService;
 
 /**
  * @author UDARA
@@ -37,7 +39,7 @@ public class RubriqueController {
 	 * @param rubriqueService
 	 */
 	@Autowired
-	public RubriqueController(rubriqueService rubriqueService) {
+	public RubriqueController(RubriqueService rubriqueService) {
 		this.rubriqueService = rubriqueService;
 	}
 
@@ -77,7 +79,7 @@ public class RubriqueController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return rubriqueService.create(rubrique);
+		return rubriqueService.save(rubrique);
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class RubriqueController {
 	@PutMapping("{id}")
 	public Rubrique update(@PathVariable(name = "id") Long id, @RequestBody Rubrique rubrique) {
 		rubrique.setId(id);
-		return rubriqueService.update(rubrique);
+		return rubriqueService.save(rubrique);
 	}
 
 	/**
