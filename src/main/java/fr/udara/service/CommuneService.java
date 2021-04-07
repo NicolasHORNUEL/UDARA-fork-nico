@@ -30,14 +30,14 @@ public class CommuneService {
 	
 	/**
 	 * @param un objet Commune sans id
-	 * @return l'objet commune avec un id
+	 * @return l'objet Commune avec un id
 	 */
 	public Commune save(Commune commune) {
 		return communeRepository.save(commune);
 		
 	}
 	/**
-	 * @return une liste d'objet commune
+	 * @return une liste d'objet Commune
 	 */
 	public List<Commune> findAll() {
 		return communeRepository.findAll();
@@ -45,8 +45,8 @@ public class CommuneService {
 
 	
 	/**
-	 * @param id d'un objet commune
-	 * @return une oéventuelle liste d'objet commune
+	 * @param id d'un objet Commune
+	 * @return une oéventuelle liste d'objet Commune
 	 */
 	public Optional<Commune> findById(Long id) {
 		return communeRepository.findById(id);
@@ -54,7 +54,7 @@ public class CommuneService {
 
 	
 	/**
-	 * @param id d'un objet commune
+	 * @param id d'un objet Commune
 	 * @return true si l'id existe
 	 */
 	public boolean existsById(Long id) {
@@ -63,7 +63,7 @@ public class CommuneService {
 	
 	
 	/**
-	 * @return le nombre d'objet commune
+	 * @return le nombre d'objet Commune
 	 */
 	public long count() {
 		return communeRepository.count();
@@ -71,7 +71,7 @@ public class CommuneService {
 	
 	
 	/**
-	 * @param id d'un objet commune
+	 * @param id d'un objet Commune
 	 */
 	public void deleteById(Long id) {
 		communeRepository.deleteById(id);
@@ -79,7 +79,7 @@ public class CommuneService {
 	
 	
 	/**
-	 * @param un objet commune
+	 * @param un objet Commune
 	 */
 	public void delete(Commune commune) {
 		communeRepository.delete(commune);
