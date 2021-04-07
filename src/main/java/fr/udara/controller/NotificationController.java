@@ -37,7 +37,7 @@ public class NotificationController {
 	 * @param notificationService
 	 */
 	@Autowired
-	public NotificationController(notificationService notificationService) {
+	public NotificationController(NotificationService notificationService) {
 		this.notificationService = notificationService;
 	}
 
