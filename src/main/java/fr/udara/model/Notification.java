@@ -1,25 +1,52 @@
 package fr.udara.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
- * @author PC VALENTIN
+ * @author Udara
  *
  */
 @Entity
 public class Notification {
 
+	/** id : Long */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
+	/** texte : String */
 	private String texte;
+	
+	/** commune : String */
 	private String commune;
+	
+	/** lu : boolean */
 	private boolean lu;
+	
+	////////// RELATIONS //////////
+	
+	@ManyToMany
+	@JoinTable(name="REL_COMPTE_NOTIFICATION",
+		joinColumns= @JoinColumn(name="ID_NOTIF", referencedColumnName="id"),
+		inverseJoinColumns= @JoinColumn(name="ID_COMPTE", referencedColumnName="id")
+	)
+	private List<CompteUtilisateur> compteUtilisateurs;
 
+
+	/**
+	 * Constructeur vide
+	 */
+	public Notification() {
+
+	}
+	
 	/**
 	 * Constructeur
 	 * 
@@ -28,7 +55,7 @@ public class Notification {
 	 * @param commune
 	 * @param lu
 	 */
-	public Notification(Integer id, String texte, String commune, boolean lu) {
+	public Notification(Long id, String texte, String commune, boolean lu) {
 		super();
 		this.id = id;
 		this.texte = texte;
@@ -36,12 +63,7 @@ public class Notification {
 		this.lu = lu;
 	}
 
-	/**
-	 * Constructeur vide
-	 */
-	public Notification() {
 
-	}
 
 	@Override
 	public String toString() {
@@ -53,7 +75,7 @@ public class Notification {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -62,7 +84,7 @@ public class Notification {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -9,42 +9,68 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
- * @author PC VALENTIN
+ * @author Udara
  *
  */
 @Entity
 public class Rubrique {
 
+	/** id : Integer */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nom;
-	
-	@OneToMany(mappedBy="rubrique")
-	private List<FilConversation>filConversation;
 
-	/**
-	 * Constructeur
-	 * 
-	 * @param id
-	 * @param nom
-	 */
-	public Rubrique(Integer id, String nom) {
-		super();
-		this.id = id;
-		this.nom = nom;
-	}
+	/** nom : String */
+	private String nom;
+
+	////////// RELATIONS //////////
+
+	/** filConversation : List<FilConversation> */
+	@OneToMany(mappedBy = "rubrique")
+	private List<FilConversation> filConversation;
+
+	////////// CONTROLEURS //////////
 
 	/**
 	 * Constructeur vide
 	 */
 	public Rubrique() {
-
 	}
 
+	/**
+	 * Constructeur sans id
+	 * 
+	 * @param nom
+	 * @param filConversation
+	 */
+	public Rubrique(String nom, List<FilConversation> filConversation) {
+		super();
+		this.nom = nom;
+		this.filConversation = filConversation;
+	}
+
+	/**
+	 * Constructeur complet
+	 * 
+	 * @param id
+	 * @param nom
+	 * @param filConversation
+	 */
+	public Rubrique(Integer id, String nom, List<FilConversation> filConversation) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.filConversation = filConversation;
+	}
+
+	////////// TO STRING //////////
+
+	/**
+	 * Méthode toString pour afficher la valeur des attributs de l'instance
+	 */
 	@Override
 	public String toString() {
-		return "Rubrique [id=" + id + ", nom=" + nom + "]";
+		return "Rubrique n°" + id + "\nNom : " + nom + "\nFil de conversation : " + filConversation;
 	}
 
 	/**

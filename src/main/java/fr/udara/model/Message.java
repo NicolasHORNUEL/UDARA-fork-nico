@@ -8,54 +8,87 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- * @author PC VALENTIN
+ * @author Udara
  *
  */
 @Entity
 public class Message {
 
+	/** id : Long */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
+
+	/** nom : String */
 	private String nom;
 
+	////////// RELATIONS //////////
+
+	/** filConversation : FilConversation */
 	@ManyToOne
-	@JoinColumn(name = "id_filconversation")
+	@JoinColumn(name = "FilConversation_id")
 	private FilConversation filConversation;
 
+	/** compteUtilisateur : CompteUtilisateur */
 	@ManyToOne
-	@JoinColumn(name = "id_compteutilisateur")
+	@JoinColumn(name = "CompteUtilisateur_id")
 	private CompteUtilisateur compteUtilisateur;
 
-	/**
-	 * Constructeur
-	 * 
-	 * @param id
-	 * @param nom
-	 */
-	public Message(Integer id, String nom) {
-		super();
-		this.id = id;
-		this.nom = nom;
-	}
+	////////// CONTROLEURS //////////
 
 	/**
 	 * Constructeur vide
 	 */
 	public Message() {
+		super();
 	}
+
+	/**
+	 * Constructeur sans id
+	 * 
+	 * @param nom
+	 * @param filConversation
+	 * @param compteUtilisateur
+	 */
+	public Message(String nom, FilConversation filConversation, CompteUtilisateur compteUtilisateur) {
+		super();
+		this.nom = nom;
+		this.filConversation = filConversation;
+		this.compteUtilisateur = compteUtilisateur;
+	}
+
+	/**
+	 * Constructeur complet
+	 * 
+	 * @param id
+	 * @param nom
+	 * @param filConversation
+	 * @param compteUtilisateur
+	 */
+	public Message(Long id, String nom, FilConversation filConversation, CompteUtilisateur compteUtilisateur) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.filConversation = filConversation;
+		this.compteUtilisateur = compteUtilisateur;
+	}
+
+	////////// TO STRING //////////
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", nom=" + nom + "]";
+		return "Message n°" + id + "\nNom : " + nom + "\nFil de Conversation : " + filConversation
+				+ "\nCompte Utilisateur : " + compteUtilisateur;
 	}
+
+	////////// GETTERS & SETTERS //////////
 
 	/**
 	 * Getter
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -64,7 +97,7 @@ public class Message {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -84,6 +117,42 @@ public class Message {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the filConversation
+	 */
+	public FilConversation getFilConversation() {
+		return filConversation;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param filConversation the filConversation to set
+	 */
+	public void setFilConversation(FilConversation filConversation) {
+		this.filConversation = filConversation;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the compteUtilisateur
+	 */
+	public CompteUtilisateur getCompteUtilisateur() {
+		return compteUtilisateur;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param compteUtilisateur the compteUtilisateur to set
+	 */
+	public void setCompteUtilisateur(CompteUtilisateur compteUtilisateur) {
+		this.compteUtilisateur = compteUtilisateur;
 	}
 
 }
