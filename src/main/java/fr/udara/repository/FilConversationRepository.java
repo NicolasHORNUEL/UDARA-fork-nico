@@ -12,6 +12,6 @@ import fr.udara.model.FilConversation;
  * @author UDARA
  *
  */
-public interface FIlsConversationRepository extends JpaRepository<FilConversation, Long>{
+public interface FilConversationRepository extends JpaRepository<FilConversation, Long>{
 
 }
