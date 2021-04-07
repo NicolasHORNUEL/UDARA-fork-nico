@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.FilConversation;
+import fr.udara.service.FilConversationService;
 
 /**
  * @author UDARA
@@ -36,7 +38,7 @@ public class FilConversationController {
 	 * @param filConversationService
 	 */
 	@Autowired
-	public FilConversationController(filConversationService filConversationService) {
+	public FilConversationController(FilConversationService filConversationService) {
 		this.filConversationService = filConversationService;
 	}
 
@@ -76,7 +78,7 @@ public class FilConversationController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return filConversationService.create(filConversation);
+		return filConversationService.save(filConversation);
 	}
 
 	/**
@@ -90,7 +92,7 @@ public class FilConversationController {
 	@PutMapping("{id}")
 	public FilConversation update(@PathVariable(name = "id") Long id, @RequestBody FilConversation filConversation) {
 		filConversation.setId(id);
-		return filConversationService.update(filConversation);
+		return filConversationService.save(filConversation);
 	}
 
 	/**

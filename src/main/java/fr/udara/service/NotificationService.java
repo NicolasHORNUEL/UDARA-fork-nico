@@ -1,24 +1,20 @@
-/**
- * 
- */
 package fr.udara.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.exception.NotFoundException;
 import fr.udara.model.Notification;
 import fr.udara.repository.NotificationRepository;
 
 /**
  * Classe de service pour l'entité Notification
- * @author UDARA
+ * @author udara
  *
  */
-
 @Service
 public class NotificationService {
 	
@@ -52,10 +48,10 @@ public class NotificationService {
 	
 	/**
 	 * @param id d'un objet Notification
-	 * @return une oéventuelle liste d'objet Notification
+	 * @return une éventuelle liste d'objet Notification
 	 */
-	public Optional<Notification> findById(Long id) {
-		return notificationRepository.findById(id);
+	public Notification findById(Long id) {
+		return notificationRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
 	
@@ -92,5 +88,10 @@ public class NotificationService {
 	public void delete(Notification notification) {
 		notificationRepository.delete(notification);
 	}
-
+	
 }
+
+
+
+
+

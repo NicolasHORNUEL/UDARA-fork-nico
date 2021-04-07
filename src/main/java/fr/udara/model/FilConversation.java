@@ -19,7 +19,7 @@ public class FilConversation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String nom;
 	
 	@OneToMany(mappedBy="filConversation")
@@ -35,7 +35,7 @@ public class FilConversation {
 	 * @param id
 	 * @param nom
 	 */
-	public FilConversation(Integer id, String nom) {
+	public FilConversation(Long id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -58,7 +58,7 @@ public class FilConversation {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -67,7 +67,7 @@ public class FilConversation {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

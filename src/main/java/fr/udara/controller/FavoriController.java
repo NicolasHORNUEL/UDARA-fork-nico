@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.Favori;
+import fr.udara.service.FavoriService;
 
 /**
  * Controller associé à la classe Favori
@@ -40,7 +40,7 @@ public class FavoriController {
 	 * @param favoriService
 	 */
 	@Autowired
-	public FavoriController(favoriService favoriService) {
+	public FavoriController(FavoriService favoriService) {
 		this.favoriService = favoriService;
 	}
 

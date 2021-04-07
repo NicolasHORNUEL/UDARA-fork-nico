@@ -4,12 +4,12 @@
 package fr.udara.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.exception.NotFoundException;
 import fr.udara.model.IndicateurAir;
 import fr.udara.repository.IndicateurAirRepository;
 
@@ -52,8 +52,8 @@ public class IndicateurAirService {
 	 * @param id d'un objet IndicateurAir
 	 * @return une oéventuelle liste d'objet IndicateurAir
 	 */
-	public Optional<IndicateurAir> findById(Long id) {
-		return indicateurAirRepository.findById(id);
+	public IndicateurAir findById(Long id) {
+		return indicateurAirRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
 	

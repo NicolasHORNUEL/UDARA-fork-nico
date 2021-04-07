@@ -4,12 +4,12 @@
 package fr.udara.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.exception.NotFoundException;
 import fr.udara.model.NiveauMeteo;
 import fr.udara.repository.NiveauMeteoRepository;
 
@@ -52,8 +52,8 @@ public class NiveauMeteoService {
 	 * @param id d'un objet NiveauMeteo
 	 * @return une oéventuelle liste d'objet NiveauMeteo
 	 */
-	public Optional<NiveauMeteo> findById(Long id) {
-		return niveauMeteoRepository.findById(id);
+	public NiveauMeteo findById(Long id) {
+		return niveauMeteoRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
 	

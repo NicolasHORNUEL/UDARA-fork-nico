@@ -14,7 +14,7 @@ public class Notification {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private String texte;
 	private String commune;
@@ -28,7 +28,7 @@ public class Notification {
 	 * @param commune
 	 * @param lu
 	 */
-	public Notification(Integer id, String texte, String commune, boolean lu) {
+	public Notification(Long id, String texte, String commune, boolean lu) {
 		super();
 		this.id = id;
 		this.texte = texte;
@@ -36,6 +36,19 @@ public class Notification {
 		this.lu = lu;
 	}
 
+	/**
+	 * Constructeur
+	 * 
+	 * @param texte
+	 * @param commune
+	 * @param lu
+	 */
+	public Notification(String texte, String commune, boolean lu) {
+		this.texte = texte;
+		this.commune = commune;
+		this.lu = lu;
+	}
+	
 	/**
 	 * Constructeur vide
 	 */
@@ -53,7 +66,7 @@ public class Notification {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -62,7 +75,7 @@ public class Notification {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

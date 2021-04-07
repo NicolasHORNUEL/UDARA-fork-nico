@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.NiveauMeteo;
+import fr.udara.service.NiveauMeteoService;
 
 /**
  * @author UDARA
@@ -37,7 +39,7 @@ public class NiveauMeteoController {
 	 * @param niveauMeteoService
 	 */
 	@Autowired
-	public NiveauMeteoController(niveauMeteoService niveauMeteoService) {
+	public NiveauMeteoController(NiveauMeteoService niveauMeteoService) {
 		this.niveauMeteoService = niveauMeteoService;
 	}
 
@@ -77,7 +79,7 @@ public class NiveauMeteoController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return niveauMeteoService.create(niveauMeteo);
+		return niveauMeteoService.save(niveauMeteo);
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class NiveauMeteoController {
 	@PutMapping("{id}")
 	public NiveauMeteo update(@PathVariable(name = "id") Long id, @RequestBody NiveauMeteo niveauMeteo) {
 		niveauMeteo.setId(id);
-		return niveauMeteoService.update(niveauMeteo);
+		return niveauMeteoService.save(niveauMeteo);
 	}
 
 	/**

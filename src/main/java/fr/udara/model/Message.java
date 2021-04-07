@@ -16,7 +16,7 @@ public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String nom;
 
 	@ManyToOne
@@ -33,7 +33,7 @@ public class Message {
 	 * @param id
 	 * @param nom
 	 */
-	public Message(Integer id, String nom) {
+	public Message(Long id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -55,7 +55,7 @@ public class Message {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -64,7 +64,7 @@ public class Message {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

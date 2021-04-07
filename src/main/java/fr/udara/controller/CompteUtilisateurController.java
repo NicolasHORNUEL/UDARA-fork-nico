@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.CompteUtilisateur;
+import fr.udara.service.CompteUtilisateurService;
 
 /**
  * @author UDARA
@@ -37,7 +39,7 @@ public class CompteUtilisateurController {
 	 * @param compteUtilisateurService
 	 */
 	@Autowired
-	public CompteUtilisateurController(compteUtilisateurService compteUtilisateurService) {
+	public CompteUtilisateurController(CompteUtilisateurService compteUtilisateurService) {
 		this.compteUtilisateurService = compteUtilisateurService;
 	}
 
@@ -77,7 +79,7 @@ public class CompteUtilisateurController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return compteUtilisateurService.create(compteUtilisateur);
+		return compteUtilisateurService.save(compteUtilisateur);
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class CompteUtilisateurController {
 	@PutMapping("{id}")
 	public CompteUtilisateur update(@PathVariable(name = "id") Long id, @RequestBody CompteUtilisateur compteUtilisateur) {
 		compteUtilisateur.setId(id);
-		return compteUtilisateurService.update(compteUtilisateur);
+		return compteUtilisateurService.save(compteUtilisateur);
 	}
 
 	/**

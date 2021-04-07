@@ -1,12 +1,12 @@
 package fr.udara.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.exception.NotFoundException;
 import fr.udara.model.Message;
 import fr.udara.repository.MessageRepository;
 
@@ -50,8 +50,8 @@ public class MessageService {
 	 * @param id d'un objet Message
 	 * @return une éventuelle liste d'objet Message
 	 */
-	public Optional<Message> findById(Long id) {
-		return messageRepository.findById(id);
+	public Message findById(Long id) {
+		return messageRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
 	

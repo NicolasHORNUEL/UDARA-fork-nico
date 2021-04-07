@@ -1,12 +1,12 @@
 package fr.udara.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.exception.NotFoundException;
 import fr.udara.model.Rubrique;
 import fr.udara.repository.RubriqueRepository;
 
@@ -50,8 +50,8 @@ public class RubriqueService {
 	 * @param id d'un objet Rubrique
 	 * @return une éventuelle liste d'objet Rubrique
 	 */
-	public Optional<Rubrique> findById(Long id) {
-		return rubriqueRepository.findById(id);
+	public Rubrique findById(Long id) {
+		return rubriqueRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
 	

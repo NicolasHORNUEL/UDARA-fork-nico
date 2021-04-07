@@ -17,7 +17,7 @@ public class Rubrique {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String nom;
 	
 	@OneToMany(mappedBy="rubrique")
@@ -29,7 +29,7 @@ public class Rubrique {
 	 * @param id
 	 * @param nom
 	 */
-	public Rubrique(Integer id, String nom) {
+	public Rubrique(Long id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -52,7 +52,7 @@ public class Rubrique {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -61,7 +61,7 @@ public class Rubrique {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
