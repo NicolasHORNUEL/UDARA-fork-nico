@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.model.Commune;
 import fr.udara.repository.CommuneRepository;
@@ -32,6 +33,7 @@ public class CommuneService {
 	 * @param un objet Commune sans id
 	 * @return l'objet Commune avec un id
 	 */
+	@Transactional
 	public Commune save(Commune commune) {
 		return communeRepository.save(commune);
 		
@@ -73,6 +75,7 @@ public class CommuneService {
 	/**
 	 * @param id d'un objet Commune
 	 */
+	@Transactional
 	public void deleteById(Long id) {
 		communeRepository.deleteById(id);
 	}
@@ -81,6 +84,7 @@ public class CommuneService {
 	/**
 	 * @param un objet Commune
 	 */
+	@Transactional
 	public void delete(Commune commune) {
 		communeRepository.delete(commune);
 	}
