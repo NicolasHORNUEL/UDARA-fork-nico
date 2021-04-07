@@ -1,0 +1,108 @@
+/**
+ * 
+ */
+package fr.udara.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import fr.udara.exception.BadRequestException;
+
+/**
+ * @author UDARA
+ *
+ */
+@RestController
+@RequestMapping("/api/compteutilisateurs")
+public class CompteUtilisateurController {
+	
+	/** compteUtilisateurService */
+	private final CompteUtilisateurService compteUtilisateurService;
+
+	/**
+	 * Constructeur
+	 * 
+	 * @param compteUtilisateurService
+	 */
+	@Autowired
+	public CompteUtilisateurController(compteUtilisateurService compteUtilisateurService) {
+		this.compteUtilisateurService = compteUtilisateurService;
+	}
+
+	/**
+	 * Méthode de récupération de toutes les compteUtilisateurs
+	 * 
+	 * @return la liste de toutes les compteUtilisateurs
+	 */
+	@GetMapping
+	public List<CompteUtilisateur> findAll() {
+		return compteUtilisateurService.findAll();
+	}
+
+	/**
+	 * Méthode de récupération d'une compteUtilisateur selon son id
+	 * 
+	 * @param id id de la compteUtilisateur ciblée
+	 * @return la compteUtilisateur dont l'id est passé en paramètre
+	 */
+	@GetMapping("{compteUtilisateur-id}")
+	public CompteUtilisateur findById(@PathVariable(name = "compteUtilisateur-id") Long id) {
+		return compteUtilisateurService.findById(id);
+	}
+
+	/**
+	 * Méthode de création (ajout) d'une compteUtilisateur en DB
+	 * Requête HTTP POST http://<server_url>/api/compteUtilisateurs
+	 * 
+	 * @param compteUtilisateur la compteUtilisateur à créer
+	 * @param br      le BindingResult qui nous permet d'accéder aux potentielles
+	 *                erreurs liées aux validators
+	 * @return la compteUtilisateur créée
+	 */
+	@PostMapping()
+	public CompteUtilisateur create(@Valid @RequestBody CompteUtilisateur compteUtilisateur, BindingResult br) {
+		if (!br.getAllErrors().isEmpty()) {
+			System.out.println(br.getAllErrors());
+			throw new BadRequestException();
+		}
+		return compteUtilisateurService.create(compteUtilisateur);
+	}
+
+	/**
+	 * Méthode de modification d'une compteUtilisateur selon son id
+	 * Requête HTTP PUT http://<server_url>/api/compteUtilisateurs/:id --> Body en JSON
+	 * 
+	 * @param id l'id de la compteUtilisateur à modifier
+	 * @param compteUtilisateur la compteUtilisateur passée en corps de requête
+	 * @return la compteUtilisateur mise à jour
+	 */
+	@PutMapping("{id}")
+	public CompteUtilisateur update(@PathVariable(name = "id") Long id, @RequestBody CompteUtilisateur compteUtilisateur) {
+		compteUtilisateur.setId(id);
+		return compteUtilisateurService.update(compteUtilisateur);
+	}
+
+	/**
+	 * Méthode de suppression d'une compteUtilisateur selon son id
+	 * Requête HTTP DELETE http://<server_url>/api/compteUtilisateurs/:id
+	 * 
+	 * @param id l'id de la compteUtilisateur à supprimer
+	 */
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable Long id) {
+		compteUtilisateurService.deleteById(id);
+	}
+
+}
