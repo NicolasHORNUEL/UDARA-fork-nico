@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.IndicateurAir;
+import fr.udara.service.IndicateurAirService;
+
 
 /**
  * @author UDARA
@@ -37,7 +40,7 @@ public class IndicateurAirController {
 	 * @param indicateurAirService
 	 */
 	@Autowired
-	public IndicateurAirController(indicateurAirService indicateurAirService) {
+	public IndicateurAirController(IndicateurAirService indicateurAirService) {
 		this.indicateurAirService = indicateurAirService;
 	}
 
@@ -77,7 +80,7 @@ public class IndicateurAirController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return indicateurAirService.create(indicateurAir);
+		return indicateurAirService.save(indicateurAir);
 	}
 
 	/**
@@ -91,7 +94,7 @@ public class IndicateurAirController {
 	@PutMapping("{id}")
 	public IndicateurAir update(@PathVariable(name = "id") Long id, @RequestBody IndicateurAir indicateurAir) {
 		indicateurAir.setId(id);
-		return indicateurAirService.update(indicateurAir);
+		return indicateurAirService.save(indicateurAir);
 	}
 
 	/**

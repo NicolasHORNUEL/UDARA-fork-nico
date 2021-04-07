@@ -63,6 +63,26 @@ public class Notification {
 		this.lu = lu;
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * Constructeur
+	 * 
+	 * @param texte
+	 * @param commune
+	 * @param lu
+	 */
+	public Notification(String texte, String commune, boolean lu) {
+		this.texte = texte;
+		this.commune = commune;
+		this.lu = lu;
+	}
+	
+	/**
+	 * Constructeur vide
+	 */
+	public Notification() {
+>>>>>>> origin/master
 
 
 	@Override

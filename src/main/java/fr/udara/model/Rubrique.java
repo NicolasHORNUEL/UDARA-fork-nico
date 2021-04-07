@@ -18,9 +18,13 @@ public class Rubrique {
 	/** id : Integer */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
 	private Integer id;
 
 	/** nom : String */
+=======
+	private Long id;
+>>>>>>> origin/master
 	private String nom;
 
 	////////// RELATIONS //////////
@@ -43,7 +47,11 @@ public class Rubrique {
 	 * @param nom
 	 * @param filConversation
 	 */
+<<<<<<< HEAD
 	public Rubrique(String nom, List<FilConversation> filConversation) {
+=======
+	public Rubrique(Long id, String nom) {
+>>>>>>> origin/master
 		super();
 		this.nom = nom;
 		this.filConversation = filConversation;
@@ -78,7 +86,7 @@ public class Rubrique {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -87,7 +95,7 @@ public class Rubrique {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

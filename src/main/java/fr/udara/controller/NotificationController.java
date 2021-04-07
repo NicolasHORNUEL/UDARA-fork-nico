@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.Notification;
+import fr.udara.service.NotificationService;
 
 /**
  * @author UDARA
@@ -37,7 +39,7 @@ public class NotificationController {
 	 * @param notificationService
 	 */
 	@Autowired
-	public NotificationController(notificationService notificationService) {
+	public NotificationController(NotificationService notificationService) {
 		this.notificationService = notificationService;
 	}
 
@@ -77,7 +79,7 @@ public class NotificationController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return notificationService.create(notification);
+		return notificationService.save(notification);
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class NotificationController {
 	@PutMapping("{id}")
 	public Notification update(@PathVariable(name = "id") Long id, @RequestBody Notification notification) {
 		notification.setId(id);
-		return notificationService.update(notification);
+		return notificationService.save(notification);
 	}
 
 	/**

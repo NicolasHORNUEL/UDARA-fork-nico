@@ -20,9 +20,13 @@ public class FilConversation {
 	/** id : Integer */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
 	private Integer id;
 
 	/** nom : String */
+=======
+	private Long id;
+>>>>>>> origin/master
 	private String nom;
 
 	////////// RELATIONS //////////
@@ -52,7 +56,11 @@ public class FilConversation {
 	 * @param message
 	 * @param rubrique
 	 */
+<<<<<<< HEAD
 	public FilConversation(String nom, List<Message> message, Rubrique rubrique) {
+=======
+	public FilConversation(Long id, String nom) {
+>>>>>>> origin/master
 		super();
 		this.nom = nom;
 		this.message = message;
@@ -93,7 +101,7 @@ public class FilConversation {
 	 * 
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -102,7 +110,7 @@ public class FilConversation {
 	 * 
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

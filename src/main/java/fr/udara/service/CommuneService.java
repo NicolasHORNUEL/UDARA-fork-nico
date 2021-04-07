@@ -1,12 +1,12 @@
 package fr.udara.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.exception.NotFoundException;
 import fr.udara.model.Commune;
 import fr.udara.repository.CommuneRepository;
 
@@ -50,8 +50,8 @@ public class CommuneService {
 	 * @param id d'un objet Commune
 	 * @return une oéventuelle liste d'objet Commune
 	 */
-	public Optional<Commune> findById(Long id) {
-		return communeRepository.findById(id);
+	public Commune findById(Long id) {
+		return communeRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
 	

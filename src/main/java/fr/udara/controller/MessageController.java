@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.Message;
+import fr.udara.service.MessageService;
 
 /**
  * @author UDARA
@@ -37,7 +39,7 @@ public class MessageController {
 	 * @param messageService
 	 */
 	@Autowired
-	public MessageController(messageService messageService) {
+	public MessageController(MessageService messageService) {
 		this.messageService = messageService;
 	}
 
@@ -77,7 +79,7 @@ public class MessageController {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return messageService.create(message);
+		return messageService.save(message);
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class MessageController {
 	@PutMapping("{id}")
 	public Message update(@PathVariable(name = "id") Long id, @RequestBody Message message) {
 		message.setId(id);
-		return messageService.update(message);
+		return messageService.save(message);
 	}
 
 	/**
