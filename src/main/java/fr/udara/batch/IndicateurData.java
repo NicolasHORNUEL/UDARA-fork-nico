@@ -2,6 +2,10 @@ package fr.udara.batch;
 
 public class IndicateurData {
 
+	
+	/**
+	 * 
+	 */
 	private String co;
 	private String no;
 	private String no2;
