@@ -5,5 +5,7 @@ package fr.udara.dto;
  *
  */
 public class CommuneDTO {
+	
+
 
 }
