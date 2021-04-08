@@ -36,8 +36,8 @@ public class NotificationService {
 	@Transactional
 	public Notification save(Notification notification) {
 		return notificationRepository.save(notification);
-		
 	}
+	
 	/**
 	 * @return une liste d'objet Notification
 	 */
