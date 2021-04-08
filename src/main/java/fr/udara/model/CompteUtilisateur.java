@@ -17,8 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
 
-
-
 /**
  * @author Udara
  *
@@ -49,6 +47,9 @@ public class CompteUtilisateur {
 	@Max(value = 5)
 	private String codePostal;
 
+	/** statutActif : Boolean */
+	private Boolean statutActif;
+
 	/** role : Role */
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -78,7 +79,6 @@ public class CompteUtilisateur {
 	 * Constructeurs vide
 	 */
 	public CompteUtilisateur() {
-		super();
 	}
 
 	/**
@@ -96,14 +96,14 @@ public class CompteUtilisateur {
 	 * @param commune
 	 */
 	public CompteUtilisateur(String nom, String prenom, String nomUtilisateur, String mail, @Max(5) String codePostal,
-			Role role, List<Favori> favoris, List<Message> messages, List<Notification> notifications,
-			Commune commune) {
-		super();
+			Boolean statutActif, Role role, List<Favori> favoris, List<Message> messages,
+			List<Notification> notifications, Commune commune) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomUtilisateur = nomUtilisateur;
 		this.mail = mail;
 		this.codePostal = codePostal;
+		this.statutActif = statutActif;
 		this.role = role;
 		this.favoris = favoris;
 		this.messages = messages;
@@ -127,7 +127,7 @@ public class CompteUtilisateur {
 	 * @param commune
 	 */
 	public CompteUtilisateur(Long id, String nom, String prenom, String nomUtilisateur, String mail,
-			@Max(5) String codePostal, Role role, List<Favori> favoris, List<Message> messages,
+			@Max(5) String codePostal, Boolean statutActif, Role role, List<Favori> favoris, List<Message> messages,
 			List<Notification> notifications, Commune commune) {
 		super();
 		this.id = id;
@@ -136,6 +136,7 @@ public class CompteUtilisateur {
 		this.nomUtilisateur = nomUtilisateur;
 		this.mail = mail;
 		this.codePostal = codePostal;
+		this.statutActif = statutActif;
 		this.role = role;
 		this.favoris = favoris;
 		this.messages = messages;
@@ -148,8 +149,9 @@ public class CompteUtilisateur {
 	@Override
 	public String toString() {
 		return "CompteUtilisateur n°" + id + "\nNom : " + nom + "\\nPrenom : " + prenom + "\\nNomUtilisateur : "
-				+ nomUtilisateur + "\\nMail : " + mail + "\\nCode Postal : " + codePostal + "\\nRole : " + role
-				+ "\\nFavoris : " + favoris + "\\nMessages : " + messages + "\\nNotifications : " + notifications + "\nCommune : " + commune;
+				+ nomUtilisateur + "\\nMail : " + mail + "\\nCode Postal : " + codePostal + "\\nActif : " + statutActif
+				+ "\\nRole : " + role + "\\nFavoris : " + favoris + "\\nMessages : " + messages + "\\nNotifications : "
+				+ notifications + "\nCommune : " + commune;
 	}
 
 	////////// GETTERS & SETTERS //////////
@@ -252,7 +254,7 @@ public class CompteUtilisateur {
 	public String getCodePostal() {
 		return codePostal;
 	}
-
+	
 	/**
 	 * Setter
 	 * 
@@ -262,6 +264,24 @@ public class CompteUtilisateur {
 		this.codePostal = codePostal;
 	}
 
+	/**
+	 * Getter
+	 * 
+	 * @return le statuActif
+	 */
+	public Boolean getStatutActif() {
+		return statutActif;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param statutActif the statutActif to set
+	 */
+	public void setStatutActif(Boolean statutActif) {
+		this.statutActif = statutActif;
+	}
+	
 	/**
 	 * Getter
 	 * 
