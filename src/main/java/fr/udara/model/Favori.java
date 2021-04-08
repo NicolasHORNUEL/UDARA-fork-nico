@@ -53,7 +53,7 @@ public class Favori {
 	@JoinColumn(name = "CompteUtilisateur_id")
 	private CompteUtilisateur compteUtilisateur;
 
-	////////// CONTROLEURS //////////
+	////////// CONSTRUCLEURS //////////
 
 	/**
 	 * Constructeur vide

@@ -58,7 +58,7 @@ public class Commune {
 	@OneToMany(mappedBy = "commune")
 	private List<Favori> favoris;
 
-	////////// CONTROLEURS //////////
+	////////// CONSTRUCLEURS //////////
 
 	/** Constructeur vide */
 	public Commune() {

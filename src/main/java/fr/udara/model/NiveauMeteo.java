@@ -36,7 +36,7 @@ public class NiveauMeteo {
 	@JoinColumn(name = "Commune_id")
 	private Commune commune;
 
-	////////// CONTROLEURS //////////
+	////////// CONSTRUCLEURS //////////
 
 	/** Constructeur VIDE */
 	private NiveauMeteo() {
