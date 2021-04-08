@@ -37,3 +37,6 @@ build/
 
 ### application.properties ###
 *.properties
+
+### thumbnail mac os x ###
+*.DS_Store
