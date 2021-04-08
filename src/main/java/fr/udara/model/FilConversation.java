@@ -36,7 +36,7 @@ public class FilConversation {
 	@JoinColumn(name = "Rubrique_id")
 	private Rubrique rubrique;
 
-	////////// CONSTRUCLEURS //////////
+	////////// CONSTRUCTEURS //////////
 
 	/**
 	 * Constructeur vide

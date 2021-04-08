@@ -71,7 +71,7 @@ public class CompteUtilisateur {
 	)
 	private List<Notification> notifications;
 
-	////////// CONSTRUCLEURS //////////
+	////////// CONSTRUCTEURS //////////
 
 	/**
 	 * Constructeurs vide

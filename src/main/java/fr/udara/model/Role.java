@@ -6,7 +6,10 @@ package fr.udara.model;
  */
 public enum Role {
 	
+	/** ADMINISTRATEUR : Role */
 	ADMINISTRATEUR,
+	
+	/** UTILISATEUR : Role */
 	UTILISATEUR;
 	
 

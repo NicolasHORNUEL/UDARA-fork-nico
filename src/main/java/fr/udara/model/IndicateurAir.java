@@ -36,7 +36,7 @@ public class IndicateurAir {
 	@JoinColumn(name = "Commune_id")
 	private Commune commune;
 
-	////////// CONSTRUCLEURS //////////
+	////////// CONSTRUCTEURS //////////
 
 	/** Constructeur VIDE */
 	private IndicateurAir() {

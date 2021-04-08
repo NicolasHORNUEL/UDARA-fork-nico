@@ -29,7 +29,7 @@ public class Rubrique {
 	@OneToMany(mappedBy = "rubrique")
 	private List<FilConversation> filConversation;
 
-	////////// CONSTRUCLEURS //////////
+	////////// CONSTRUCTEURS //////////
 
 	/**
 	 * Constructeur vide

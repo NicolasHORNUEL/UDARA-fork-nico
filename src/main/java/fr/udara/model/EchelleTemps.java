@@ -9,8 +9,13 @@ package fr.udara.model;
  */
 public enum EchelleTemps {
 	
+	/** JOURNALIERE : EchelleTemps */
 	JOURNALIERE,
+	
+	/** HEBDOMADAIRE : EchelleTemps */
 	HEBDOMADAIRE,
+	
+	/** MENSUEL : EchelleTemps */
 	MENSUEL
 	
 }

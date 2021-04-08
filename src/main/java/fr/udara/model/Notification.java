@@ -40,7 +40,7 @@ public class Notification {
 	)
 	private List<CompteUtilisateur> compteUtilisateurs;
 
-	////////// CONSTRUCLEURS //////////
+	////////// CONSTRUCTEURS //////////
 
 	/**
 	 * Constructeur vide

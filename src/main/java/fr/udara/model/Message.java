@@ -34,7 +34,7 @@ public class Message {
 	@JoinColumn(name = "CompteUtilisateur_id")
 	private CompteUtilisateur compteUtilisateur;
 
-	////////// CONSTRUCLEURS //////////
+	////////// CONSTRUCTEURS //////////
 
 	/**
 	 * Constructeur vide
