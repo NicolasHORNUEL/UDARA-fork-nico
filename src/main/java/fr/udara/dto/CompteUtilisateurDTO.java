@@ -3,14 +3,11 @@
  */
 package fr.udara.dto;
 
-import javax.persistence.Entity;
-
 /**
  * DTO associé au compte utilisateur
  * @author Udara
  *
  */
-@Entity
 public class CompteUtilisateurDTO {
 	
 	/** nom : String */
