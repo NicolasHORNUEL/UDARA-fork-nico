@@ -58,6 +58,10 @@ public class Commune {
 	@OneToMany(mappedBy = "commune")
 	private List<Favori> favoris;
 
+	/** messages : List<Message> */
+	@OneToMany(mappedBy = "commune")
+	private List<CompteUtilisateur> compteUtilisateurs;
+
 	////////// CONSTRUCTEURS //////////
 
 	/** Constructeur vide */
@@ -66,6 +70,7 @@ public class Commune {
 
 	/**
 	 * Constructeur sans id
+	 * 
 	 * @param nom
 	 * @param departement
 	 * @param region
@@ -75,10 +80,11 @@ public class Commune {
 	 * @param indicateurAirs
 	 * @param niveauMeteos
 	 * @param favoris
+	 * @param compteUtilisateurs
 	 */
 	public Commune(@NotEmpty String nom, String departement, String region, Integer population,
 			@NotEmpty Float xCoordonnee, @NotEmpty Float yCoordonnee, List<IndicateurAir> indicateurAirs,
-			List<NiveauMeteo> niveauMeteos, List<Favori> favoris) {
+			List<NiveauMeteo> niveauMeteos, List<Favori> favoris, List<CompteUtilisateur> compteUtilisateurs) {
 		super();
 		this.nom = nom;
 		this.departement = departement;
@@ -89,10 +95,14 @@ public class Commune {
 		this.indicateurAirs = indicateurAirs;
 		this.niveauMeteos = niveauMeteos;
 		this.favoris = favoris;
+		this.compteUtilisateurs = compteUtilisateurs;
 	}
-	
+
+	////////// TO STRING //////////
+
 	/**
 	 * Constructeur complet
+	 * 
 	 * @param id
 	 * @param nom
 	 * @param departement
@@ -103,10 +113,11 @@ public class Commune {
 	 * @param indicateurAirs
 	 * @param niveauMeteos
 	 * @param favoris
+	 * @param compteUtilisateurs
 	 */
 	public Commune(Long id, @NotEmpty String nom, String departement, String region, Integer population,
 			@NotEmpty Float xCoordonnee, @NotEmpty Float yCoordonnee, List<IndicateurAir> indicateurAirs,
-			List<NiveauMeteo> niveauMeteos, List<Favori> favoris) {
+			List<NiveauMeteo> niveauMeteos, List<Favori> favoris, List<CompteUtilisateur> compteUtilisateurs) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -118,17 +129,15 @@ public class Commune {
 		this.indicateurAirs = indicateurAirs;
 		this.niveauMeteos = niveauMeteos;
 		this.favoris = favoris;
+		this.compteUtilisateurs = compteUtilisateurs;
 	}
-
-
-
-	////////// TO STRING //////////
 
 	@Override
 	public String toString() {
 		return "Commune n°" + id + "\nNom : " + nom + "\nDepartement : " + departement + "\nRegion : " + region
 				+ "\nPopulation : " + population + "\nCoordonnee X : " + xCoordonnee + "\nCoordonnee Y : " + yCoordonnee
-				+ "\nIndicateurAirs : " + indicateurAirs + "\nNiveau Meteos : " + niveauMeteos + "\nFavoris : " + favoris;
+				+ "\nIndicateurAirs : " + indicateurAirs + "\nNiveau Meteos : " + niveauMeteos + "\nFavoris : "
+				+ favoris + "\nCompte utilisateur" + compteUtilisateurs;
 	}
 
 	////////// GETTERS & SETTERS //////////
@@ -311,6 +320,24 @@ public class Commune {
 	 */
 	public void setFavoris(List<Favori> favoris) {
 		this.favoris = favoris;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the compteUtilisateurs
+	 */
+	public List<CompteUtilisateur> getCompteUtilisateurs() {
+		return compteUtilisateurs;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param compteUtilisateurs the compteUtilisateurs to set
+	 */
+	public void setCompteUtilisateurs(List<CompteUtilisateur> compteUtilisateurs) {
+		this.compteUtilisateurs = compteUtilisateurs;
 	}
 
 }

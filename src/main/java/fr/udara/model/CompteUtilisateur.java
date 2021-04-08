@@ -11,12 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
 
-import fr.udara.model.*;
 
 
 /**
@@ -65,11 +65,12 @@ public class CompteUtilisateur {
 
 	/** notifications : List<Notification> */
 	@ManyToMany
-	@JoinTable(name = "REL_COMPTE_NOTIFICATION", 
-		joinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "id"), 
-		inverseJoinColumns = @JoinColumn(name = "ID_NOTIF", referencedColumnName = "id")
-	)
+	@JoinTable(name = "REL_COMPTE_NOTIFICATION", joinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "ID_NOTIF", referencedColumnName = "id"))
 	private List<Notification> notifications;
+
+	@ManyToOne
+	@JoinColumn(name = "Commune_id")
+	private Commune commune;
 
 	////////// CONSTRUCTEURS //////////
 
@@ -81,7 +82,7 @@ public class CompteUtilisateur {
 	}
 
 	/**
-	 * Constructeurs sans id
+	 * Constructeur sans id
 	 * 
 	 * @param nom
 	 * @param prenom
@@ -92,9 +93,11 @@ public class CompteUtilisateur {
 	 * @param favoris
 	 * @param messages
 	 * @param notifications
+	 * @param commune
 	 */
 	public CompteUtilisateur(String nom, String prenom, String nomUtilisateur, String mail, @Max(5) String codePostal,
-			Role role, List<Favori> favoris, List<Message> messages, List<Notification> notifications) {
+			Role role, List<Favori> favoris, List<Message> messages, List<Notification> notifications,
+			Commune commune) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -105,10 +108,11 @@ public class CompteUtilisateur {
 		this.favoris = favoris;
 		this.messages = messages;
 		this.notifications = notifications;
+		this.commune = commune;
 	}
 
 	/**
-	 * Constructeurs complet
+	 * Constructeur complet
 	 * 
 	 * @param id
 	 * @param nom
@@ -120,10 +124,11 @@ public class CompteUtilisateur {
 	 * @param favoris
 	 * @param messages
 	 * @param notifications
+	 * @param commune
 	 */
 	public CompteUtilisateur(Long id, String nom, String prenom, String nomUtilisateur, String mail,
 			@Max(5) String codePostal, Role role, List<Favori> favoris, List<Message> messages,
-			List<Notification> notifications) {
+			List<Notification> notifications, Commune commune) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -135,6 +140,7 @@ public class CompteUtilisateur {
 		this.favoris = favoris;
 		this.messages = messages;
 		this.notifications = notifications;
+		this.commune = commune;
 	}
 
 	////////// TO STRING //////////
@@ -143,7 +149,7 @@ public class CompteUtilisateur {
 	public String toString() {
 		return "CompteUtilisateur n°" + id + "\nNom : " + nom + "\\nPrenom : " + prenom + "\\nNomUtilisateur : "
 				+ nomUtilisateur + "\\nMail : " + mail + "\\nCode Postal : " + codePostal + "\\nRole : " + role
-				+ "\\nFavoris : " + favoris + "\\nMessages : " + messages + "\\nNotifications : " + notifications;
+				+ "\\nFavoris : " + favoris + "\\nMessages : " + messages + "\\nNotifications : " + notifications + "\nCommune : " + commune;
 	}
 
 	////////// GETTERS & SETTERS //////////
@@ -326,6 +332,24 @@ public class CompteUtilisateur {
 	 */
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the commune
+	 */
+	public Commune getCommune() {
+		return commune;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param commune the commune to set
+	 */
+	public void setCommune(Commune commune) {
+		this.commune = commune;
 	}
 
 }
