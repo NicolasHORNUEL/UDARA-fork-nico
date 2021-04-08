@@ -43,31 +43,37 @@ public class NiveauMeteo {
 	}
 
 	/**
-	 * Constructor sans id
+	 * Constructeur sans id
 	 * 
 	 * @param nom
 	 * @param valeur
 	 * @param dateReleve
+	 * @param commune
 	 */
-	private NiveauMeteo(String nom, Float valeur, LocalDateTime dateReleve) {
+	public NiveauMeteo(String nom, Float valeur, LocalDateTime dateReleve, Commune commune) {
+		super();
 		this.nom = nom;
 		this.valeur = valeur;
 		this.dateReleve = dateReleve;
+		this.commune = commune;
 	}
 
 	/**
-	 * Constructor complet
+	 * Constructeur complet
 	 * 
 	 * @param id
 	 * @param nom
 	 * @param valeur
 	 * @param dateReleve
+	 * @param commune
 	 */
-	private NiveauMeteo(Long id, String nom, Float valeur, LocalDateTime dateReleve) {
+	public NiveauMeteo(Long id, String nom, Float valeur, LocalDateTime dateReleve, Commune commune) {
+		super();
 		this.id = id;
 		this.nom = nom;
 		this.valeur = valeur;
 		this.dateReleve = dateReleve;
+		this.commune = commune;
 	}
 
 	////////// TO STRING //////////
@@ -77,17 +83,8 @@ public class NiveauMeteo {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("NiveauMeteo [id=");
-		builder.append(id);
-		builder.append(", nom=");
-		builder.append(nom);
-		builder.append(", valeur=");
-		builder.append(valeur);
-		builder.append(", dateReleve=");
-		builder.append(dateReleve);
-		builder.append("]");
-		return builder.toString();
+		return "Niveau Meteo n°" + id + "\nNom : " + nom + "\nValeur : " + valeur + "\nDate Releve : " + dateReleve
+				+ "\nCommune : " + commune;
 	}
 
 	////////// GETTERS & SETTERS //////////
@@ -162,6 +159,24 @@ public class NiveauMeteo {
 	 */
 	public void setDateReleve(LocalDateTime dateReleve) {
 		this.dateReleve = dateReleve;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the commune
+	 */
+	public Commune getCommune() {
+		return commune;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param commune the commune to set
+	 */
+	public void setCommune(Commune commune) {
+		this.commune = commune;
 	}
 
 }

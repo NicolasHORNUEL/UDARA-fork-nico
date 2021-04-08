@@ -66,27 +66,33 @@ public class Commune {
 
 	/**
 	 * Constructeur sans id
-	 * 
 	 * @param nom
 	 * @param departement
 	 * @param region
 	 * @param population
 	 * @param xCoordonnee
 	 * @param yCoordonnee
+	 * @param indicateurAirs
+	 * @param niveauMeteos
+	 * @param favoris
 	 */
-	public Commune(String nom, String departement, String region, Integer population, Float xCoordonnee,
-			Float yCoordonnee) {
+	public Commune(@NotEmpty String nom, String departement, String region, Integer population,
+			@NotEmpty Float xCoordonnee, @NotEmpty Float yCoordonnee, List<IndicateurAir> indicateurAirs,
+			List<NiveauMeteo> niveauMeteos, List<Favori> favoris) {
+		super();
 		this.nom = nom;
 		this.departement = departement;
 		this.region = region;
 		this.population = population;
 		this.xCoordonnee = xCoordonnee;
 		this.yCoordonnee = yCoordonnee;
+		this.indicateurAirs = indicateurAirs;
+		this.niveauMeteos = niveauMeteos;
+		this.favoris = favoris;
 	}
-
+	
 	/**
-	 * Constructeur complet, avec id
-	 * 
+	 * Constructeur complet
 	 * @param id
 	 * @param nom
 	 * @param departement
@@ -94,9 +100,14 @@ public class Commune {
 	 * @param population
 	 * @param xCoordonnee
 	 * @param yCoordonnee
+	 * @param indicateurAirs
+	 * @param niveauMeteos
+	 * @param favoris
 	 */
-	public Commune(Long id, String nom, String departement, String region, Integer population, Float xCoordonnee,
-			Float yCoordonnee) {
+	public Commune(Long id, @NotEmpty String nom, String departement, String region, Integer population,
+			@NotEmpty Float xCoordonnee, @NotEmpty Float yCoordonnee, List<IndicateurAir> indicateurAirs,
+			List<NiveauMeteo> niveauMeteos, List<Favori> favoris) {
+		super();
 		this.id = id;
 		this.nom = nom;
 		this.departement = departement;
@@ -104,18 +115,20 @@ public class Commune {
 		this.population = population;
 		this.xCoordonnee = xCoordonnee;
 		this.yCoordonnee = yCoordonnee;
+		this.indicateurAirs = indicateurAirs;
+		this.niveauMeteos = niveauMeteos;
+		this.favoris = favoris;
 	}
+
+
 
 	////////// TO STRING //////////
 
-	/**
-	 * Méthode toString pour afficher la valeur des attributs de l'instance
-	 */
 	@Override
 	public String toString() {
-		return "Commune n°" + id + ":\nNom : " + nom + "\nDepartement : " + departement + "\nRegion : " + region
-				+ "\nPopulation : " + population + "\nCoordonnee x : " + xCoordonnee + "\nCoordonnee y : "
-				+ yCoordonnee;
+		return "Commune n°" + id + "\nNom : " + nom + "\nDepartement : " + departement + "\nRegion : " + region
+				+ "\nPopulation : " + population + "\nCoordonnee X : " + xCoordonnee + "\nCoordonnee Y : " + yCoordonnee
+				+ "\nIndicateurAirs : " + indicateurAirs + "\nNiveau Meteos : " + niveauMeteos + "\nFavoris : " + favoris;
 	}
 
 	////////// GETTERS & SETTERS //////////
@@ -244,6 +257,60 @@ public class Commune {
 	 */
 	public void setyCoordonnee(Float yCoordonnee) {
 		this.yCoordonnee = yCoordonnee;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the indicateurAirs
+	 */
+	public List<IndicateurAir> getIndicateurAirs() {
+		return indicateurAirs;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param indicateurAirs the indicateurAirs to set
+	 */
+	public void setIndicateurAirs(List<IndicateurAir> indicateurAirs) {
+		this.indicateurAirs = indicateurAirs;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the niveauMeteos
+	 */
+	public List<NiveauMeteo> getNiveauMeteos() {
+		return niveauMeteos;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param niveauMeteos the niveauMeteos to set
+	 */
+	public void setNiveauMeteos(List<NiveauMeteo> niveauMeteos) {
+		this.niveauMeteos = niveauMeteos;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the favoris
+	 */
+	public List<Favori> getFavoris() {
+		return favoris;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param favoris the favoris to set
+	 */
+	public void setFavoris(List<Favori> favoris) {
+		this.favoris = favoris;
 	}
 
 }

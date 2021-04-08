@@ -18,13 +18,9 @@ public class Rubrique {
 	/** id : Integer */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
-	private Integer id;
+	private Long id;
 
 	/** nom : String */
-=======
-	private Long id;
->>>>>>> origin/master
 	private String nom;
 
 	////////// RELATIONS //////////
@@ -47,11 +43,7 @@ public class Rubrique {
 	 * @param nom
 	 * @param filConversation
 	 */
-<<<<<<< HEAD
 	public Rubrique(String nom, List<FilConversation> filConversation) {
-=======
-	public Rubrique(Long id, String nom) {
->>>>>>> origin/master
 		super();
 		this.nom = nom;
 		this.filConversation = filConversation;
@@ -64,12 +56,13 @@ public class Rubrique {
 	 * @param nom
 	 * @param filConversation
 	 */
-	public Rubrique(Integer id, String nom, List<FilConversation> filConversation) {
+	public Rubrique(Long id, String nom, List<FilConversation> filConversation) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.filConversation = filConversation;
 	}
+	
 
 	////////// TO STRING //////////
 
@@ -80,6 +73,8 @@ public class Rubrique {
 	public String toString() {
 		return "Rubrique n°" + id + "\nNom : " + nom + "\nFil de conversation : " + filConversation;
 	}
+	
+	////////// GETTERS & SETTERS //////////
 
 	/**
 	 * Getter
@@ -107,7 +102,7 @@ public class Rubrique {
 	public String getNom() {
 		return nom;
 	}
-
+	
 	/**
 	 * Setter
 	 * 
@@ -116,5 +111,25 @@ public class Rubrique {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the filConversation
+	 */
+	public List<FilConversation> getFilConversation() {
+		return filConversation;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param filConversation the filConversation to set
+	 */
+	public void setFilConversation(List<FilConversation> filConversation) {
+		this.filConversation = filConversation;
+	}
+
+
 
 }

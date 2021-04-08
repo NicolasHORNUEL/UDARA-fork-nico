@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
@@ -39,56 +40,57 @@ public class Notification {
 	)
 	private List<CompteUtilisateur> compteUtilisateurs;
 
+	////////// CONTROLEURS //////////
 
 	/**
 	 * Constructeur vide
 	 */
 	public Notification() {
-
 	}
-	
+
 	/**
-	 * Constructeur
-	 * 
+	 * Constructeur sans id
+	 * @param texte
+	 * @param commune
+	 * @param lu
+	 * @param compteUtilisateurs
+	 */
+	public Notification(String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs) {
+		super();
+		this.texte = texte;
+		this.commune = commune;
+		this.lu = lu;
+		this.compteUtilisateurs = compteUtilisateurs;
+	}
+
+	/**
+	 * Constructeur complet
 	 * @param id
 	 * @param texte
 	 * @param commune
 	 * @param lu
+	 * @param compteUtilisateurs
 	 */
-	public Notification(Long id, String texte, String commune, boolean lu) {
+	public Notification(Long id, String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs) {
 		super();
 		this.id = id;
 		this.texte = texte;
 		this.commune = commune;
 		this.lu = lu;
-	}
-
-<<<<<<< HEAD
-=======
-	/**
-	 * Constructeur
-	 * 
-	 * @param texte
-	 * @param commune
-	 * @param lu
-	 */
-	public Notification(String texte, String commune, boolean lu) {
-		this.texte = texte;
-		this.commune = commune;
-		this.lu = lu;
+		this.compteUtilisateurs = compteUtilisateurs;
 	}
 	
+	////////// TO STRING //////////
+
 	/**
-	 * Constructeur vide
+	 *  Méthode toString pour afficher la valeur des attributs de l'instance
 	 */
-	public Notification() {
->>>>>>> origin/master
-
-
 	@Override
 	public String toString() {
-		return "Notification [id=" + id + ", texte=" + texte + ", commune=" + commune + ", lu=" + lu + "]";
+		return "Notification n°" + id + "\nTexte : " + texte + "\nCommune : " + commune + "\nLu=" + lu;
 	}
+	
+	////////// GETTERS & SETTERS //////////
 
 	/**
 	 * Getter
@@ -160,6 +162,24 @@ public class Notification {
 	 */
 	public void setLu(boolean lu) {
 		this.lu = lu;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the compteUtilisateurs
+	 */
+	public List<CompteUtilisateur> getCompteUtilisateurs() {
+		return compteUtilisateurs;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param compteUtilisateurs the compteUtilisateurs to set
+	 */
+	public void setCompteUtilisateurs(List<CompteUtilisateur> compteUtilisateurs) {
+		this.compteUtilisateurs = compteUtilisateurs;
 	}
 
 }

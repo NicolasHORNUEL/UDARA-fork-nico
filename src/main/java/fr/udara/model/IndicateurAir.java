@@ -40,35 +40,40 @@ public class IndicateurAir {
 
 	/** Constructeur VIDE */
 	private IndicateurAir() {
-
 	}
 
-	
 	/**
 	 * Constructeur sans id
+	 * 
 	 * @param nom
 	 * @param valeur
 	 * @param dateReleve
+	 * @param commune
 	 */
-	private IndicateurAir(String nom, Float valeur, LocalDateTime dateReleve) {
+	public IndicateurAir(String nom, Float valeur, LocalDateTime dateReleve, Commune commune) {
+		super();
 		this.nom = nom;
 		this.valeur = valeur;
 		this.dateReleve = dateReleve;
+		this.commune = commune;
 	}
 
-	
 	/**
-	 * Constructor complet
+	 * Constructeur complet
+	 * 
 	 * @param id
 	 * @param nom
 	 * @param valeur
 	 * @param dateReleve
+	 * @param commune
 	 */
-	private IndicateurAir(Long id, String nom, Float valeur, LocalDateTime dateReleve) {
+	public IndicateurAir(Long id, String nom, Float valeur, LocalDateTime dateReleve, Commune commune) {
+		super();
 		this.id = id;
 		this.nom = nom;
 		this.valeur = valeur;
 		this.dateReleve = dateReleve;
+		this.commune = commune;
 	}
 
 	////////// TO STRING //////////
@@ -154,6 +159,24 @@ public class IndicateurAir {
 	 */
 	public void setDateReleve(LocalDateTime dateReleve) {
 		this.dateReleve = dateReleve;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the commune
+	 */
+	public Commune getCommune() {
+		return commune;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param commune the commune to set
+	 */
+	public void setCommune(Commune commune) {
+		this.commune = commune;
 	}
 
 }

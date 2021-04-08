@@ -20,13 +20,9 @@ public class FilConversation {
 	/** id : Integer */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
-	private Integer id;
+	private Long id;
 
 	/** nom : String */
-=======
-	private Long id;
->>>>>>> origin/master
 	private String nom;
 
 	////////// RELATIONS //////////
@@ -56,11 +52,7 @@ public class FilConversation {
 	 * @param message
 	 * @param rubrique
 	 */
-<<<<<<< HEAD
 	public FilConversation(String nom, List<Message> message, Rubrique rubrique) {
-=======
-	public FilConversation(Long id, String nom) {
->>>>>>> origin/master
 		super();
 		this.nom = nom;
 		this.message = message;
@@ -75,7 +67,7 @@ public class FilConversation {
 	 * @param message
 	 * @param rubrique
 	 */
-	public FilConversation(Integer id, String nom, List<Message> message, Rubrique rubrique) {
+	public FilConversation(Long id, String nom, List<Message> message, Rubrique rubrique) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -85,7 +77,6 @@ public class FilConversation {
 
 	////////// TO STRING //////////
 
-	
 	/**
 	 * Méthode toString pour afficher la valeur des attributs de l'instance
 	 */

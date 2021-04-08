@@ -18,11 +18,8 @@ public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-<<<<<<< HEAD
 
 	/** nom : String */
-=======
->>>>>>> origin/master
 	private String nom;
 
 	////////// RELATIONS //////////
@@ -48,16 +45,11 @@ public class Message {
 
 	/**
 	 * Constructeur sans id
-	 * 
 	 * @param nom
 	 * @param filConversation
 	 * @param compteUtilisateur
 	 */
-<<<<<<< HEAD
 	public Message(String nom, FilConversation filConversation, CompteUtilisateur compteUtilisateur) {
-=======
-	public Message(Long id, String nom) {
->>>>>>> origin/master
 		super();
 		this.nom = nom;
 		this.filConversation = filConversation;

@@ -63,35 +63,47 @@ public class Favori {
 
 	/**
 	 * Constructeur sans id
-	 * 
 	 * @param nom
 	 * @param niveauMeteo
 	 * @param indicateurAir
 	 * @param echelleTemps
+	 * @param commune
+	 * @param compteUtilisateur
 	 */
-	public Favori(String nom, String niveauMeteo, Boolean indicateurAir, EchelleTemps echelleTemps) {
+	public Favori(@NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty Boolean indicateurAir,
+			EchelleTemps echelleTemps, Commune commune, CompteUtilisateur compteUtilisateur) {
+		super();
 		this.nom = nom;
 		this.niveauMeteo = niveauMeteo;
 		this.indicateurAir = indicateurAir;
 		this.echelleTemps = echelleTemps;
+		this.commune = commune;
+		this.compteUtilisateur = compteUtilisateur;
 	}
 
 	/**
-	 * Constructeur complet avec id
-	 * 
+	 * Constructeur complet
 	 * @param id
 	 * @param nom
 	 * @param niveauMeteo
 	 * @param indicateurAir
 	 * @param echelleTemps
+	 * @param commune
+	 * @param compteUtilisateur
 	 */
-	public Favori(Long id, String nom, String niveauMeteo, Boolean indicateurAir, EchelleTemps echelleTemps) {
+	public Favori(Long id, @NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty Boolean indicateurAir,
+			EchelleTemps echelleTemps, Commune commune, CompteUtilisateur compteUtilisateur) {
+		super();
 		this.id = id;
 		this.nom = nom;
 		this.niveauMeteo = niveauMeteo;
 		this.indicateurAir = indicateurAir;
 		this.echelleTemps = echelleTemps;
+		this.commune = commune;
+		this.compteUtilisateur = compteUtilisateur;
 	}
+
+
 
 	////////// TO STRING //////////
 

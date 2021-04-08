@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
 
+import fr.udara.model.*;
+
 
 /**
  * @author Udara
