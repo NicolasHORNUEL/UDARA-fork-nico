@@ -1,4 +1,4 @@
-package fr.udara.model;
+package fr.udara.batch;
 
 import java.util.Map;
 
@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Udara
  *
  */
-public class CurrentWeatherData {
+public class MeteoData {
 
 	/** longitude : String */
 	private String longitude;
@@ -86,7 +86,7 @@ public class CurrentWeatherData {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CurrentWeatherData [longitude=");
+		builder.append("MeteoData [longitude=");
 		builder.append(longitude);
 		builder.append(", latitude=");
 		builder.append(latitude);
@@ -102,6 +102,104 @@ public class CurrentWeatherData {
 		builder.append(date);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	/** Getter
+	 * @return the longitude
+	 */
+	public String getLongitude() {
+		return longitude;
+	}
+
+	/** Setter
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	/** Getter
+	 * @return the latitude
+	 */
+	public String getLatitude() {
+		return latitude;
+	}
+
+	/** Setter
+	 * @param latitude the latitude to set
+	 */
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	/** Getter
+	 * @return the temperature
+	 */
+	public String getTemperature() {
+		return temperature;
+	}
+
+	/** Setter
+	 * @param temperature the temperature to set
+	 */
+	public void setTemperature(String temperature) {
+		this.temperature = temperature;
+	}
+
+	/** Getter
+	 * @return the vent
+	 */
+	public String getVent() {
+		return vent;
+	}
+
+	/** Setter
+	 * @param vent the vent to set
+	 */
+	public void setVent(String vent) {
+		this.vent = vent;
+	}
+
+	/** Getter
+	 * @return the nuage
+	 */
+	public String getNuage() {
+		return nuage;
+	}
+
+	/** Setter
+	 * @param nuage the nuage to set
+	 */
+	public void setNuage(String nuage) {
+		this.nuage = nuage;
+	}
+
+	/** Getter
+	 * @return the pluie
+	 */
+	public String getPluie() {
+		return pluie;
+	}
+
+	/** Setter
+	 * @param pluie the pluie to set
+	 */
+	public void setPluie(String pluie) {
+		this.pluie = pluie;
+	}
+
+	/** Getter
+	 * @return the date
+	 */
+	public String getDate() {
+		return date;
+	}
+
+	/** Setter
+	 * @param date the date to set
+	 */
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 	
