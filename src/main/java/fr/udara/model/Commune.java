@@ -37,11 +37,9 @@ public class Commune {
 	private Integer population;
 
 	/** xCoordonnee : Float */
-	@NotEmpty
 	private Float xCoordonnee;
 
 	/** yCoordonnee : Float */
-	@NotEmpty
 	private Float yCoordonnee;
 
 	////////// RELATIONS //////////
@@ -68,6 +66,22 @@ public class Commune {
 	public Commune() {
 	}
 
+	/**
+	 * Constructeur pour intégrer le fichier recensement
+	 * 
+	 * @param nom
+	 * @param departement
+	 * @param region
+	 * @param population
+	 */
+	public Commune(@NotEmpty String nom, String departement, String region, Integer population) {
+		this.nom = nom;
+		this.departement = departement;
+		this.region = region;
+		this.population = population;
+	}
+
+	
 	/**
 	 * Constructeur sans id
 	 * 
@@ -97,8 +111,6 @@ public class Commune {
 		this.favoris = favoris;
 		this.compteUtilisateurs = compteUtilisateurs;
 	}
-
-	////////// TO STRING //////////
 
 	/**
 	 * Constructeur complet
@@ -132,6 +144,8 @@ public class Commune {
 		this.compteUtilisateurs = compteUtilisateurs;
 	}
 
+	////////// TO STRING //////////
+	
 	@Override
 	public String toString() {
 		return "Commune n°" + id + "\nNom : " + nom + "\nDepartement : " + departement + "\nRegion : " + region
