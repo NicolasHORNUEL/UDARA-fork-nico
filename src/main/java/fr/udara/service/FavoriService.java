@@ -25,7 +25,7 @@ public class FavoriService {
 	 * 
 	 */
 	@Autowired
-	private FavoriService(FavoriRepository favoriRepository) {
+	public FavoriService(FavoriRepository favoriRepository) {
 		this.favoriRepository = favoriRepository;
 	}
 	

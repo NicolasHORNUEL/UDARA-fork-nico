@@ -24,7 +24,7 @@ public class MessageService {
 	 * 
 	 */
 	@Autowired
-	private MessageService(MessageRepository messageRepository) {
+	public MessageService(MessageRepository messageRepository) {
 		this.messageRepository = messageRepository;
 	}
 	

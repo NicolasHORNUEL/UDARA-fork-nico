@@ -26,7 +26,7 @@ public class NiveauMeteoService {
 	 * 
 	 */
 	@Autowired
-	private NiveauMeteoService(NiveauMeteoRepository niveauMeteoRepository) {
+	public NiveauMeteoService(NiveauMeteoRepository niveauMeteoRepository) {
 		this.niveauMeteoRepository = niveauMeteoRepository;
 	}
 	

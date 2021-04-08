@@ -26,7 +26,7 @@ public class IndicateurAirService {
 	 * 
 	 */
 	@Autowired
-	private IndicateurAirService(IndicateurAirRepository indicateurAirRepository) {
+	public IndicateurAirService(IndicateurAirRepository indicateurAirRepository) {
 		this.indicateurAirRepository = indicateurAirRepository;
 	}
 	

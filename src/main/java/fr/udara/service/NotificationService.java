@@ -24,7 +24,7 @@ public class NotificationService {
 	 * 
 	 */
 	@Autowired
-	private NotificationService(NotificationRepository notificationRepository) {
+	public NotificationService(NotificationRepository notificationRepository) {
 		this.notificationRepository = notificationRepository;
 	}
 	

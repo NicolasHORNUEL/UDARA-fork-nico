@@ -25,7 +25,7 @@ public class FilConversationService {
 	 * 
 	 */
 	@Autowired
-	private FilConversationService(FilConversationRepository filConversationRepository) {
+	public FilConversationService(FilConversationRepository filConversationRepository) {
 		this.filConversationRepository = filConversationRepository;
 	}
 	

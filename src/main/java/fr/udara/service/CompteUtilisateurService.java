@@ -24,7 +24,7 @@ public class CompteUtilisateurService {
 	 * 
 	 */
 	@Autowired
-	private CompteUtilisateurService(CompteUtilisateurRepository compteUtilisateurRepository) {
+	public CompteUtilisateurService(CompteUtilisateurRepository compteUtilisateurRepository) {
 		this.compteUtilisateurRepository = compteUtilisateurRepository;
 	}
 	

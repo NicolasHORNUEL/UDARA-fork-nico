@@ -19,12 +19,12 @@ import fr.udara.repository.CommuneRepository;
 public class CommuneService {
 	
 	private CommuneRepository communeRepository;
-
-	/** Constructeur
+	
+	/** Constructeur 
 	 * 
 	 */
 	@Autowired
-	private CommuneService(CommuneRepository communeRepository) {
+	public CommuneService(CommuneRepository communeRepository) {
 		this.communeRepository = communeRepository;
 	}
 	

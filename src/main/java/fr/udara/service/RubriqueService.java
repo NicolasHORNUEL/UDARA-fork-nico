@@ -24,7 +24,7 @@ public class RubriqueService {
 	 * 
 	 */
 	@Autowired
-	private RubriqueService(RubriqueRepository rubriqueRepository) {
+	public RubriqueService(RubriqueRepository rubriqueRepository) {
 		this.rubriqueRepository = rubriqueRepository;
 	}
 	
