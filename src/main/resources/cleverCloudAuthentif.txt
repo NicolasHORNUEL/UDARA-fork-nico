@@ -1,0 +1,7 @@
+Identifiants DB CleverCloud
+
+Host: b4n4x72nw7ijwzw2qndq-mysql.services.clever-cloud.com
+User: uptuoq4ju4suzjlu
+Password: eNir1GMQSmLoWTNsPz8
+Port: 20671
+Database name: b4n4x72nw7ijwzw2qndq
