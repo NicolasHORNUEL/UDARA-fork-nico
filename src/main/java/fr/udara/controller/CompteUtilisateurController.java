@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.CompteUtilisateurDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.CompteUtilisateur;
 import fr.udara.service.CompteUtilisateurService;
@@ -44,13 +45,13 @@ public class CompteUtilisateurController {
 	}
 
 	/**
-	 * Méthode de récupération de toutes les compteUtilisateurs
+	 * Méthode de récupération de toutes les compteUtilisateursDTO
 	 * 
 	 * @return la liste de toutes les compteUtilisateurs
 	 */
 	@GetMapping
-	public List<CompteUtilisateur> findAll() {
-		return compteUtilisateurService.findAll();
+	public List<CompteUtilisateurDTO> findAll() {
+		return compteUtilisateurService.findAllDTO();
 	}
 
 	/**
