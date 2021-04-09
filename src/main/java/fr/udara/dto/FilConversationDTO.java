@@ -6,13 +6,12 @@ package fr.udara.dto;
 import javax.persistence.Entity;
 
 /**
- * DTO associé au compte utilisateur
+ * DTO associé au fil de conversation
  * 
  * @author UDARA
  *
  */
 
-@Entity
 public class FilConversationDTO {
 
 	private String nom;
