@@ -70,8 +70,12 @@ public class FilConversationService {
 	 * @param id d'un objet FilConversation
 	 * @return une liste d'objet FilConversation
 	 */
-	public FilConversation findById(Long id) {
-		return filConversationRepository.findById(id).orElseThrow(() -> new NotFoundException());
+	public FilConversationDTO findById(Long id) {
+		FilConversationDTO filConversationDTO = new FilConversationDTO();
+		FilConversation filConversation = filConversationRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException());
+		filConversationDTO.setNom(filConversation.getNom());
+		return filConversationDTO;
 	}
 
 	/**

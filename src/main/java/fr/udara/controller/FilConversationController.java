@@ -60,7 +60,7 @@ public class FilConversationController {
 	 * @return la filConversation dont l'id est passé en paramètre
 	 */
 	@GetMapping("{filConversation-id}")
-	public FilConversation findById(@PathVariable(name = "filConversation-id") Long id) {
+	public FilConversationDTO findById(@PathVariable(name = "filConversation-id") Long id) {
 		return filConversationService.findById(id);
 	}
 

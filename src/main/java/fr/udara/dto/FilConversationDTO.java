@@ -11,8 +11,18 @@ package fr.udara.dto;
  */
 
 public class FilConversationDTO {
-
+	
+	/** nom : String */
 	private String nom;
+	
+	/** Construteur vide */
+	public FilConversationDTO() {
+	}
+	
+	/** Construteur */
+	public FilConversationDTO(String nom) {
+		this.nom = nom;
+	}
 
 	/**
 	 * Getter
