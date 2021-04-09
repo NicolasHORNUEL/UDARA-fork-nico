@@ -1,5 +1,7 @@
 package fr.udara.model;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,20 +26,19 @@ public class Notification {
 
 	/** texte : String */
 	private String texte;
-	
+
 	/** commune : String */
 	private String commune;
-	
+
 	/** lu : boolean */
 	private boolean lu;
-	
+
+	private Time heure;
+
 	////////// RELATIONS //////////
-	
+
 	@ManyToMany
-	@JoinTable(name="REL_COMPTE_NOTIFICATION",
-		joinColumns= @JoinColumn(name="ID_NOTIF", referencedColumnName="id"),
-		inverseJoinColumns= @JoinColumn(name="ID_COMPTE", referencedColumnName="id")
-	)
+	@JoinTable(name = "REL_COMPTE_NOTIFICATION", joinColumns = @JoinColumn(name = "ID_NOTIF", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "id"))
 	private List<CompteUtilisateur> compteUtilisateurs;
 
 	////////// CONSTRUCTEURS //////////
@@ -50,46 +51,54 @@ public class Notification {
 
 	/**
 	 * Constructeur sans id
+	 * 
 	 * @param texte
 	 * @param commune
 	 * @param lu
 	 * @param compteUtilisateurs
+	 * @param heure
 	 */
-	public Notification(String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs) {
+	public Notification(String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs,
+			Time heure) {
 		super();
 		this.texte = texte;
 		this.commune = commune;
 		this.lu = lu;
 		this.compteUtilisateurs = compteUtilisateurs;
+		this.heure = heure;
 	}
 
 	/**
 	 * Constructeur complet
+	 * 
 	 * @param id
 	 * @param texte
 	 * @param commune
 	 * @param lu
 	 * @param compteUtilisateurs
+	 * @param heure
 	 */
-	public Notification(Long id, String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs) {
+	public Notification(Long id, String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs,
+			Time heure) {
 		super();
 		this.id = id;
 		this.texte = texte;
 		this.commune = commune;
 		this.lu = lu;
 		this.compteUtilisateurs = compteUtilisateurs;
+		this.heure = heure;
 	}
-	
+
 	////////// TO STRING //////////
 
 	/**
-	 *  Méthode toString pour afficher la valeur des attributs de l'instance
+	 * Méthode toString pour afficher la valeur des attributs de l'instance
 	 */
 	@Override
 	public String toString() {
 		return "Notification n°" + id + "\nTexte : " + texte + "\nCommune : " + commune + "\nLu=" + lu;
 	}
-	
+
 	////////// GETTERS & SETTERS //////////
 
 	/**
@@ -180,6 +189,24 @@ public class Notification {
 	 */
 	public void setCompteUtilisateurs(List<CompteUtilisateur> compteUtilisateurs) {
 		this.compteUtilisateurs = compteUtilisateurs;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the heure
+	 */
+	public Time getHeure() {
+		return heure;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param heure the heure to set
+	 */
+	public void setHeure(Time heure) {
+		this.heure = heure;
 	}
 
 }

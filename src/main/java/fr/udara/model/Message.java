@@ -163,6 +163,7 @@ public class Message {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the date
 	 */
 	public LocalDateTime getDate() {
@@ -171,12 +172,11 @@ public class Message {
 
 	/**
 	 * Setter
+	 * 
 	 * @param date the date to set
 	 */
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
-	
-	
 
 }
