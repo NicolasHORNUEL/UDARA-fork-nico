@@ -3,8 +3,6 @@
  */
 package fr.udara.dto;
 
-import javax.persistence.Entity;
-
 /**
  * DTO associé au fil de conversation
  * 
