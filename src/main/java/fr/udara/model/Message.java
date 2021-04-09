@@ -1,5 +1,7 @@
 package fr.udara.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +24,8 @@ public class Message {
 	/** nom : String */
 	private String nom;
 
+	private LocalDateTime date;
+
 	////////// RELATIONS //////////
 
 	/** filConversation : FilConversation */
@@ -40,18 +44,21 @@ public class Message {
 	 * Constructeur vide
 	 */
 	public Message() {
-		super();
 	}
 
 	/**
 	 * Constructeur sans id
+	 * 
 	 * @param nom
+	 * @param date
 	 * @param filConversation
 	 * @param compteUtilisateur
 	 */
-	public Message(String nom, FilConversation filConversation, CompteUtilisateur compteUtilisateur) {
+	public Message(String nom, LocalDateTime date, FilConversation filConversation,
+			CompteUtilisateur compteUtilisateur) {
 		super();
 		this.nom = nom;
+		this.date = date;
 		this.filConversation = filConversation;
 		this.compteUtilisateur = compteUtilisateur;
 	}
@@ -76,7 +83,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message n°" + id + "\nNom : " + nom + "\nFil de Conversation : " + filConversation
+		return "Message n°" + id + "\nNom : " + nom + "\nDate : " + date + "\nFil de Conversation : " + filConversation
 				+ "\nCompte Utilisateur : " + compteUtilisateur;
 	}
 
@@ -153,5 +160,23 @@ public class Message {
 	public void setCompteUtilisateur(CompteUtilisateur compteUtilisateur) {
 		this.compteUtilisateur = compteUtilisateur;
 	}
+
+	/**
+	 * Getter
+	 * @return the date
+	 */
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	/**
+	 * Setter
+	 * @param date the date to set
+	 */
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+	
+	
 
 }
