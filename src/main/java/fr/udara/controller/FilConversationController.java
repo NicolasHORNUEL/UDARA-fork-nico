@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.FilConversationDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.FilConversation;
 import fr.udara.service.FilConversationService;
@@ -48,8 +49,8 @@ public class FilConversationController {
 	 * @return la liste de toutes les filConversations
 	 */
 	@GetMapping
-	public List<FilConversation> findAll() {
-		return filConversationService.findAll();
+	public List<FilConversationDTO> findAll() {
+		return filConversationService.findAllDTO();
 	}
 
 	/**
