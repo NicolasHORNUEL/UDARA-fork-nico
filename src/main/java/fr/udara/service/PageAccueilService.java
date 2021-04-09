@@ -7,106 +7,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.CommuneDTO;
 import fr.udara.dto.FilConversationDTO;
 import fr.udara.exception.NotFoundException;
+import fr.udara.model.Commune;
 import fr.udara.model.FilConversation;
+import fr.udara.repository.CommuneRepository;
 import fr.udara.repository.FilConversationRepository;
+import fr.udara.repository.IndicateurAirRepository;
+import fr.udara.repository.NiveauMeteoRepository;
 
 /**
- * Classe de service pour l'entité FilConversation
+ * Classe de service pour le DTO PageAccueilDTO
  * 
- * @author udara
+ * @author Udara
  *
  */
 @Service
 public class PageAccueilService {
 
-	private FilConversationRepository filConversationRepository;
+	private CommuneRepository communeRepository;
+	private IndicateurAirRepository indicateurAirRepository ;
+	private NiveauMeteoRepository niveauMeteoRepository;
 
 	/**
 	 * Constructeur
 	 * 
 	 */
 	@Autowired
-	public PageAccueilService(FilConversationRepository filConversationRepository) {
-		this.filConversationRepository = filConversationRepository;
+	public PageAccueilService(CommuneRepository communeRepository, IndicateurAirRepository indicateurAirRepository,
+			NiveauMeteoRepository niveauMeteoRepository) {
+		this.communeRepository = communeRepository;
+		this.indicateurAirRepository = indicateurAirRepository;
+		this.niveauMeteoRepository = niveauMeteoRepository;
 	}
 
-	/**
-	 * @param un objet FilConversation sans id
-	 * @return l'objet FilConversation avec un id
-	 */
-	@Transactional
-	public FilConversation save(FilConversation filConversation) {
-		return filConversationRepository.save(filConversation);
-
-	}
-
-	/**
-	 * @return une liste d'objet FilConversation
-	 */
-	public List<FilConversation> findAll() {
-		return filConversationRepository.findAll();
-	}
-
-	/**
-	 * 
-	 * @return la liste de toutes les filConversationDTO
-	 */
-	public List<FilConversationDTO> findAllDTO() {
-		List<FilConversation> conversations = filConversationRepository.findAll();
-
-		List<FilConversationDTO> conversationsDTO = new ArrayList<>();
-
-		for (FilConversation filConversation : conversations) {
-			FilConversationDTO filConversationDTO = new FilConversationDTO();
-			filConversationDTO.setNom(filConversation.getNom().toUpperCase());
-			conversationsDTO.add(filConversationDTO);
+	public String findNomCommuneByCompteUtilisateurId(Long id) {
+		if (id == null) {
+			throw new NotFoundException();
 		}
-		return conversationsDTO;
-	}
-
-	/**
-	 * @param id d'un objet FilConversation
-	 * @return une liste d'objet FilConversation
-	 */
-	public FilConversationDTO findById(Long id) {
-		FilConversationDTO filConversationDTO = new FilConversationDTO();
-		FilConversation filConversation = filConversationRepository.findById(id)
+		Commune commune = communeRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException());
-		filConversationDTO.setNom(filConversation.getNom());
-		return filConversationDTO;
-	}
-
-	/**
-	 * @param id d'un objet FilConversation
-	 * @return true si l'id existe
-	 */
-	public boolean existsById(Long id) {
-		return filConversationRepository.existsById(id);
-	}
-
-	/**
-	 * @return le nombre d'objet FilConversation
-	 */
-	public long count() {
-		return filConversationRepository.count();
-	}
-
-	/**
-	 * @param id d'un objet FilConversation
-	 */
-	@Transactional
-	public void deleteById(Long id) {
-		filConversationRepository.deleteById(id);
-	}
-
-	/**
-	 * @param un objet FilConversation
-	 */
-	@Transactional
-	public void delete(FilConversation filConversation) {
-		filConversationRepository.delete(filConversation);
+		return commune.getNom();
 	}
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 public class PageAccueilDTO {
 	
 	/** commune : String */
-	private String commune;
+	private String nomCommune;
 	
 	/** recensement : String */
 	private String recensement;
@@ -38,12 +38,17 @@ public class PageAccueilDTO {
 	 * 
 	 * @return la commune
 	 */
-	public String getCommune() {
-		return commune;
+	public String getNomCommune() {
+		return nomCommune;
 	}
 
-	public void setCommune(String commune) {
-		this.commune = commune;
+	/**
+	 * Setter
+	 * 
+	 * @param commune la commune
+	 */
+	public void setNomCommune(String nomCommune) {
+		this.nomCommune = nomCommune;
 	}
 
 	/**
@@ -55,6 +60,11 @@ public class PageAccueilDTO {
 		return recensement;
 	}
 
+	/**
+	 * Setter
+	 * 
+	 * @param recensement le recensement
+	 */
 	public void setRecensement(String recensement) {
 		this.recensement = recensement;
 	}
@@ -68,6 +78,11 @@ public class PageAccueilDTO {
 		return positionGPS;
 	}
 
+	/**
+	 * Setter
+	 * 
+	 * @param positionGPS la position GPS
+	 */
 	public void setPositionGPS(String positionGPS) {
 		this.positionGPS = positionGPS;
 	}
@@ -81,6 +96,11 @@ public class PageAccueilDTO {
 		return indiceQualiteAir;
 	}
 
+	/**
+	 * Setter
+	 * 
+	 * @param indiceQualiteAir l'indice de la qualité de l'air
+	 */
 	public void setIndiceQualiteAir(String indiceQualiteAir) {
 		this.indiceQualiteAir = indiceQualiteAir;
 	}

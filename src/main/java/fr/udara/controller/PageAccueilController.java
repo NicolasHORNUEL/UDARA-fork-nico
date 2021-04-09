@@ -3,13 +3,13 @@
  */
 package fr.udara.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.PageAccueilDTO;
+import fr.udara.model.Commune;
 import fr.udara.service.PageAccueilService;
 
 
@@ -26,7 +26,7 @@ public class PageAccueilController {
 	
 	/** niveauMeteoService */
 	private final PageAccueilService pageAccueilService;
-	
+			
 	/**
 	 * Constructeur
 	 * 
@@ -44,9 +44,14 @@ public class PageAccueilController {
 	 * 
 	 * @return 
 	 */
-//	@GetMapping
-//	public List<NiveauMeteo> findAll() {
-//		return pageAccueilService.findAll();
-//	}
+	@GetMapping
+	public PageAccueilDTO home() {
+		PageAccueilDTO pageAccueilDTO = new PageAccueilDTO();
+		// D'où extraire la commune ? 
+		Commune commune = new Commune();
+		pageAccueilDTO.setNomCommune(commune.getNom());
+		pageAccueilDTO.setPositionGPS(commune.getxCoordonnee() + " " + commune.getyCoordonnee());
+		return pageAccueilDTO;
+	}
 
 }
