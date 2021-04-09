@@ -22,6 +22,7 @@ import fr.udara.repository.CompteUtilisateurRepository;
 @Service
 public class CompteUtilisateurService {
 
+	/** compteUtilisateurRepository : CompteUtilisateurRepository */
 	private CompteUtilisateurRepository compteUtilisateurRepository;
 
 	/**
@@ -111,5 +112,20 @@ public class CompteUtilisateurService {
 	public void delete(CompteUtilisateur compteUtilisateur) {
 		compteUtilisateurRepository.delete(compteUtilisateur);
 	}
+	
+	
+	public CompteUtilisateur findByUsernameOrEmail(String nomUtilisateurOrMail) {
+		
+		CompteUtilisateur compteUtilisateur = null;
+		
+		try {
+			compteUtilisateur = compteUtilisateurRepository.findByUsernameOrEmail(nomUtilisateurOrMail);
+		} catch (Exception e) {
+			throw e;
+		}
+		
+		return compteUtilisateur;
+	}
+	
 
 }
