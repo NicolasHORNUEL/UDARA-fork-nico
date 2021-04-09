@@ -5,6 +5,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * Classe POJO de données Météo 
  * @author Udara
  *
  */
@@ -73,12 +74,6 @@ public class MeteoData {
 	private void nested_rain(Map<String, String> rain) {
 		this.pluie = rain.get("1h");
 	}
-
-//	@JsonProperty("department")
-//	private void mapDepartmentName(Map<String,Object department) {
-//	this.departName = ((Map<String,String>)department.get("departInfo")).get("departName");
-//	}
-
 
 	/**
 	 * Méthode toString pour afficher la valeur des attributs de l'instance

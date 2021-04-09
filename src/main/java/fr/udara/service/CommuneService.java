@@ -1,5 +1,6 @@
 package fr.udara.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +13,41 @@ import fr.udara.repository.CommuneRepository;
 
 /**
  * Classe de service pour l'entité Commune
+ * 
  * @author udara
  *
  */
 @Service
 public class CommuneService {
-	
+
 	private CommuneRepository communeRepository;
-	
-	/** Constructeur 
+
+	/**
+	 * Constructeur
 	 * 
 	 */
 	@Autowired
 	public CommuneService(CommuneRepository communeRepository) {
 		this.communeRepository = communeRepository;
 	}
-	
-	
+
+	/**
+	 * Pour récupérer un objet Commune par son nom.
+	 * 
+	 * @param nom d'une commune en String.
+	 * @return une liste filtrée contenant 0 ou 1 commune.
+	 */
+	public List<Commune> findAllByNameLike(String name) {
+		List<Commune> communes = communeRepository.findAll();
+		List<Commune> filteredCommunes = new ArrayList<Commune>();
+		for (Commune c : filteredCommunes) {
+			if (c.getNom().equals(name)) {
+				filteredCommunes.add(c);
+			}
+		}
+		return filteredCommunes;
+	}
+
 	/**
 	 * @param un objet Commune sans id
 	 * @return l'objet Commune avec un id
@@ -36,8 +55,9 @@ public class CommuneService {
 	@Transactional
 	public Commune save(Commune commune) {
 		return communeRepository.save(commune);
-		
+
 	}
+
 	/**
 	 * @return une liste d'objet Commune
 	 */
@@ -45,7 +65,6 @@ public class CommuneService {
 		return communeRepository.findAll();
 	}
 
-	
 	/**
 	 * @param id d'un objet Commune
 	 * @return une oéventuelle liste d'objet Commune
@@ -54,7 +73,6 @@ public class CommuneService {
 		return communeRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
-	
 	/**
 	 * @param id d'un objet Commune
 	 * @return true si l'id existe
@@ -62,16 +80,14 @@ public class CommuneService {
 	public boolean existsById(Long id) {
 		return communeRepository.existsById(id);
 	}
-	
-	
+
 	/**
 	 * @return le nombre d'objet Commune
 	 */
 	public long count() {
 		return communeRepository.count();
 	}
-	
-	
+
 	/**
 	 * @param id d'un objet Commune
 	 */
@@ -79,8 +95,7 @@ public class CommuneService {
 	public void deleteById(Long id) {
 		communeRepository.deleteById(id);
 	}
-	
-	
+
 	/**
 	 * @param un objet Commune
 	 */
@@ -88,9 +103,5 @@ public class CommuneService {
 	public void delete(Commune commune) {
 		communeRepository.delete(commune);
 	}
-	
+
 }
-
-
-
-

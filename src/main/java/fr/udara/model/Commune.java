@@ -36,10 +36,10 @@ public class Commune {
 	/** population : Integer */
 	private Integer population;
 
-	/** xCoordonnee : Float */
+	/** xCoordonnee Latitude=X : Float */
 	private Float xCoordonnee;
 
-	/** yCoordonnee : Float */
+	/** yCoordonnee Longitude=Y : Float */
 	private Float yCoordonnee;
 
 	////////// RELATIONS //////////
@@ -67,18 +67,27 @@ public class Commune {
 	}
 
 	/**
-	 * Constructeur pour intégrer le fichier recensement
+	 * Constructeur pour intégrer le fichier JSON de l'API JSON
 	 * 
 	 * @param nom
 	 * @param departement
 	 * @param region
 	 * @param population
+	 * @param xCoordonnee
+	 * @param yCoordonnee
+	 * @param indicateurAirs
+	 * @param niveauMeteos
+	 * @param favoris
+	 * @param compteUtilisateurs
 	 */
-	public Commune(@NotEmpty String nom, String departement, String region, Integer population) {
+	public Commune(@NotEmpty String nom, String departement, String region, Integer population,
+			@NotEmpty Float xCoordonnee, @NotEmpty Float yCoordonnee) {
 		this.nom = nom;
 		this.departement = departement;
 		this.region = region;
 		this.population = population;
+		this.xCoordonnee = xCoordonnee;
+		this.yCoordonnee = yCoordonnee;;
 	}
 
 	
