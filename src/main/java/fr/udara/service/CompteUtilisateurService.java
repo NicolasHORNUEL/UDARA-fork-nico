@@ -118,12 +118,12 @@ public class CompteUtilisateurService {
 	 * @param nomUtilisateurOrMail
 	 * @return
 	 */
-	public CompteUtilisateur findByUsernameOrEmail(String nomUtilisateurOrMail) {
+	public CompteUtilisateur findByEmail(String userEmail) {
 		
 		CompteUtilisateur compteUtilisateur = null;
 		
 		try {
-			compteUtilisateur = compteUtilisateurRepository.findByUsernameOrEmail(nomUtilisateurOrMail);
+			compteUtilisateur = compteUtilisateurRepository.findByEmail(userEmail);
 		} catch (Exception e) {
 			throw e;
 		}

@@ -33,21 +33,20 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String nomUtilisateurOrMail) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
 		
-		if (nomUtilisateurOrMail.trim().isEmpty()) {
+		if (userEmail.trim().isEmpty()) {
 			throw new UsernameNotFoundException("Le nom d'utilisateur est vide !");
 		}
 		
-		CompteUtilisateur user = compteUtilisateurService.findByUsernameOrEmail(nomUtilisateurOrMail);
+		CompteUtilisateur user = compteUtilisateurService.findByEmail(userEmail);
 		
 		if (user == null) {
 			throw new UsernameNotFoundException("Ce compte n'existe pas!");
 		}
 		
-		
 		//TODO : username or mail ?
-		return new org.springframework.security.core.userdetails.User(user.getNomUtilisateur(), user.getMotDePasse(), getGrantedAuthorities(user));
+		return new org.springframework.security.core.userdetails.User(user.getMail(), user.getMotDePasse(), getGrantedAuthorities(user));
 		
 	}
 	
