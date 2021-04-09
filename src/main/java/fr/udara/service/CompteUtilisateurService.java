@@ -114,6 +114,10 @@ public class CompteUtilisateurService {
 	}
 	
 	
+	/**
+	 * @param nomUtilisateurOrMail
+	 * @return
+	 */
 	public CompteUtilisateur findByUsernameOrEmail(String nomUtilisateurOrMail) {
 		
 		CompteUtilisateur compteUtilisateur = null;
