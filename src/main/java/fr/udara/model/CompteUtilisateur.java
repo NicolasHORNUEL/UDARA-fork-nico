@@ -1,5 +1,6 @@
 package fr.udara.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,7 +25,10 @@ import javax.validation.constraints.Max;
 @Entity
 @Table(name = "Compte_utilisateur", uniqueConstraints = { @UniqueConstraint(columnNames = { "mail" }),
 		@UniqueConstraint(columnNames = { "nomUtilisateur" }) })
-public class CompteUtilisateur {
+public class CompteUtilisateur implements Serializable {
+	
+	/** serialVersionUID : long */
+	private static final long serialVersionUID = 1L;
 
 	/** id : Long */
 	@Id
@@ -42,6 +46,9 @@ public class CompteUtilisateur {
 
 	/** mail : String */
 	private String mail;
+	
+	/** motDePasse : String */
+	private String motDePasse;
 
 	/** codePostal : String */
 	@Max(value = 5)
@@ -95,13 +102,14 @@ public class CompteUtilisateur {
 	 * @param notifications
 	 * @param commune
 	 */
-	public CompteUtilisateur(String nom, String prenom, String nomUtilisateur, String mail, @Max(5) String codePostal,
+	public CompteUtilisateur(String nom, String prenom, String nomUtilisateur, String mail, String motDePasse, @Max(5) String codePostal,
 			Boolean statutActif, Role role, List<Favori> favoris, List<Message> messages,
 			List<Notification> notifications, Commune commune) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomUtilisateur = nomUtilisateur;
 		this.mail = mail;
+		this.motDePasse = motDePasse;
 		this.codePostal = codePostal;
 		this.statutActif = statutActif;
 		this.role = role;
@@ -126,7 +134,7 @@ public class CompteUtilisateur {
 	 * @param notifications
 	 * @param commune
 	 */
-	public CompteUtilisateur(Long id, String nom, String prenom, String nomUtilisateur, String mail,
+	public CompteUtilisateur(Long id, String nom, String prenom, String nomUtilisateur, String mail, String motDePasse,
 			@Max(5) String codePostal, Boolean statutActif, Role role, List<Favori> favoris, List<Message> messages,
 			List<Notification> notifications, Commune commune) {
 		super();
@@ -135,6 +143,7 @@ public class CompteUtilisateur {
 		this.prenom = prenom;
 		this.nomUtilisateur = nomUtilisateur;
 		this.mail = mail;
+		this.motDePasse = motDePasse;
 		this.codePostal = codePostal;
 		this.statutActif = statutActif;
 		this.role = role;
@@ -244,6 +253,24 @@ public class CompteUtilisateur {
 	 */
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the motDePasse
+	 */
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	/**
+	 * Setter
+	 *
+	 * @param motDePasse the motDePasse to set
+	 */
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
 
 	/**
@@ -370,6 +397,15 @@ public class CompteUtilisateur {
 	 */
 	public void setCommune(Commune commune) {
 		this.commune = commune;
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }
