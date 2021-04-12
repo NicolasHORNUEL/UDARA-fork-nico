@@ -19,6 +19,9 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fr.udara.dto.IndicateurAirDTO;
+import fr.udara.dto.IndicateurAirWrapperDTO;
+import fr.udara.dto.NiveauMeteoDTO;
 import fr.udara.model.Commune;
 import fr.udara.model.IndicateurAir;
 import fr.udara.model.NiveauMeteo;
@@ -55,9 +58,9 @@ public class IntegrationAPI {
 	}
 
 	/**
-	 * Déclenchement des appels API tous les jours à 9h00, 12h00 et 18h00.
+	 * Déclenchement des appels API tous les jours à 6h00, 12h00 et 18h00.
 	 */
-	@Scheduled(cron = "0 56 9,14,18 * * *")
+	@Scheduled(cron = "0 0 6,14,18 * * *")
 	public void traite() throws Exception {
 		System.out.println(this.API_key_NiveauMeteo);
 		System.out.println(this.API_key_IndicateurAir);
@@ -95,7 +98,7 @@ public class IntegrationAPI {
 
 			String jsonIndicateur = fetch(urlIndicateurAir);
 			if (jsonIndicateur.indexOf("404") == -1) {
-				IndicateurAirWrapperDTO beanIndicateur = mapper.readValue(jsonIndicateur, IndicateurAirWrapperDTO.class);
+					IndicateurAirWrapperDTO beanIndicateur = mapper.readValue(jsonIndicateur, IndicateurAirWrapperDTO.class);
 				List<IndicateurAirDTO> indicateurAirDTOs = beanIndicateur.getIndicateurAirDTOs();
 				for (IndicateurAirDTO indicateurAirDTO : indicateurAirDTOs) {
 					HashMap<String, Float> mapIndicateur = indicateurAirDTO.getIndicateurMap();

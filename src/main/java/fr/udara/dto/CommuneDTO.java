@@ -1,91 +1,114 @@
 package fr.udara.dto;
 
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 /**
+ * Classe de données de Commune 
  * @author Udara
  *
  */
 public class CommuneDTO {
-	
-	/** nom : String */
-	private String nom;
-	
-	/** xCoordonnee Latitude=X : String */
-	private String xCoordonnee;
 
-	/** yCoordonnee Longitude=Y : String */
-	private Float yCoordonnee;
-
-	/**
-	 * Constructeur vide
-	 */
-	public CommuneDTO() {
-	}
+	/** name de type String ("name":"Peyrat-le-Chateau") */
+	private String name;
+	/** country de type String ("country":"FR") */
+	private String country;
+	/** lat de type Float, coordonnées GPS latitude ("coord":{"lon":1.77233,"lat":45.815781})  */
+	private Float lat;
+	/** lon de type Float, coordonnées GPS longitude ("coord":{"lon":1.77233,"lat":45.815781}) */
+	private Float lon;
 	
 	/**
-	 * Constructeur
-	 * 
-	 * @param nom de la commune
-	 * @param xCoordonnee
-	 * @param yCoordonnee
+	 * Obtenir la valeur des clés  de l'objet "city"
+	 * "id" en Long
+	 * "name" en String
+	 * "findname" en String
+	 * "country" en String
+	 * "lon" en Float de l'objet "coord" imbriqué
+	 * "lat" en Float de l'objet "coord" imbriqué
+	 * @param objet city
 	 */
-	public CommuneDTO(String nom, String xCoordonnee, Float yCoordonnee) {
-		this.nom = nom;
-		this.xCoordonnee = xCoordonnee;
-		this.yCoordonnee = yCoordonnee;
+	@SuppressWarnings("unchecked")
+	@JsonProperty("city")
+	private void nested_city(Map<String, Object> city) {
+		this.name = city.get("name").toString();
+		this.country = city.get("country").toString();
+		this.lat = Float.parseFloat(((Map<String,Object>)city.get("coord")).get("lat").toString());
+		this.lon = Float.parseFloat(((Map<String,Object>)city.get("coord")).get("lon").toString());
 	}
 
-	/**
-	 * Getter
-	 * 
-	 * @return the commune
-	 */
-	public String getNom() {
-		return nom;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CommuneDTO [name=");
+		builder.append(name);
+		builder.append(", country=");
+		builder.append(country);
+		builder.append(", lon=");
+		builder.append(lon);
+		builder.append(", lat=");
+		builder.append(lat);
+		builder.append("]");
+		return builder.toString();
 	}
 
-	/**
-	 * Setter
-	 * 
-	 * @param commune the commune to set
+	/** Getter
+	 * @return the name
 	 */
-	public void setNom(String nom) {
-		this.nom = nom;
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * Getter
-	 * 
-	 * @return the xCoordonnee
+	/** Setter
+	 * @param name the name to set
 	 */
-	public String getxCoordonnee() {
-		return xCoordonnee;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	/**
-	 * Setter
-	 * 
-	 * @param xCoordonnee the xCoordonnee to set
+	/** Getter
+	 * @return the country
 	 */
-	public void setxCoordonnee(String xCoordonnee) {
-		this.xCoordonnee = xCoordonnee;
+	public String getCountry() {
+		return country;
 	}
 
-	/**
-	 * Getter
-	 * 
-	 * @return the yCoordonnee
+	/** Setter
+	 * @param country the country to set
 	 */
-	public Float getyCoordonnee() {
-		return yCoordonnee;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
-	/**
-	 * Setter
-	 * 
-	 * @param yCoordonnee the yCoordonnee to set
+	/** Getter
+	 * @return the lon
 	 */
-	public void setyCoordonnee(Float yCoordonnee) {
-		this.yCoordonnee = yCoordonnee;
+	public Float getLon() {
+		return lon;
+	}
+
+	/** Setter
+	 * @param lon the lon to set
+	 */
+	public void setLon(Float lon) {
+		this.lon = lon;
+	}
+
+	/** Getter
+	 * @return the lat
+	 */
+	public Float getLat() {
+		return lat;
+	}
+
+	/** Setter
+	 * @param lat the lat to set
+	 */
+	public void setLat(Float lat) {
+		this.lat = lat;
 	}
 
 }

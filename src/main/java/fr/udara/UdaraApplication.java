@@ -14,8 +14,9 @@ import fr.udara.batch.IntegrationFile;
  *  @EnableAutoConfiguration
  *  @ComponentScan.
  *  
- * @author Udara
- *
+ *  @EnableScheduling
+ *  Un déclenchement est réalisé tous les jours à 6h00, 12h00 et 18h00 dans la classe IntegrationAPI méthode traite()
+ * 
  */
 @SpringBootApplication
 @EnableScheduling

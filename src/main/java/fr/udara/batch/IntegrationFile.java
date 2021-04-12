@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fr.udara.dto.CommuneDTO;
 import fr.udara.model.Commune;
 import fr.udara.service.CommuneService;
 
@@ -45,7 +46,7 @@ public class IntegrationFile {
 
 			for (String jsonCommune : lignesJSON) {
 
-				CommuneJSON pojo = mapper.readValue(jsonCommune, CommuneJSON.class);
+				CommuneDTO pojo = mapper.readValue(jsonCommune, CommuneDTO.class);
 
 				Float lat = pojo.getLat(); // Latitude=X
 				Float lon = pojo.getLon(); // Longitude=Y

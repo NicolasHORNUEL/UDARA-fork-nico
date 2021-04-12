@@ -1,4 +1,4 @@
-package fr.udara.batch;
+package fr.udara.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

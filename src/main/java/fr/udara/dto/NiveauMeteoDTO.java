@@ -1,4 +1,4 @@
-package fr.udara.batch;
+package fr.udara.dto;
 
 import java.util.HashMap;
 import java.util.Map;

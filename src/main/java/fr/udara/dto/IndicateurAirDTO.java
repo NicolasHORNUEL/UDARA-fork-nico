@@ -1,16 +1,19 @@
-package fr.udara.batch;
+package fr.udara.dto;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Classe POJO de données d'indicateur 
+ * Classe DTO de données d'indicateur associé à la réponse JSON de l'API openweather : à chaque clé, sa valeur.
  * @author udara
  *
  */
-public class INUTIL_IndicateurData {
-	
+public class IndicateurAirDTO {
+
 	/** Сoncentration of CO (Carbon monoxide), μg/m3 : Float */
 	private Float co;
 	/** Сoncentration of NO (Nitrogen monoxide), μg/m3 : Float */
@@ -28,12 +31,19 @@ public class INUTIL_IndicateurData {
 	/** Сoncentration of NH3 (Ammonia), μg/m3 : Float */
 	private Float nh3;
 	
+	/** noms : une liste de String, tous les polluants existant dans l'API */
+	private List<String> noms =  Arrays.asList("co","no","no2","o3","so2","pm2_5","pm10","nh3");
+	
+	/** indicateurMap : une map associant le nom (de type String) et la valeur (de type Float) d'un indicateur */
+	private HashMap<String, Float> indicateurMap = new HashMap<String, Float>();
+	
 	/**
-	 * Obtenir la valeur des clés "co","no","no2","o3","so2","pm2_5","pm10","nh3"
-	 * @param objet components
+	 * Obtenir la valeur des clés "co","no","no2","o3","so2","pm2_5","pm10","nh3" de l'objet JSON
+	 * Associer les valeurs avec le nom des indicateurs dans une Map
+	 * @param objet JSON components
 	 */
 	@JsonProperty("components")
-	private void nested_co(Map<String, Float> components) {
+	private void nested_components(Map<String, Float> components) {
 		this.co = components.get("co");
 		this.no = components.get("no");
 		this.no2 = components.get("no2");
@@ -42,12 +52,17 @@ public class INUTIL_IndicateurData {
 		this.pm2_5 = components.get("pm2_5");
 		this.pm10 = components.get("pm10");
 		this.nh3 = components.get("nh3");
+		for (String nom : noms) {
+			indicateurMap.put(nom, components.get(nom));	
+		}	
 	}
+
+
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("INUTIL_IndicateurData [co=");
+		builder.append("IndicateurAirDTO [co=");
 		builder.append(co);
 		builder.append(", no=");
 		builder.append(no);
@@ -63,8 +78,42 @@ public class INUTIL_IndicateurData {
 		builder.append(pm10);
 		builder.append(", nh3=");
 		builder.append(nh3);
+		builder.append(", noms=");
+		builder.append(noms);
+		builder.append(", indicateurMap=");
+		builder.append(indicateurMap);
 		builder.append("]");
 		return builder.toString();
+	}
+
+
+
+	/** Getter
+	 * @return the noms
+	 */
+	public List<String> getNoms() {
+		return noms;
+	}
+
+	/** Setter
+	 * @param noms the noms to set
+	 */
+	public void setNoms(List<String> noms) {
+		this.noms = noms;
+	}
+
+	/** Getter
+	 * @return the indicateurMap
+	 */
+	public HashMap<String, Float> getIndicateurMap() {
+		return indicateurMap;
+	}
+
+	/** Setter
+	 * @param indicateurMap the indicateurMap to set
+	 */
+	public void setIndicateurMap(HashMap<String, Float> indicateurMap) {
+		this.indicateurMap = indicateurMap;
 	}
 
 	/** Getter
@@ -138,17 +187,17 @@ public class INUTIL_IndicateurData {
 	}
 
 	/** Getter
-	 * @return the pm25
+	 * @return the pm2_5
 	 */
-	public Float getPm25() {
+	public Float getPm2_5() {
 		return pm2_5;
 	}
 
 	/** Setter
-	 * @param pm25 the pm25 to set
+	 * @param pm2_5 the pm2_5 to set
 	 */
-	public void setPm25(Float pm25) {
-		this.pm2_5 = pm25;
+	public void setPm2_5(Float pm2_5) {
+		this.pm2_5 = pm2_5;
 	}
 
 	/** Getter
@@ -178,6 +227,11 @@ public class INUTIL_IndicateurData {
 	public void setNh3(Float nh3) {
 		this.nh3 = nh3;
 	}
+
+
 	
 	
 }
+
+
+
