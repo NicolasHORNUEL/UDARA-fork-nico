@@ -32,7 +32,7 @@ public class UdaraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		//this.integrationFile.traite();
+		this.integrationFile.traite();
 		//this.integrationAPI.traite();
 		
 
