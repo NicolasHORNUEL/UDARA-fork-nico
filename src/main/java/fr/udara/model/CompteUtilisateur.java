@@ -40,28 +40,28 @@ public class CompteUtilisateur implements Serializable {
 	private Long id;
 
 	/** nom : String */
-	@NotNull
+	@NotNull (message = "le nom ne doit pas être nul")
 	private String nom;
 
 	/** prenom : String */
-	@NotNull
+	@NotNull (message = "le prénom ne doit pas être nul")
 	private String prenom;
 
 	/** nomUtilisateur : String */
-	@NotNull
+	@NotNull (message = "le niom d'utilisateur ne doit pas être nul")
 	private String nomUtilisateur;
 
 	/** mail : String */
-	@NotNull
+	@NotNull (message = "l'e-mail ne doit pas être nul")
 	@Email
 	private String mail;
 	
 	/** motDePasse : String */
-	@NotNull
+	@NotNull (message = "le mot de passe ne doit pas être nul")
 	private String motDePasse;
 
 	/** codePostal : String */
-	@NotNull
+	@NotNull (message = "le code postal ne doit pas être nul")
 	@Length(max = 5)
 	private String codePostal;
 
