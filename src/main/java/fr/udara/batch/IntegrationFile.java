@@ -9,7 +9,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,21 +17,43 @@ import fr.udara.dto.CommuneDTO;
 import fr.udara.model.Commune;
 import fr.udara.service.CommuneService;
 
-@Service
+//@Service
 public class IntegrationFile {
 
-	public static CommuneService communeService;
-	private static ObjectMapper mapper = new ObjectMapper();
-	private static Path pathJSON = Paths.get("src/main/resources/weather_16.json");
-	private static Path pathCSV = Paths.get("src/main/resources/recensement.csv");
-
 	@Autowired
+	private CommuneService communeService;
+	@Autowired
+	private ObjectMapper mapper;
+
+	private Path pathJSON;
+	private Path pathCSV;
+
+	//@Autowired
+//	public IntegrationFile(CommuneService communeService) {
+//		this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//		this.communeService = communeService;
+//	}
+	//@Autowired
 	public IntegrationFile(CommuneService communeService) {
+		this.pathJSON = Paths.get("src/main/resources/weather_16.json");
+		this.pathCSV = Paths.get("src/main/resources/recensement.csv");
+		this.mapper = new ObjectMapper();
 		this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		this.communeService = communeService;
+
 	}
 
-	public static void traite() throws Exception {
+	/**
+	 * Méthode traite qui exécute la lecture du fichier weather_16.json ligne par ligne.
+	 * Chaque ligne du fichier est un objet litteral de type JSON.
+	 * l'objet json est ensuite désérialisé en objet JAVA.
+	 * la valeur nom (d'une ville consultable sur l'API) est interrogé 
+	 * Chaque objet JAVA est ajouté à une map (String nom, Float valeur).
+	 * Celle-ci permet de boucler sur l'ensemble des clé/valeur de la réponse de l'API.
+	 * Cette boucle permet d'instancier une classe entité et enfin enregistrer en base les objets créés.
+	 * @throws Exception
+	 */
+	public void traite() throws Exception {
 
 		try {
 

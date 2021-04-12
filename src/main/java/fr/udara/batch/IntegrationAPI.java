@@ -49,10 +49,10 @@ public class IntegrationAPI {
 	@Autowired private NiveauMeteoService niveauMeteoService;
 	/** Récupérer l'instance indicateurAirService */
 	@Autowired private IndicateurAirService indicateurAirService;
+	/** Déclaration de mapper de type ObjectMapper */
+	@Autowired private ObjectMapper mapper;
 	/** Déclaration de restTemplate de type RestTemplate */
 	private RestTemplate restTemplate;
-	/** Déclaration de mapper de type ObjectMapper */
-	private ObjectMapper mapper;
 	/** Déclaration de fichierProperties de type ResourceBundle */
 	private ResourceBundle fichierProperties;
 	/**  Déclaration de API_URL : "https://api.openweathermap.org/data/2.5/" de type String */

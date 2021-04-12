@@ -1,5 +1,6 @@
 package fr.udara;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import fr.udara.batch.IntegrationAPI;
 import fr.udara.batch.IntegrationFile;
+import fr.udara.service.CommuneService;
 
 /**
  *  @SpringBootApplication est une annotation pratique qui ajoute tous les éléments suivants:
@@ -22,8 +24,10 @@ import fr.udara.batch.IntegrationFile;
 @EnableScheduling
 public class UdaraApplication implements CommandLineRunner {
 
-	private IntegrationFile integrationFile;
+	@Autowired
 	private IntegrationAPI integrationAPI;
+	@Autowired
+	private CommuneService communeService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UdaraApplication.class, args);
@@ -32,7 +36,8 @@ public class UdaraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		this.integrationFile.traite();
+		IntegrationFile integrationFile = new IntegrationFile(communeService);
+		integrationFile.traite();
 		//this.integrationAPI.traite();
 		
 
