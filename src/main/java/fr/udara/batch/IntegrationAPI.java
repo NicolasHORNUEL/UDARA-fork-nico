@@ -36,14 +36,20 @@ public class IntegrationAPI {
 	
 	/** communeService */
 	private CommuneService communeService;
+	/** niveauMeteoService */
 	private NiveauMeteoService niveauMeteoService;
+	/** indicateurAirService */
 	private IndicateurAirService indicateurAirService;
+	/** restTemplate */
 	private RestTemplate restTemplate = new RestTemplate();
-	private ObjectMapper mapper = new ObjectMapper();
-	private String API_URL = "https://api.openweathermap.org/data/2.5/";	
+	/** mapper */
+	private ObjectMapper mapper;
+	/** API_URL : "https://api.openweathermap.org/data/2.5/" */
+	private String API_URL;
+	/** API_key_NiveauMeteo */
 	private String API_key_NiveauMeteo;
+	/** API_key_IndicateurAir */
 	private String API_key_IndicateurAir;
-	private Commune commune;
 	
 	
 	@Autowired
@@ -51,28 +57,37 @@ public class IntegrationAPI {
 		ResourceBundle fichierProperties = ResourceBundle.getBundle("api");
 		this.API_key_NiveauMeteo = fichierProperties.getString("api.key.niveau");
 		this.API_key_IndicateurAir = fichierProperties.getString("api.key.indicateur");
+		this.API_URL = fichierProperties.getString("api.url");
 		this.communeService = communeService;
 		this.niveauMeteoService = niveauMeteoService;
 		this.indicateurAirService = indicateurAirService;
+		this.mapper = new ObjectMapper();
 		this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		System.out.println("OK");
 	}
 
 	/**
 	 * Déclenchement des appels API tous les jours à 6h00, 12h00 et 18h00.
 	 */
-	@Scheduled(cron = "0 0 6,14,18 * * *")
+	@Scheduled(cron = "0 19 12,14,18 * * *")
 	public void traite() throws Exception {
-		System.out.println(this.API_key_NiveauMeteo);
-		System.out.println(this.API_key_IndicateurAir);
 		List<Commune> listeCommune = communeService.findAll();
 		for (Commune commune : listeCommune) {
-			this.commune = commune;
 			interroge(commune);
 			Thread.sleep(500);
 		}
 	}
 	
 	
+	/**
+	 * Le nom de la commune passé en paramètre est utilisé pour interrogé l'API météo.
+	 * La réponse de l'API est un JSON qui est désérialisé en objet JAVA.
+	 * Chaque objet est ajouté à une map (String nom, Float valeur).
+	 * Celle-ci permet de boucler sur l'ensemble des clé/valeur de la réponse de l'API.
+	 * Cette boucle permet d'instancier une classe entité et enfin enregistrer en base les objets créés.
+	 * @param un objet commune
+	 * @throws Exception
+	 */
 	public void interroge(Commune commune) throws Exception {
 		
 		String nomCommune = URLEncoder.encode(commune.getNom(), "UTF-8");
@@ -117,6 +132,11 @@ public class IntegrationAPI {
 	 
 	
 	
+	/**
+	 * @param url d'API : les variables/paramétres à la requête GET sont présents dans le path.
+	 * @return une string : un objet litteral de type json.
+	 * @throws Exception
+	 */
 	public String fetch(String url) throws Exception {
 		try {
 			URI uri = new URI(url);
@@ -131,16 +151,6 @@ public class IntegrationAPI {
 	}
 	
 	
-//	public void process(HashMap<String, Float> map, AbstractValue abstractValue) {
-//		LocalDateTime dateReleve = LocalDateTime.now();	
-//		Iterator<String> iterCles = map.keySet().iterator();
-//		while(iterCles.hasNext()) {
-//			String nom = iterCles.next();
-//			Float valeur = map.get(nom);
-//			abstractValue.save(nom, valeur, dateReleve, commune);
-//			System.out.println(nom + " : " + valeur);
-//		}
-//	}
 
 
 }

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -85,10 +84,10 @@ public class CommuneController {
 	 * @return la liste des communes dont le nom contient le terme passé en
 	 *         paramètre
 	 */
-//	@GetMapping("search")
-//	public List<Commune> findByNameLike(@RequestParam(required = true) String terme) {
-//		return communeService.findByNameLike(terme);
-//	}
+	@GetMapping("search")
+	public List<Commune> findAllByNameLike(@RequestParam(required = true) String terme) {
+		return communeService.findAllByNameLike(terme);
+	}
 
 	/**
 	 * Méthode de création (ajout) d'une commune en DB Requête HTTP POST

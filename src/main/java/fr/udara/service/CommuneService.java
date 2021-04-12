@@ -36,17 +36,20 @@ public class CommuneService {
 	 * Pour récupérer un objet Commune par son nom.
 	 * 
 	 * @param nom d'une commune en String.
-	 * @return une liste filtrée contenant 0 ou 1 commune.
+	 * @return un objet Commune.
+	 */
+	public Commune findByName(String name) {
+		return communeRepository.findByName(name);
+	}
+	
+	/**
+	 * Pour récupérer une liste d'objet Commune.
+	 * 
+	 * @param nom d'une commune en String.
+	 * @return une liste de Commune.
 	 */
 	public List<Commune> findAllByNameLike(String name) {
-		List<Commune> communes = communeRepository.findAll();
-		List<Commune> filteredCommunes = new ArrayList<Commune>();
-		for (Commune c : filteredCommunes) {
-			if (c.getNom().equals(name)) {
-				filteredCommunes.add(c);
-			}
-		}
-		return filteredCommunes;
+		return communeRepository.findAllByNameLike(name);
 	}
 
 	/**
