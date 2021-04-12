@@ -1,14 +1,21 @@
 package fr.udara.service;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.NotificationDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Notification;
+import fr.udara.repository.CompteUtilisateurRepository;
 import fr.udara.repository.NotificationRepository;
+import fr.udara.util.DateFormatUtil;
 
 /**
  * Classe de service pour l'entité Notification
@@ -18,7 +25,11 @@ import fr.udara.repository.NotificationRepository;
 @Service
 public class NotificationService {
 	
+	/** notificationRepository : NotificationRepository */
 	private NotificationRepository notificationRepository;
+	
+	/** compteUtilisateurRepository : CompteUtilisateurRepository */
+	private CompteUtilisateurRepository compteUtilisateurRepository;
 
 	/** Constructeur
 	 * 
@@ -88,6 +99,31 @@ public class NotificationService {
 	public void delete(Notification notification) {
 		notificationRepository.delete(notification);
 	}
+	
+	
+	public List<Notification> findNotifByIdCompteUtilisateur(Long id) {
+		return compteUtilisateurRepository.findNotifByIdCompteUtilisateur(id);
+	}
+	
+	public List<NotificationDTO> findNotifDTOByIdCompteUtilisateur(Long id) {
+		
+		List<Notification> notifications = compteUtilisateurRepository.findNotifByIdCompteUtilisateur(id);
+		
+		List<NotificationDTO> notificationsDTO = new ArrayList<>();
+		
+		for (Notification notification : notifications) {
+			
+			NotificationDTO notificationDTO = new NotificationDTO();
+			notificationDTO.setTexte(notification.getTexte());
+			notificationDTO.setHeure(DateFormatUtil.paseDateToString(notification.getHeure()));
+			notificationDTO.setLu(notification.isLu());
+			notificationsDTO.add(notificationDTO);
+		}
+		
+		return notificationsDTO;
+		
+	}
+	
 	
 }
 

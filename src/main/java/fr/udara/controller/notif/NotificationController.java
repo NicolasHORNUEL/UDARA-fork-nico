@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.udara.controller;
+package fr.udara.controller.notif;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.NotificationDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.Notification;
 import fr.udara.service.NotificationService;
@@ -63,6 +64,11 @@ public class NotificationController {
 	public Notification findById(@PathVariable(name = "notification-id") Long id) {
 		return notificationService.findById(id);
 	}
+	
+	@GetMapping("listNotif/{compteUtilisateur-id}")
+	public List<NotificationDTO> findNotifDTOByIdCompteUtilisateur(@PathVariable(name = "compteUtilisateur-id") Long id) {
+		return notificationService.findNotifDTOByIdCompteUtilisateur(id);
+	}
 
 	/**
 	 * Méthode de création (ajout) d'une notification en DB
@@ -106,5 +112,7 @@ public class NotificationController {
 	public void delete(@PathVariable Long id) {
 		notificationService.deleteById(id);
 	}
+	
+	
 
 }
