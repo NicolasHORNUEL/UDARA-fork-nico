@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.udara.dto.IndicateurAirDTO;
@@ -43,13 +42,13 @@ import fr.udara.service.NiveauMeteoService;
 @Service
 public class IntegrationAPI {
 
-	/** Récupérer l'instance communeService */
+	/** Déclarer l'attribut ou Récupérer l'instance communeService */
 	@Autowired private CommuneService communeService;
-	/** Récupérer l'instance niveauMeteoService */
+	/** Déclarer l'attribut ou Récupérer l'instance niveauMeteoService */
 	@Autowired private NiveauMeteoService niveauMeteoService;
-	/** Récupérer l'instance indicateurAirService */
+	/** Déclarer l'attribut ou Récupérer l'instance indicateurAirService */
 	@Autowired private IndicateurAirService indicateurAirService;
-	/** Déclaration de mapper de type ObjectMapper */
+	/** Déclarer l'attribut ou Déclaration de mapper de type ObjectMapper */
 	@Autowired private ObjectMapper mapper;
 	/** Déclaration de restTemplate de type RestTemplate */
 	private RestTemplate restTemplate;
@@ -77,16 +76,14 @@ public class IntegrationAPI {
 		this.API_key_IndicateurAir = fichierProperties.getString("api.key.indicateur");
 		this.API_URL = fichierProperties.getString("api.url");
 		this.restTemplate = new RestTemplate();
-		this.mapper = new ObjectMapper();
-		this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
 	/**
 	 * Déclenchement des appels API tous les jours à 6h00, 12h00 et 18h00.
 	 * @Scheduled est utilisable sur des méthodes avec un type de retour VOID.
 	 */
-	@Scheduled(cron = "0 0 6,14,18 * * *")
-	//@Scheduled(cron = "*/20 * * * * *") // toutes les 20 secondes
+	//@Scheduled(cron = "0 0 6,14,18 * * *")
+	@Scheduled(cron = "*/20 * * * * *") // toutes les 20 secondes
 	public void traite() throws Exception {
 		List<Commune> listeCommune = communeService.findAll();
 		for (int i = 0; i < listeCommune.size(); i++) {
