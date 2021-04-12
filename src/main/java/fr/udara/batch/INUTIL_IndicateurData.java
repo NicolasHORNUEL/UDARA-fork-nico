@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author udara
  *
  */
-public class IndicateurData {
+public class INUTIL_IndicateurData {
 	
 	/** Сoncentration of CO (Carbon monoxide), μg/m3 : Float */
 	private Float co;
@@ -47,7 +47,7 @@ public class IndicateurData {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("IndicateurData [co=");
+		builder.append("INUTIL_IndicateurData [co=");
 		builder.append(co);
 		builder.append(", no=");
 		builder.append(no);

@@ -1,5 +1,6 @@
 package fr.udara.batch;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,36 +10,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Udara
  *
  */
-public class MeteoData {
+public class NiveauMeteoDTO {
 
-	/** longitude : String */
-	private String longitude;
+	/** longitude : Float - xCoordonnee Latitude=X */
+	private Float longitude;
 	
-	/** latitude : String */
-	private String latitude;
+	/** latitude : Float - yCoordonnee Longitude=Y */
+	private Float latitude;
 	
-	/** temperature : String */
-	private String temperature;
+	/** temperature : Float - Température de perception humaine en degré Celsius */
+	private Float temperature;
 	
-	/** vent : String */
-	private String vent;
+	/** vent : Float - Vitesse en métre par seconde */
+	private Float vent;
 	
-	/** nuage : String */
-	private String nuage;
+	/** nuage : Float - Nébulosité en pourcentage */
+	private Float nuage;
 	
-	/** pluie : String */
-	private String pluie;
+	/** pluie : Float - Humidité en pourcentage */
+	private Float pluie;
 	
 	/** date : String */
 	@JsonProperty("dt")
 	private String date;
 
+	/** indicateurMap : une map associant le nom (de type String) et la valeur (de type Float) d'un niveau Météo */
+	private HashMap<String, Float> niveauMeteoMap = new HashMap<String, Float>();
 	
 	/**
 	 * @param coord
 	 */
 	@JsonProperty("coord")
-	private void nested_coord(Map<String, String> coord) {
+	private void nested_coord(Map<String, Float> coord) {
 		this.longitude = coord.get("lon");
 		this.latitude = coord.get("lat");
 	}
@@ -47,32 +50,43 @@ public class MeteoData {
 	 * @param main
 	 */
 	@JsonProperty("main")
-	private void nested_main(Map<String, String> main) {
+	private void nested_main(Map<String, Float> main) {
 		this.temperature = main.get("feels_like");
+		this.pluie = main.get("humidity");
+		niveauMeteoMap.put("Température", this.temperature);
+		niveauMeteoMap.put("Pluie", this.pluie);
 	}
 	
 	/**
 	 * @param wind
 	 */
 	@JsonProperty("wind")
-	private void nested_wind(Map<String, String> wind) {
+	private void nested_wind(Map<String, Float> wind) {
 		this.vent = wind.get("speed");
+		niveauMeteoMap.put("Vent", this.vent);	
 	}
 	
 	/**
 	 * @param clouds
 	 */
 	@JsonProperty("clouds")
-	private void nested_clouds(Map<String, String> clouds) {
+	private void nested_clouds(Map<String, Float> clouds) {
 		this.nuage = clouds.get("all");
+		niveauMeteoMap.put("Nuage", this.nuage);	
 	}
-	
-	/**
-	 * @param rain
+
+	/** Getter
+	 * @return the niveauMeteoMap
 	 */
-	@JsonProperty("rain")
-	private void nested_rain(Map<String, String> rain) {
-		this.pluie = rain.get("1h");
+	public HashMap<String, Float> getNiveauMeteoMap() {
+		return niveauMeteoMap;
+	}
+
+	/** Setter
+	 * @param niveauMeteoMap the niveauMeteoMap to set
+	 */
+	public void setNiveauMeteoMap(HashMap<String, Float> niveauMeteoMap) {
+		this.niveauMeteoMap = niveauMeteoMap;
 	}
 
 	/**
@@ -102,84 +116,84 @@ public class MeteoData {
 	/** Getter
 	 * @return the longitude
 	 */
-	public String getLongitude() {
+	public Float getLongitude() {
 		return longitude;
 	}
 
 	/** Setter
 	 * @param longitude the longitude to set
 	 */
-	public void setLongitude(String longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 
 	/** Getter
 	 * @return the latitude
 	 */
-	public String getLatitude() {
+	public Float getLatitude() {
 		return latitude;
 	}
 
 	/** Setter
 	 * @param latitude the latitude to set
 	 */
-	public void setLatitude(String latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
 
 	/** Getter
 	 * @return the temperature
 	 */
-	public String getTemperature() {
+	public Float getTemperature() {
 		return temperature;
 	}
 
 	/** Setter
 	 * @param temperature the temperature to set
 	 */
-	public void setTemperature(String temperature) {
+	public void setTemperature(Float temperature) {
 		this.temperature = temperature;
 	}
 
 	/** Getter
 	 * @return the vent
 	 */
-	public String getVent() {
+	public Float getVent() {
 		return vent;
 	}
 
 	/** Setter
 	 * @param vent the vent to set
 	 */
-	public void setVent(String vent) {
+	public void setVent(Float vent) {
 		this.vent = vent;
 	}
 
 	/** Getter
 	 * @return the nuage
 	 */
-	public String getNuage() {
+	public Float getNuage() {
 		return nuage;
 	}
 
 	/** Setter
 	 * @param nuage the nuage to set
 	 */
-	public void setNuage(String nuage) {
+	public void setNuage(Float nuage) {
 		this.nuage = nuage;
 	}
 
 	/** Getter
 	 * @return the pluie
 	 */
-	public String getPluie() {
+	public Float getPluie() {
 		return pluie;
 	}
 
 	/** Setter
 	 * @param pluie the pluie to set
 	 */
-	public void setPluie(String pluie) {
+	public void setPluie(Float pluie) {
 		this.pluie = pluie;
 	}
 
