@@ -14,12 +14,18 @@ public class CommuneDTO {
 
 	/** name de type String ("name":"Peyrat-le-Chateau") */
 	private String name;
-	/** country de type String ("country":"FR") */
+	/** country de type String ("country":"FR") Utilisé pour filter le fichier JSON */
 	private String country;
 	/** lat de type Float, coordonnées GPS latitude ("coord":{"lon":1.77233,"lat":45.815781})  */
 	private Float lat;
 	/** lon de type Float, coordonnées GPS longitude ("coord":{"lon":1.77233,"lat":45.815781}) */
 	private Float lon;
+	/** departement : String */
+	private String departement;
+	/** region : String */
+	private String region;
+	/** population : Integer */
+	private Integer population;
 	
 	/**
 	 * Obtenir la valeur des clés  de l'objet "city"
@@ -40,6 +46,8 @@ public class CommuneDTO {
 		this.lon = Float.parseFloat(((Map<String,Object>)city.get("coord")).get("lon").toString());
 	}
 
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -47,13 +55,21 @@ public class CommuneDTO {
 		builder.append(name);
 		builder.append(", country=");
 		builder.append(country);
-		builder.append(", lon=");
-		builder.append(lon);
 		builder.append(", lat=");
 		builder.append(lat);
+		builder.append(", lon=");
+		builder.append(lon);
+		builder.append(", departement=");
+		builder.append(departement);
+		builder.append(", region=");
+		builder.append(region);
+		builder.append(", population=");
+		builder.append(population);
 		builder.append("]");
 		return builder.toString();
 	}
+
+
 
 	/** Getter
 	 * @return the name
@@ -109,6 +125,48 @@ public class CommuneDTO {
 	 */
 	public void setLat(Float lat) {
 		this.lat = lat;
+	}
+
+	/** Getter
+	 * @return the departement
+	 */
+	public String getDepartement() {
+		return departement;
+	}
+
+	/** Setter
+	 * @param departement the departement to set
+	 */
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+
+	/** Getter
+	 * @return the region
+	 */
+	public String getRegion() {
+		return region;
+	}
+
+	/** Setter
+	 * @param region the region to set
+	 */
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	/** Getter
+	 * @return the population
+	 */
+	public Integer getPopulation() {
+		return population;
+	}
+
+	/** Setter
+	 * @param population the population to set
+	 */
+	public void setPopulation(Integer population) {
+		this.population = population;
 	}
 
 }
