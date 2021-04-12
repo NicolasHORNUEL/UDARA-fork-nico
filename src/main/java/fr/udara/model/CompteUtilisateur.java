@@ -16,7 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * @author Udara
@@ -36,22 +40,29 @@ public class CompteUtilisateur implements Serializable {
 	private Long id;
 
 	/** nom : String */
+	@NotNull
 	private String nom;
 
 	/** prenom : String */
+	@NotNull
 	private String prenom;
 
 	/** nomUtilisateur : String */
+	@NotNull
 	private String nomUtilisateur;
 
 	/** mail : String */
+	@NotNull
+	@Email
 	private String mail;
 	
 	/** motDePasse : String */
+	@NotNull
 	private String motDePasse;
 
 	/** codePostal : String */
-	@Max(value = 5)
+	@NotNull
+	@Length(max = 5)
 	private String codePostal;
 
 	/** statutActif : Boolean */
