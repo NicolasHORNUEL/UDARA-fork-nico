@@ -82,6 +82,8 @@ public class IntegrationFile {
 				nbLigneJSON_FR++;
 
 				if (nbOccurence == 1) {
+					nom = nom.toLowerCase();
+					region = region.toLowerCase();
 					Commune commune = new Commune(nom, departement, region, maxPop, lat, lon);
 					communeService.save(commune);
 					System.out.println("Ligne: " + nbLigneJSON_FR + "/8815, Commune ENREGISTRÉE : " + nom + ". (Nombre d'occurence dans le fichier de recensement: " + nbOccurence + ").");

@@ -51,7 +51,7 @@ public class CommuneController {
 	 * 
 	 * @return la liste de toutes les communes
 	 */
-	@GetMapping
+	@GetMapping("liste-commune")
 	public List<Commune> findAll() {
 		return communeService.findAll();
 	}
@@ -61,7 +61,7 @@ public class CommuneController {
 	 * 
 	 * @return la liste de toutes les communes au format DTO
 	 */
-	@GetMapping
+	@GetMapping("liste-commune-dto")
 	public List<CommuneDTO> findAllDTO() {
 		return communeService.findAllDTO();
 	}
