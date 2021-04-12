@@ -99,6 +99,10 @@ public class CommuneService {
 	public Commune findById(Long id) {
 		return communeRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
+	
+	public List<String> findRegion(){
+		return communeRepository.findRegion();
+	}
 
 	/**
 	 * @param id d'un objet Commune

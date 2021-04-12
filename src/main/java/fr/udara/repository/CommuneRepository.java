@@ -34,5 +34,26 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	 */
 	@Query("FROM Commune WHERE nom LIKE %:nom%")
 	List<Commune> findAllByNameLike(String nom);
+	
+	/**
+	 * Récupération de la liste des region dans la table commune
+	 * 
+	 * @return {@link List<Strin>} la liste des region 
+	 */
+	@Query("SELECT region FROM Commune")
+	List<String> findRegion();
+	
+	/**
+	 * Recupération de la liste des nom de toutes les communes
+	 * 
+	 * @return list des nom de toute les communes
+	 */
+	@Query("SElECT nom FROM Commune")
+	List<String> findAllNomCommune();
+	
+	@Query("SELECT c.nom FROM Commune c WHERE c.region =: region")
+	List<String> findNomCommuneByRegion(String region);
+	
+	
 
 }
