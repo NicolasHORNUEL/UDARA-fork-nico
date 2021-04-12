@@ -30,49 +30,67 @@ import fr.udara.service.IndicateurAirService;
 import fr.udara.service.NiveauMeteoService;
 
 	
+/**
+ * Classe de service injectée au contexte Spring Boot.
+ * Cette classe permet de récupérer des informations de niveau météo et d'indicateur d'air à heure régulière.
+ * Elle a besoin de classe de service existant dans le contexte Spring Boot.
+ * Elle a besoin du fichier src/main/resources/api.proprietes pour appeler l'API openweather.
+ * A l'issue de sa boucle sur l'ensemble des Communes existantes en base de données,
+ * un objet NiveauMeteo et un objet IndicateurAir sont enregistrés en base de donnée.
+ * @author Udara
+ *
+ */
 @Service
 public class IntegrationAPI {
 
-	
-	/** communeService */
-	private CommuneService communeService;
-	/** niveauMeteoService */
-	private NiveauMeteoService niveauMeteoService;
-	/** indicateurAirService */
-	private IndicateurAirService indicateurAirService;
-	/** restTemplate */
-	private RestTemplate restTemplate = new RestTemplate();
-	/** mapper */
+	/** Récupérer l'instance communeService */
+	@Autowired private CommuneService communeService;
+	/** Récupérer l'instance niveauMeteoService */
+	@Autowired private NiveauMeteoService niveauMeteoService;
+	/** Récupérer l'instance indicateurAirService */
+	@Autowired private IndicateurAirService indicateurAirService;
+	/** Déclaration de restTemplate de type RestTemplate */
+	private RestTemplate restTemplate;
+	/** Déclaration de mapper de type ObjectMapper */
 	private ObjectMapper mapper;
-	/** API_URL : "https://api.openweathermap.org/data/2.5/" */
+	/** Déclaration de fichierProperties de type ResourceBundle */
+	private ResourceBundle fichierProperties;
+	/**  Déclaration de API_URL : "https://api.openweathermap.org/data/2.5/" de type String */
 	private String API_URL;
-	/** API_key_NiveauMeteo */
+	/**  Déclaration de API_key_NiveauMeteo de type String */
 	private String API_key_NiveauMeteo;
-	/** API_key_IndicateurAir */
+	/**  Déclaration de API_key_IndicateurAir de type String */
 	private String API_key_IndicateurAir;
+
 	
-	
+	/** 
+	 * Constructeur d'injection de propriétés et d'instance supplémentaire au contexte Spring Boot.
+	 * Le fichier src/main/resources/api.proprietes valorise les variables d'instance nécessaire à l'appel de l'API openweather.
+	 * Les classes RestTemplate et ObjectMapper sont instanciées et injectées au contexte Spring Boot dès le démarrage de Spring Boot.
+	 * La classe RestTemplate permet de passer des requetes http.
+	 * La classe ObjectMapper est utilisé pour traduire la réponse http du format JSON en objet JAVA
+	 */
 	@Autowired
-	public IntegrationAPI(CommuneService communeService, NiveauMeteoService niveauMeteoService, IndicateurAirService indicateurAirService) {
-		ResourceBundle fichierProperties = ResourceBundle.getBundle("api");
+	public IntegrationAPI() {
+		this.fichierProperties = ResourceBundle.getBundle("api");
 		this.API_key_NiveauMeteo = fichierProperties.getString("api.key.niveau");
 		this.API_key_IndicateurAir = fichierProperties.getString("api.key.indicateur");
 		this.API_URL = fichierProperties.getString("api.url");
-		this.communeService = communeService;
-		this.niveauMeteoService = niveauMeteoService;
-		this.indicateurAirService = indicateurAirService;
+		this.restTemplate = new RestTemplate();
 		this.mapper = new ObjectMapper();
 		this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		System.out.println("OK");
 	}
 
 	/**
 	 * Déclenchement des appels API tous les jours à 6h00, 12h00 et 18h00.
+	 * @Scheduled est utilisable sur des méthodes avec un type de retour VOID.
 	 */
-	@Scheduled(cron = "0 19 12,14,18 * * *")
+	@Scheduled(cron = "0 0 6,14,18 * * *")
+	//@Scheduled(cron = "*/20 * * * * *") // toutes les 20 secondes
 	public void traite() throws Exception {
 		List<Commune> listeCommune = communeService.findAll();
-		for (Commune commune : listeCommune) {
+		for (int i = 0; i < listeCommune.size(); i++) {
+			Commune commune = listeCommune.get(i);
 			interroge(commune);
 			Thread.sleep(500);
 		}
@@ -82,7 +100,7 @@ public class IntegrationAPI {
 	/**
 	 * Le nom de la commune passé en paramètre est utilisé pour interrogé l'API météo.
 	 * La réponse de l'API est un JSON qui est désérialisé en objet JAVA.
-	 * Chaque objet est ajouté à une map (String nom, Float valeur).
+	 * Chaque objet JAVA est ajouté à une map (String nom, Float valeur).
 	 * Celle-ci permet de boucler sur l'ensemble des clé/valeur de la réponse de l'API.
 	 * Cette boucle permet d'instancier une classe entité et enfin enregistrer en base les objets créés.
 	 * @param un objet commune
