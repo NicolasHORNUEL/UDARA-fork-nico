@@ -24,6 +24,7 @@ public class Message {
 	/** nom : String */
 	private String nom;
 
+	/** date : LocalDateTime */
 	private LocalDateTime date;
 
 	////////// RELATIONS //////////

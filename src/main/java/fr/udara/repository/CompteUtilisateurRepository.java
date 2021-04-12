@@ -3,10 +3,13 @@
  */
 package fr.udara.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import fr.udara.model.CompteUtilisateur;
+import fr.udara.model.Notification;
 
 /**
  * Interface implémente des méthodes CRUD de JPA repository
@@ -23,5 +26,8 @@ public interface CompteUtilisateurRepository extends JpaRepository<CompteUtilisa
 	 */
 	@Query("FROM CompteUtilisateur WHERE mail=:userEmail")
 	CompteUtilisateur findByEmail(String userEmail);
+	
+	@Query("SELECT c.notifications FROM CompteUtilisateur c WHERE c.id =: id")
+	List<Notification> findNotifByIdCompteUtilisateur(Long id);
 
 }

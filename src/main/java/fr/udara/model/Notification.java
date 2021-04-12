@@ -27,13 +27,11 @@ public class Notification {
 	/** texte : String */
 	private String texte;
 
-	/** commune : String */
-	private String commune;
-
 	/** lu : boolean */
 	private boolean lu;
 
-	private Time heure;
+	/** heure : LocalDateTime */
+	private LocalDateTime heure;
 
 	////////// RELATIONS //////////
 
@@ -58,11 +56,10 @@ public class Notification {
 	 * @param compteUtilisateurs
 	 * @param heure
 	 */
-	public Notification(String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs,
-			Time heure) {
+	public Notification(String texte, boolean lu, List<CompteUtilisateur> compteUtilisateurs,
+			LocalDateTime heure) {
 		super();
 		this.texte = texte;
-		this.commune = commune;
 		this.lu = lu;
 		this.compteUtilisateurs = compteUtilisateurs;
 		this.heure = heure;
@@ -78,12 +75,11 @@ public class Notification {
 	 * @param compteUtilisateurs
 	 * @param heure
 	 */
-	public Notification(Long id, String texte, String commune, boolean lu, List<CompteUtilisateur> compteUtilisateurs,
-			Time heure) {
+	public Notification(Long id, String texte, boolean lu, List<CompteUtilisateur> compteUtilisateurs,
+			LocalDateTime heure) {
 		super();
 		this.id = id;
 		this.texte = texte;
-		this.commune = commune;
 		this.lu = lu;
 		this.compteUtilisateurs = compteUtilisateurs;
 		this.heure = heure;
@@ -91,12 +87,10 @@ public class Notification {
 
 	////////// TO STRING //////////
 
-	/**
-	 * Méthode toString pour afficher la valeur des attributs de l'instance
-	 */
 	@Override
 	public String toString() {
-		return "Notification n°" + id + "\nTexte : " + texte + "\nCommune : " + commune + "\nLu=" + lu;
+		return "Notification n°" + id + "\nTexte= : " + texte + "\nLu : " + lu + "\nHeure : " + heure
+				+ "\nCompte Utilisateurs : " + compteUtilisateurs;
 	}
 
 	////////// GETTERS & SETTERS //////////
@@ -140,24 +134,6 @@ public class Notification {
 	/**
 	 * Getter
 	 * 
-	 * @return the commune
-	 */
-	public String getCommune() {
-		return commune;
-	}
-
-	/**
-	 * Setter
-	 * 
-	 * @param commune the commune to set
-	 */
-	public void setCommune(String commune) {
-		this.commune = commune;
-	}
-
-	/**
-	 * Getter
-	 * 
 	 * @return the lu
 	 */
 	public boolean isLu() {
@@ -196,7 +172,7 @@ public class Notification {
 	 * 
 	 * @return the heure
 	 */
-	public Time getHeure() {
+	public LocalDateTime getHeure() {
 		return heure;
 	}
 
@@ -205,7 +181,7 @@ public class Notification {
 	 * 
 	 * @param heure the heure to set
 	 */
-	public void setHeure(Time heure) {
+	public void setHeure(LocalDateTime heure) {
 		this.heure = heure;
 	}
 
