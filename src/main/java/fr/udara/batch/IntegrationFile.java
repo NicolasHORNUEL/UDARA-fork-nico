@@ -34,7 +34,8 @@ public class IntegrationFile {
 	 * 209_578 villes disponibles dont 19_965 villes FRANÇAISES
 	 * Le fichier a été nettoyé pour enlever les doublons afin d'éviter des réponses d'API en tableau
 	 * et pouvoir associer les fichiers json et csv sans AUCUNE ambiguité 
-	 * Seul 8_815 villes sont valides */
+	 * Seul 8_815 villes sont valides
+	 * la méthode static nettoyer() de la classe NettoyageFichier peut être appeler dans le package Util */
 	private Path pathJSON = Paths.get("src/main/resources/weather_16.json");
 	/**  Fichier recensement.csv fourni par Diginamic. 35_500 villes FRANÇAISES */
 	private Path pathCSV = Paths.get("src/main/resources/recensement.csv");
