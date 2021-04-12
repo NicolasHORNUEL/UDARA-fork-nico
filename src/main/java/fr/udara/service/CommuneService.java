@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.CommuneDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Commune;
 import fr.udara.repository.CommuneRepository;
@@ -63,6 +64,29 @@ public class CommuneService {
 	 */
 	public List<Commune> findAll() {
 		return communeRepository.findAll();
+	}
+	
+	/**
+	 * Méthode de récupération des Communes au format DTO
+	 * 
+	 * @return une liste d'objet CommuneDTO
+	 */
+	public List<CommuneDTO> findAllDTO() {
+		List<Commune> listeCommunes = communeRepository.findAll();
+
+		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
+
+		for (Commune commune : listeCommunes) {
+			CommuneDTO communeDTO = new CommuneDTO();
+			communeDTO.setName(commune.getNom().toUpperCase());
+			communeDTO.setRegion(commune.getRegion());
+			communeDTO.setDepartement(commune.getDepartement());
+			communeDTO.setPopulation(commune.getPopulation());
+			communeDTO.setLat(commune.getyCoordonnee());
+			communeDTO.setLon(commune.getxCoordonnee());
+			listeCommunesDTO.add(communeDTO);
+		}
+		return listeCommunesDTO;
 	}
 
 	/**

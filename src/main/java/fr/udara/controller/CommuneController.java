@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.CommuneDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.Commune;
 import fr.udara.service.CommuneService;
@@ -57,6 +58,16 @@ public class CommuneController {
 	}
 
 	/**
+	 * Méthode de récupération de toutes les communes en CommuneDTO
+	 * 
+	 * @return la liste de toutes les communes au format DTO
+	 */
+	@GetMapping
+	public List<CommuneDTO> findAllDTO() {
+		return communeService.findAllDTO();
+	}
+
+	/**
 	 * Méthode de récupération d'une commune selon son id
 	 * 
 	 * @param id id de la commune ciblée
@@ -80,8 +91,8 @@ public class CommuneController {
 //	}
 
 	/**
-	 * Méthode de création (ajout) d'une commune en DB
-	 * Requête HTTP POST http://<server_url>/api/communes
+	 * Méthode de création (ajout) d'une commune en DB Requête HTTP POST
+	 * http://<server_url>/api/communes
 	 * 
 	 * @param commune la commune à créer
 	 * @param br      le BindingResult qui nous permet d'accéder aux potentielles
@@ -98,10 +109,10 @@ public class CommuneController {
 	}
 
 	/**
-	 * Méthode de modification d'une commune selon son id
-	 * Requête HTTP PUT http://<server_url>/api/communes/:id --> Body en JSON
+	 * Méthode de modification d'une commune selon son id Requête HTTP PUT
+	 * http://<server_url>/api/communes/:id --> Body en JSON
 	 * 
-	 * @param id l'id de la commune à modifier
+	 * @param id      l'id de la commune à modifier
 	 * @param commune la commune passée en corps de requête
 	 * @return la commune mise à jour
 	 */
@@ -112,8 +123,8 @@ public class CommuneController {
 	}
 
 	/**
-	 * Méthode de suppression d'une commune selon son id
-	 * Requête HTTP DELETE http://<server_url>/api/communes/:id
+	 * Méthode de suppression d'une commune selon son id Requête HTTP DELETE
+	 * http://<server_url>/api/communes/:id
 	 * 
 	 * @param id l'id de la commune à supprimer
 	 */
