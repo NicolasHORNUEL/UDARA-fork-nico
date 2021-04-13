@@ -1,6 +1,7 @@
 package fr.udara.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.FavoriDTO;
-import fr.udara.dto.IndicateurAirDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Favori;
 import fr.udara.repository.FavoriRepository;
@@ -80,14 +80,20 @@ public class FavoriService {
 		List<FavoriDTO> listeFavorisDTO = new ArrayList<>();
 
 		for (Favori favori : listeFavoris) {
+			
 			FavoriDTO favoriDTO = new FavoriDTO();
+			
 			favoriDTO.setNom(favori.getNom());
 			favoriDTO.setEchelleTemps(favori.getEchelleTemps());;
-			String[] decoupage = favori.getIndicateurAir().split(",");
-			IndicateurAirDTO indicateurAirDTO = new IndicateurAirDTO();
-			List<IndicateurAirDTO> indicateurAirDTOs = new ArrayList<>();
-
-
+			
+			String[] decoupageAir = favori.getIndicateurAir().split(",");
+			List<String> decoupageAirDTO = Arrays.asList(decoupageAir);
+			favoriDTO.setIndicateurAir(decoupageAirDTO);
+			
+			String[] decoupageMeteo = favori.getNiveauMeteo().split(",");
+			List<String> decoupageMeteoDTO = Arrays.asList(decoupageMeteo);
+			favoriDTO.setNiveauMeteo(decoupageMeteoDTO);
+			
 			listeFavorisDTO.add(favoriDTO);
 		}
 		return listeFavorisDTO;
