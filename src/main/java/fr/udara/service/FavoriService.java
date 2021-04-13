@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.FavoriDTO;
+import fr.udara.dto.IndicateurAirDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Favori;
 import fr.udara.repository.FavoriRepository;
@@ -81,9 +82,12 @@ public class FavoriService {
 		for (Favori favori : listeFavoris) {
 			FavoriDTO favoriDTO = new FavoriDTO();
 			favoriDTO.setNom(favori.getNom());
-			favoriDTO.setIndicateurAir(favori.getIndicateurAir());
-			favoriDTO.setNiveauMeteo(favori.getNiveauMeteo());
 			favoriDTO.setEchelleTemps(favori.getEchelleTemps());;
+			String[] decoupage = favori.getIndicateurAir().split(",");
+			IndicateurAirDTO indicateurAirDTO = new IndicateurAirDTO();
+			List<IndicateurAirDTO> indicateurAirDTOs = new ArrayList<>();
+
+
 			listeFavorisDTO.add(favoriDTO);
 		}
 		return listeFavorisDTO;
