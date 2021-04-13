@@ -3,6 +3,8 @@
  */
 package fr.udara.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,11 +33,11 @@ public class Favori {
 
 	/** niveauMeteo : String */
 	@NotEmpty
-	private String niveauMeteo;
+	private List<String> niveauMeteo;
 
-	/** indicateurAir : Boolean */
+	/** indicateurAir : String */
 	@NotEmpty
-	private Boolean indicateurAir;
+	private List<String> indicateurAir;
 
 	/** echelleTemps : EchelleTemps */
 	@Enumerated(EnumType.STRING)
@@ -70,7 +72,7 @@ public class Favori {
 	 * @param commune
 	 * @param compteUtilisateur
 	 */
-	public Favori(@NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty Boolean indicateurAir,
+	public Favori(@NotEmpty String nom, @NotEmpty List<String> niveauMeteo, @NotEmpty List<String> indicateurAir,
 			EchelleTemps echelleTemps, Commune commune, CompteUtilisateur compteUtilisateur) {
 		super();
 		this.nom = nom;
@@ -91,7 +93,7 @@ public class Favori {
 	 * @param commune
 	 * @param compteUtilisateur
 	 */
-	public Favori(Long id, @NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty Boolean indicateurAir,
+	public Favori(Long id, @NotEmpty String nom, @NotEmpty List<String> niveauMeteo, @NotEmpty List<String> indicateurAir,
 			EchelleTemps echelleTemps, Commune commune, CompteUtilisateur compteUtilisateur) {
 		super();
 		this.id = id;
@@ -159,7 +161,7 @@ public class Favori {
 	 * 
 	 * @return le niveauMeteo
 	 */
-	public String getNiveauMeteo() {
+	public List<String> getNiveauMeteo() {
 		return niveauMeteo;
 	}
 
@@ -168,7 +170,7 @@ public class Favori {
 	 * 
 	 * @param niveauMeteo le niveauMeteo à modifier
 	 */
-	public void setNiveauMeteo(String niveauMeteo) {
+	public void setNiveauMeteo(List<String> niveauMeteo) {
 		this.niveauMeteo = niveauMeteo;
 	}
 
@@ -177,7 +179,7 @@ public class Favori {
 	 * 
 	 * @return l'indicateurAir
 	 */
-	public Boolean getIndicateurAir() {
+	public List<String> getIndicateurAir() {
 		return indicateurAir;
 	}
 
@@ -186,7 +188,7 @@ public class Favori {
 	 * 
 	 * @param indicateurAir l'indicateurAir à modifier
 	 */
-	public void setIndicateurAir(Boolean indicateurAir) {
+	public void setIndicateurAir(List<String> indicateurAir) {
 		this.indicateurAir = indicateurAir;
 	}
 
