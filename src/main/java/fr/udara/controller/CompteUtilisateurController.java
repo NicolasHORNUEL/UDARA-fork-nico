@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.CompteUtilisateurDTO;
+import fr.udara.dto.form.FormInscriptionDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.CompteUtilisateur;
 import fr.udara.service.CompteUtilisateurService;
@@ -75,12 +76,12 @@ public class CompteUtilisateurController {
 	 * @return la compteUtilisateur créée
 	 */
 	@PostMapping()
-	public CompteUtilisateur create(@Valid @RequestBody CompteUtilisateur compteUtilisateur, BindingResult br) {
+	public void create(@Valid @RequestBody FormInscriptionDTO formInscriptionDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return compteUtilisateurService.save(compteUtilisateur);
+		compteUtilisateurService.save(formInscriptionDTO);
 	}
 
 	/**
@@ -91,11 +92,11 @@ public class CompteUtilisateurController {
 	 * @param compteUtilisateur la compteUtilisateur passée en corps de requête
 	 * @return la compteUtilisateur mise à jour
 	 */
-	@PutMapping("{id}")
-	public CompteUtilisateur update(@PathVariable(name = "id") Long id, @RequestBody CompteUtilisateur compteUtilisateur) {
-		compteUtilisateur.setId(id);
-		return compteUtilisateurService.save(compteUtilisateur);
-	}
+//	@PutMapping("{id}")
+//	public CompteUtilisateur update(@PathVariable(name = "id") Long id, @RequestBody CompteUtilisateur compteUtilisateur) {
+//		compteUtilisateur.setId(id);
+//		return compteUtilisateurService.save(compteUtilisateur);
+//	}
 
 	/**
 	 * Méthode de suppression d'une compteUtilisateur selon son id
