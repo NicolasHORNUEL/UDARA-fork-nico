@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.NotificationDTO;
+import fr.udara.dto.form.FormNotificationDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.Notification;
 import fr.udara.service.NotificationService;
@@ -80,12 +81,12 @@ public class NotificationController {
 	 * @return la notification créée
 	 */
 	@PostMapping()
-	public Notification create(@Valid @RequestBody Notification notification, BindingResult br) {
+	public void create(@Valid @RequestBody FormNotificationDTO notificationDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return notificationService.save(notification);
+		notificationService.save(notificationDTO);
 	}
 
 	/**
@@ -96,11 +97,11 @@ public class NotificationController {
 	 * @param notification la notification passée en corps de requête
 	 * @return la notification mise à jour
 	 */
-	@PutMapping("{id}")
-	public Notification update(@PathVariable(name = "id") Long id, @RequestBody Notification notification) {
-		notification.setId(id);
-		return notificationService.save(notification);
-	}
+//	@PutMapping("{id}")
+//	public Notification update(@PathVariable(name = "id") Long id, @RequestBody Notification notification) {
+//		notification.setId(id);
+//		return notificationService.save(notification);
+//	}
 
 	/**
 	 * Méthode de suppression d'une notification selon son id

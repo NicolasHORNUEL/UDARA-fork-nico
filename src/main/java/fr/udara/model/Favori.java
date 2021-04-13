@@ -33,9 +33,9 @@ public class Favori {
 	@NotEmpty
 	private String niveauMeteo;
 
-	/** indicateurAir : Boolean */
+	/** indicateurAir : String */
 	@NotEmpty
-	private Boolean indicateurAir;
+	private String indicateurAir;
 
 	/** echelleTemps : EchelleTemps */
 	@Enumerated(EnumType.STRING)
@@ -70,7 +70,7 @@ public class Favori {
 	 * @param commune
 	 * @param compteUtilisateur
 	 */
-	public Favori(@NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty Boolean indicateurAir,
+	public Favori(@NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty String indicateurAir,
 			EchelleTemps echelleTemps, Commune commune, CompteUtilisateur compteUtilisateur) {
 		super();
 		this.nom = nom;
@@ -91,7 +91,7 @@ public class Favori {
 	 * @param commune
 	 * @param compteUtilisateur
 	 */
-	public Favori(Long id, @NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty Boolean indicateurAir,
+	public Favori(Long id, @NotEmpty String nom, @NotEmpty String niveauMeteo, @NotEmpty String indicateurAir,
 			EchelleTemps echelleTemps, Commune commune, CompteUtilisateur compteUtilisateur) {
 		super();
 		this.id = id;
@@ -177,7 +177,7 @@ public class Favori {
 	 * 
 	 * @return l'indicateurAir
 	 */
-	public Boolean getIndicateurAir() {
+	public String getIndicateurAir() {
 		return indicateurAir;
 	}
 
@@ -186,7 +186,7 @@ public class Favori {
 	 * 
 	 * @param indicateurAir l'indicateurAir à modifier
 	 */
-	public void setIndicateurAir(Boolean indicateurAir) {
+	public void setIndicateurAir(String indicateurAir) {
 		this.indicateurAir = indicateurAir;
 	}
 

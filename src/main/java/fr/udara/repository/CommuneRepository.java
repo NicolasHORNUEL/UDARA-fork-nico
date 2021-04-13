@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import fr.udara.model.Commune;
+import fr.udara.model.CompteUtilisateur;
 
 /**
  * Interface implémente des méthodes CRUD de JPA repository
@@ -60,6 +61,22 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	@Query("SELECT c.nom FROM Commune c WHERE c.region =: region")
 	List<String> findNomCommuneByRegion(String region);
 	
+	/**
+	 * Récupère la liste des Compte Utilisateur pour un nom de commune donné
+	 * 
+	 * @param nomCommune
+	 * @return la liste des CompteUtilisateur pour un commune donné
+	 */
+	@Query("SELECT compteUtilisateurs FROM Commune WHERE nom =: nomCommune")
+	List<CompteUtilisateur> findUserByCommune(String nomCommune);
 	
+	/**
+	 * Récupère la liste des Compte Utilisateur pour un nom de region donné
+	 * 
+	 * @param nomRegion
+	 * @return la liste des CompteUtilisateur pour une region donné
+	 */
+	@Query("SELECT compteUtilisateurs FROM Commune WHERE region =: nomRegion")
+	List<CompteUtilisateur> findUserByRegion(String nomRegion);
 
 }

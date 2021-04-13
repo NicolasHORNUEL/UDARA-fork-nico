@@ -1,11 +1,14 @@
 package fr.udara.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.FavoriDTO;
+import fr.udara.dto.IndicateurAirDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Favori;
 import fr.udara.repository.FavoriRepository;
@@ -29,6 +32,26 @@ public class FavoriService {
 		this.favoriRepository = favoriRepository;
 	}
 	
+	/**
+	 * Pour récupérer un objet Favori par son nom.
+	 * 
+	 * @param nom d'une favori en String.
+	 * @return un objet Favori.
+	 */
+	public Favori findByName(String name) {
+		return favoriRepository.findByName(name);
+	}
+	
+	/**
+	 * Pour récupérer une liste d'objet Favori.
+	 * 
+	 * @param nom d'une favori en String.
+	 * @return une liste de Favori.
+	 */
+	public List<Favori> findAllByNameLike(String name) {
+		return favoriRepository.findAllByNameLike(name);
+	}
+
 	
 	/**
 	 * @param un objet Favori sans id
@@ -46,6 +69,36 @@ public class FavoriService {
 		return favoriRepository.findAll();
 	}
 
+	/**
+	 * Méthode de récupération des Favoris au format DTO
+	 * 
+	 * @return une liste d'objet FavoriDTO
+	 */
+	public List<FavoriDTO> findAllDTO() {
+		List<Favori> listeFavoris = favoriRepository.findAll();
+
+		List<FavoriDTO> listeFavorisDTO = new ArrayList<>();
+
+		for (Favori favori : listeFavoris) {
+			FavoriDTO favoriDTO = new FavoriDTO();
+			favoriDTO.setNom(favori.getNom());
+			favoriDTO.setEchelleTemps(favori.getEchelleTemps());;
+			String[] decoupage = favori.getIndicateurAir().split(",");
+			IndicateurAirDTO indicateurAirDTO = new IndicateurAirDTO();
+			List<IndicateurAirDTO> indicateurAirDTOs = new ArrayList<>();
+
+
+			listeFavorisDTO.add(favoriDTO);
+		}
+		return listeFavorisDTO;
+	}
+	
+	/**
+	 * @return la liste de tous les noms de favoris
+	 */
+	public List<String> findAllNomFavori() {
+		return favoriRepository.findAllNomFavori();
+	}
 	
 	/**
 	 * @param id d'un objet Favori
