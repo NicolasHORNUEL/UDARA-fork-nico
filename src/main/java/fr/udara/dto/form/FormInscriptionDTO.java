@@ -15,17 +15,17 @@ public class FormInscriptionDTO {
 	/** prenom : String */
 	private String prenom;
 
-	/** pseudo : String */
-	private String pseudo;
+	/** nomUtilisateur : String */
+	private String nomUtilisateur;
 
 	/** email : String */
 	private String email;
 
-	/** motdepasse : String */
-	private String motdepasse;
+	/** motDePasse : String */
+	private String motDePasse;
 
-	/** confirmermotdepasse : String */
-	private String confirmermotdepasse;
+	/** confirmermotDePasse : String */
+	private String confirmermotDePasse;
 
 	/** adresse : String */
 	private String adresse;
@@ -33,8 +33,8 @@ public class FormInscriptionDTO {
 	/** ville : String */
 	private String ville;
 
-	/** codepostal : String */
-	private String codepostal;
+	/** codePostal : String */
+	private String codePostal;
 
 	/** pays : String */
 	private String pays;
@@ -78,19 +78,19 @@ public class FormInscriptionDTO {
 	/**
 	 * Getter
 	 * 
-	 * @return the pseudo
+	 * @return the nomUtilisateur
 	 */
-	public String getPseudo() {
-		return pseudo;
+	public String getNomUtilisateur() {
+		return nomUtilisateur;
 	}
 
 	/**
 	 * Setter
 	 * 
-	 * @param pseudo the pseudo to set
+	 * @param nomUtilisateur the nomUtilisateur to set
 	 */
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
+	public void setNomUtilisateur(String nomUtilisateur) {
+		this.nomUtilisateur = nomUtilisateur;
 	}
 
 	/**
@@ -114,37 +114,37 @@ public class FormInscriptionDTO {
 	/**
 	 * Getter
 	 * 
-	 * @return the motdepasse
+	 * @return the motDePasse
 	 */
-	public String getMotdepasse() {
-		return motdepasse;
+	public String getMotDePasse() {
+		return motDePasse;
 	}
 
 	/**
 	 * Setter
 	 * 
-	 * @param motdepasse the motdepasse to set
+	 * @param motDePasse the motDePasse to set
 	 */
-	public void setMotdepasse(String motdepasse) {
-		this.motdepasse = motdepasse;
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
 
 	/**
 	 * Getter
 	 * 
-	 * @return the confirmermotdepasse
+	 * @return the confirmermotDePasse
 	 */
-	public String getConfirmermotdepasse() {
-		return confirmermotdepasse;
+	public String getConfirmerMotDePasse() {
+		return confirmermotDePasse;
 	}
 
 	/**
 	 * Setter
 	 * 
-	 * @param confirmermotdepasse the confirmermotdepasse to set
+	 * @param confirmermotDePasse the confirmermotDePasse to set
 	 */
-	public void setConfirmermotdepasse(String confirmermotdepasse) {
-		this.confirmermotdepasse = confirmermotdepasse;
+	public void setConfirmerMotDePasse(String confirmermotDePasse) {
+		this.confirmermotDePasse = confirmermotDePasse;
 	}
 
 	/**
@@ -186,19 +186,19 @@ public class FormInscriptionDTO {
 	/**
 	 * Getter
 	 * 
-	 * @return the codepostal
+	 * @return the codePostal
 	 */
-	public String getCodepostal() {
-		return codepostal;
+	public String getCodePostal() {
+		return codePostal;
 	}
 
 	/**
 	 * Setter
 	 * 
-	 * @param codepostal the codepostal to set
+	 * @param codePostal the codePostal to set
 	 */
-	public void setCodepostal(String codepostal) {
-		this.codepostal = codepostal;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	/**

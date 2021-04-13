@@ -1,6 +1,5 @@
 package fr.udara.security;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import fr.udara.service.CompteUtilisateurService;
  */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-	
+
 	/** compteUtilisateurService : CompteUtilisateurService */
 	@Autowired
 	private CompteUtilisateurService compteUtilisateurService;
@@ -34,34 +33,35 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-		
+
 		if (userEmail.trim().isEmpty()) {
 			throw new UsernameNotFoundException("Le nom d'utilisateur est vide !");
 		}
-		
+
 		CompteUtilisateur user = compteUtilisateurService.findByEmail(userEmail);
-		
+
 		if (user == null) {
 			throw new UsernameNotFoundException("Ce compte n'existe pas!");
 		}
-		
-		//TODO : username or mail ?
-		return new org.springframework.security.core.userdetails.User(user.getMail(), user.getMotDePasse(), getGrantedAuthorities(user));
-		
+
+		// TODO : username or mail ?
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getMotDePasse(),
+				getGrantedAuthorities(user));
+
 	}
-	
+
 	/**
 	 * @param compteUtilisateur
 	 * @return
 	 */
 	private List<GrantedAuthority> getGrantedAuthorities(CompteUtilisateur compteUtilisateur) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		
+
 		Role role = compteUtilisateur.getRole();
-		
+
 		authorities.add(new SimpleGrantedAuthority(role.getRole()));
 		return authorities;
-		
+
 	}
 
 }

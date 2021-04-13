@@ -54,7 +54,7 @@ public class CompteUtilisateur implements Serializable {
 	/** mail : String */
 	@NotNull (message = "l'e-mail ne doit pas être nul")
 	@Email
-	private String mail;
+	private String email;
 	
 	/** motDePasse : String */
 	@NotNull (message = "le mot de passe ne doit pas être nul")
@@ -119,7 +119,7 @@ public class CompteUtilisateur implements Serializable {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomUtilisateur = nomUtilisateur;
-		this.mail = mail;
+		this.email = mail;
 		this.motDePasse = motDePasse;
 		this.codePostal = codePostal;
 		this.statutActif = statutActif;
@@ -153,7 +153,7 @@ public class CompteUtilisateur implements Serializable {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomUtilisateur = nomUtilisateur;
-		this.mail = mail;
+		this.email = mail;
 		this.motDePasse = motDePasse;
 		this.codePostal = codePostal;
 		this.statutActif = statutActif;
@@ -169,7 +169,7 @@ public class CompteUtilisateur implements Serializable {
 	@Override
 	public String toString() {
 		return "CompteUtilisateur n°" + id + "\nNom : " + nom + "\\nPrenom : " + prenom + "\\nNomUtilisateur : "
-				+ nomUtilisateur + "\\nMail : " + mail + "\\nCode Postal : " + codePostal + "\\nActif : " + statutActif
+				+ nomUtilisateur + "\\nMail : " + email + "\\nCode Postal : " + codePostal + "\\nActif : " + statutActif
 				+ "\\nRole : " + role + "\\nFavoris : " + favoris + "\\nMessages : " + messages + "\\nNotifications : "
 				+ notifications + "\nCommune : " + commune;
 	}
@@ -253,8 +253,8 @@ public class CompteUtilisateur implements Serializable {
 	 * 
 	 * @return the mail
 	 */
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
 
 	/**
@@ -262,8 +262,8 @@ public class CompteUtilisateur implements Serializable {
 	 * 
 	 * @param mail the mail to set
 	 */
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String mail) {
+		this.email = mail;
 	}
 
 	/**

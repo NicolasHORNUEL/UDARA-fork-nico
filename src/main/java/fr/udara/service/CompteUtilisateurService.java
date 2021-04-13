@@ -52,10 +52,10 @@ public class CompteUtilisateurService {
 		CompteUtilisateur compteUtilisateur = new CompteUtilisateur();
 		compteUtilisateur.setNom(formInscriptionDTO.getNom());
 		compteUtilisateur.setPrenom(formInscriptionDTO.getPrenom());
-		compteUtilisateur.setNomUtilisateur(formInscriptionDTO.getPseudo());
-		compteUtilisateur.setMail(formInscriptionDTO.getEmail());
-		compteUtilisateur.setMotDePasse(formInscriptionDTO.getMotdepasse());
-		compteUtilisateur.setCodePostal(formInscriptionDTO.getCodepostal());
+		compteUtilisateur.setNomUtilisateur(formInscriptionDTO.getNomUtilisateur());
+		compteUtilisateur.setEmail(formInscriptionDTO.getEmail());
+		compteUtilisateur.setMotDePasse(formInscriptionDTO.getMotDePasse());
+		compteUtilisateur.setCodePostal(formInscriptionDTO.getCodePostal());
 		compteUtilisateur.setStatutActif(true);
 		compteUtilisateur.setRole(Role.ROLE_UTILISATEUR);
 		Commune commune = communeRepository.findByName(formInscriptionDTO.getVille());
