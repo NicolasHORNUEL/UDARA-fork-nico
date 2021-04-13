@@ -100,8 +100,26 @@ public class CommuneService {
 		return communeRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 	
+	/**
+	 * @return la liste des region
+	 */
 	public List<String> findRegion(){
 		return communeRepository.findRegion();
+	}
+	
+	/**
+	 * @return la les de toute les communes
+	 */
+	public List<String> findAllNomCommune() {
+		return communeRepository.findAllNomCommune();
+	}
+	
+	/**
+	 * @param region
+	 * @return la liste des commune pour une region donné
+	 */
+	public List<String> findNomCommuneByRegion(String region) {
+		return communeRepository.findNomCommuneByRegion(region);
 	}
 
 	/**

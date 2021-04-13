@@ -3,6 +3,8 @@
  */
 package fr.udara.dto.form;
 
+import java.util.List;
+
 /**
  * @author Udara
  *
@@ -12,11 +14,11 @@ public class FormNotificationDTO {
 	/** texte : String */
 	private String texte;
 	
-	/** region : String */
-	private String region;
+	/** region : List<String> */
+	private List<String> region;
 	
-	/** commune : String */
-	private String commune;
+	/** commune : List<String> */
+	private List<String> commune;
 
 	/**
 	 * Getter
@@ -41,7 +43,7 @@ public class FormNotificationDTO {
 	 *
 	 * @return the region
 	 */
-	public String getRegion() {
+	public List<String> getRegion() {
 		return region;
 	}
 
@@ -50,7 +52,7 @@ public class FormNotificationDTO {
 	 *
 	 * @param region the region to set
 	 */
-	public void setRegion(String region) {
+	public void setRegion(List<String> region) {
 		this.region = region;
 	}
 
@@ -59,7 +61,7 @@ public class FormNotificationDTO {
 	 *
 	 * @return the commune
 	 */
-	public String getCommune() {
+	public List<String> getCommune() {
 		return commune;
 	}
 
@@ -68,9 +70,10 @@ public class FormNotificationDTO {
 	 *
 	 * @param commune the commune to set
 	 */
-	public void setCommune(String commune) {
+	public void setCommune(List<String> commune) {
 		this.commune = commune;
 	}
+
 	
 	
 

@@ -19,6 +19,7 @@ import fr.udara.service.CommuneService;
 @RequestMapping("/api/notifications/Region")
 public class RegionController {
 
+	/** communeService : CommuneService */
 	private final CommuneService communeService;
 
 	/**
@@ -31,6 +32,9 @@ public class RegionController {
 		this.communeService = communeService;
 	}
 
+	/**
+	 * @return la liste des regions
+	 */
 	@GetMapping
 	public List<String> findRegion() {
 		return communeService.findRegion();

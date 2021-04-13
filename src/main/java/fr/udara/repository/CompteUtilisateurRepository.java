@@ -27,6 +27,10 @@ public interface CompteUtilisateurRepository extends JpaRepository<CompteUtilisa
 	@Query("FROM CompteUtilisateur WHERE mail=:userEmail")
 	CompteUtilisateur findByEmail(String userEmail);
 	
+	/**
+	 * @param id
+	 * @return la liste des notification pour un id utilisateur donné
+	 */
 	@Query("SELECT c.notifications FROM CompteUtilisateur c WHERE c.id =: id")
 	List<Notification> findNotifByIdCompteUtilisateur(Long id);
 

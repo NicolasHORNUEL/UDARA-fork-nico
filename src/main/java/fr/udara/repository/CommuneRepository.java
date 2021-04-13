@@ -51,6 +51,12 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	@Query("SElECT nom FROM Commune")
 	List<String> findAllNomCommune();
 	
+	/**
+	 * recupére la liste des communes pour une région donnée
+	 * 
+	 * @param region
+	 * @return la liste des commune pour une region
+	 */
 	@Query("SELECT c.nom FROM Commune c WHERE c.region =: region")
 	List<String> findNomCommuneByRegion(String region);
 	
