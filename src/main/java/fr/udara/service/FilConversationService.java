@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.FilConversationDTO;
+import fr.udara.dto.form.FormFilConversationDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.FilConversation;
+import fr.udara.model.Rubrique;
 import fr.udara.repository.FilConversationRepository;
+import fr.udara.repository.RubriqueRepository;
 
 /**
  * Classe de service pour l'entité FilConversation
@@ -21,7 +24,11 @@ import fr.udara.repository.FilConversationRepository;
 @Service
 public class FilConversationService {
 
+	/** filConversationRepository : FilConversationRepository */
 	private FilConversationRepository filConversationRepository;
+	
+	/** rubriqueRepository : RubriqueRepository */
+	private RubriqueRepository rubriqueRepository;
 
 	/**
 	 * Constructeur
@@ -37,8 +44,18 @@ public class FilConversationService {
 	 * @return l'objet FilConversation avec un id
 	 */
 	@Transactional
-	public FilConversation save(FilConversation filConversation) {
-		return filConversationRepository.save(filConversation);
+	public void save(FormFilConversationDTO filConversationDTO) {
+		
+		FilConversation filConversation = new FilConversation();
+		
+		filConversation.setNom(filConversationDTO.getNom());
+		
+		Rubrique rubrique = new Rubrique();
+		rubrique = rubriqueRepository.findByNom(filConversationDTO.getRubrique());
+		
+		filConversation.setRubrique(rubrique);
+		
+		filConversationRepository.save(filConversation);
 
 	}
 

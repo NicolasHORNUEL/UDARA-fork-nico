@@ -7,13 +7,13 @@ package fr.udara.dto.form;
  * @author udara
  *
  */
-public class FormFilDiscutionDTO {
+public class FormFilConversationDTO {
 	
 	/** motdepasse : String */
 	private String rubrique;
 	
 	/** motdepasse : String */
-	private String titre;
+	private String nom;
 
 	/**
 	 * Getter
@@ -35,16 +35,16 @@ public class FormFilDiscutionDTO {
 	 * Getter
 	 * @return the titre
 	 */
-	public String getTitre() {
-		return titre;
+	public String getNom() {
+		return nom;
 	}
 
 	/**
 	 * Setter
 	 * @param titre the titre to set
 	 */
-	public void setTitre(String titre) {
-		this.titre = titre;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	
 	

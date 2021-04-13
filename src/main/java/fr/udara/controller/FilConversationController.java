@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.FilConversationDTO;
+import fr.udara.dto.form.FormFilConversationDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.FilConversation;
 import fr.udara.service.FilConversationService;
@@ -74,12 +75,12 @@ public class FilConversationController {
 	 * @return la filConversation créée
 	 */
 	@PostMapping()
-	public FilConversation create(@Valid @RequestBody FilConversation filConversation, BindingResult br) {
+	public void create(@Valid @RequestBody FormFilConversationDTO filConversationDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return filConversationService.save(filConversation);
+		filConversationService.save(filConversationDTO);
 	}
 
 	/**
@@ -90,11 +91,11 @@ public class FilConversationController {
 	 * @param filConversation la filConversation passée en corps de requête
 	 * @return la filConversation mise à jour
 	 */
-	@PutMapping("{id}")
-	public FilConversation update(@PathVariable(name = "id") Long id, @RequestBody FilConversation filConversation) {
-		filConversation.setId(id);
-		return filConversationService.save(filConversation);
-	}
+//	@PutMapping("{id}")
+//	public FilConversation update(@PathVariable(name = "id") Long id, @RequestBody FilConversation filConversation) {
+//		filConversation.setId(id);
+//		return filConversationService.save(filConversation);
+//	}
 
 	/**
 	 * Méthode de suppression d'une filConversation selon son id
