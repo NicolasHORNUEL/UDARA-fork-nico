@@ -27,17 +27,11 @@ public class FormInscriptionDTO {
 	/** confirmermotDePasse : String */
 	private String confirmermotDePasse;
 
-	/** adresse : String */
-	private String adresse;
-
 	/** ville : String */
 	private String ville;
 
 	/** codePostal : String */
 	private String codePostal;
-
-	/** pays : String */
-	private String pays;
 
 	/**
 	 * Getter
@@ -150,24 +144,6 @@ public class FormInscriptionDTO {
 	/**
 	 * Getter
 	 * 
-	 * @return the adresse
-	 */
-	public String getAdresse() {
-		return adresse;
-	}
-
-	/**
-	 * Setter
-	 * 
-	 * @param adresse the adresse to set
-	 */
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	/**
-	 * Getter
-	 * 
 	 * @return the ville
 	 */
 	public String getVille() {
@@ -199,24 +175,6 @@ public class FormInscriptionDTO {
 	 */
 	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
-	}
-
-	/**
-	 * Getter
-	 * 
-	 * @return the pays
-	 */
-	public String getPays() {
-		return pays;
-	}
-
-	/**
-	 * Setter
-	 * 
-	 * @param pays the pays to set
-	 */
-	public void setPays(String pays) {
-		this.pays = pays;
 	}
 
 }

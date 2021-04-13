@@ -3,12 +3,15 @@ package fr.udara.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.CompteUtilisateurDTO;
 import fr.udara.dto.form.FormInscriptionDTO;
+import fr.udara.dto.form.FormModifInfoPersoDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Commune;
 import fr.udara.model.CompteUtilisateur;
@@ -64,6 +67,30 @@ public class CompteUtilisateurService {
 		}
 		compteUtilisateurRepository.save(compteUtilisateur);
 
+	}
+
+
+	/**
+	 * Méthode qui permet de modifier le compte utilisateur dont l'id est passé en paramètre
+	 * @param formModif
+	 * @param id
+	 */
+	public void update(FormModifInfoPersoDTO formModif, Long id) {
+
+		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException());
+
+		compteUtilisateur.setNom(formModif.getNom());
+		compteUtilisateur.setPrenom(formModif.getPrenom());
+		compteUtilisateur.setNomUtilisateur(formModif.getNomUtilisateur());
+		compteUtilisateur.setMotDePasse(formModif.getMotDePasse());
+		compteUtilisateur.setMotDePasse(formModif.getConfirmerMotDePasse());
+		compteUtilisateur.setMotDePasse(formModif.getNouveauMotDePasse());
+		compteUtilisateur.setMotDePasse(formModif.getVille());
+		compteUtilisateur.setCodePostal(formModif.getCodePostal());
+		compteUtilisateur.setEmail(formModif.getEmail());
+		
+		compteUtilisateurRepository.save(compteUtilisateur);
 	}
 
 	/**

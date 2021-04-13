@@ -8,87 +8,91 @@ package fr.udara.dto.form;
  *
  */
 public class FormModifInfoPersoDTO {
-	
-	/** motdepasse : String */
-	private String motdepasse;
-	
-	/** nouveaumotdepasse : String */
-	private String nouveaumotdepasse;
-	
-	/** confirmermotdepasse : String */
-	private String confirmermotdepasse;
-	
+
+	/** MotDePasse : String */
+	private String motDePasse;
+
+	/** nouveauMotDePasse : String */
+	private String nouveauMotDePasse;
+
+	/** confirmerMotDePasse : String */
+	private String confirmerMotDePasse;
+
 	/** nom : String */
 	private String nom;
-	
+
 	/** prenom : String */
 	private String prenom;
-	
-	/** pseudo : String */
-	private String pseudo;
-	
-	/** adresse : String */
-	private String adresse;
-	
+
+	/** nomUtilisateur : String */
+	private String nomUtilisateur;
+
 	/** ville : String */
 	private String ville;
-	
-	/** codepostale : String */
-	private String codepostale;
-	
-	/** pays : String */
-	private String pays;
+
+	/** codePostale : String */
+	private String codePostal;
+
+	/** codePostale : Email */
+	private String Email;
 
 	/**
 	 * Getter
-	 * @return the motdepasse
+	 * 
+	 * @return the MotDePasse
 	 */
-	public String getMotdepasse() {
-		return motdepasse;
+	public String getMotDePasse() {
+		return motDePasse;
 	}
 
 	/**
 	 * Setter
-	 * @param motdepasse the motdepasse to set
+	 * 
+	 * @param MotDePasse the MotDePasse to set
 	 */
-	public void setMotdepasse(String motdepasse) {
-		this.motdepasse = motdepasse;
+	public void setMotDePasse(String MotDePasse) {
+		this.motDePasse = MotDePasse;
 	}
 
 	/**
 	 * Getter
-	 * @return the nouveaumotdepasse
+	 * 
+	 * @return the nouveauMotDePasse
 	 */
-	public String getNouveaumotdepasse() {
-		return nouveaumotdepasse;
+	public String getNouveauMotDePasse() {
+		return nouveauMotDePasse;
 	}
 
 	/**
 	 * Setter
-	 * @param nouveaumotdepasse the nouveaumotdepasse to set
+	 * 
+	 * @param nouveauMotDePasse the nouveauMotDePasse to set
 	 */
-	public void setNouveaumotdepasse(String nouveaumotdepasse) {
-		this.nouveaumotdepasse = nouveaumotdepasse;
+	public void setNouveauMotDePasse(String nouveauMotDePasse) {
+		this.nouveauMotDePasse = nouveauMotDePasse;
 	}
 
 	/**
 	 * Getter
-	 * @return the confirmermotdepasse
+	 * 
+	 * @return the confirmerMotDePasse
 	 */
-	public String getConfirmermotdepasse() {
-		return confirmermotdepasse;
+	public String getConfirmerMotDePasse() {
+		return confirmerMotDePasse;
 	}
 
 	/**
 	 * Setter
-	 * @param confirmermotdepasse the confirmermotdepasse to set
+	 * 
+	 * @param confirmerMotDePasse the confirmerMotDePasse to set
 	 */
-	public void setConfirmermotdepasse(String confirmermotdepasse) {
-		this.confirmermotdepasse = confirmermotdepasse;
+	public void setConfirmerMotDePasse(String confirmerMotDePasse) {
+		this.confirmerMotDePasse = confirmerMotDePasse;
 	}
 
 	/**
 	 * Getter
+	 * 
 	 * @return the nom
 	 */
 	public String getNom() {
@@ -97,6 +101,7 @@ public class FormModifInfoPersoDTO {
 
 	/**
 	 * Setter
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
@@ -105,6 +110,7 @@ public class FormModifInfoPersoDTO {
 
 	/**
 	 * Getter
+	 * 
 	 * @return the prenom
 	 */
 	public String getPrenom() {
@@ -113,6 +119,7 @@ public class FormModifInfoPersoDTO {
 
 	/**
 	 * Setter
+	 * 
 	 * @param prenom the prenom to set
 	 */
 	public void setPrenom(String prenom) {
@@ -121,38 +128,25 @@ public class FormModifInfoPersoDTO {
 
 	/**
 	 * Getter
-	 * @return the pseudo
+	 * 
+	 * @return the nomUtilisateur
 	 */
-	public String getPseudo() {
-		return pseudo;
+	public String getNomUtilisateur() {
+		return nomUtilisateur;
 	}
 
 	/**
 	 * Setter
-	 * @param pseudo the pseudo to set
+	 * 
+	 * @param nomUtilisateur the nomUtilisateur to set
 	 */
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
+	public void setNomUtilisateur(String nomUtilisateur) {
+		this.nomUtilisateur = nomUtilisateur;
 	}
 
 	/**
 	 * Getter
-	 * @return the adresse
-	 */
-	public String getAdresse() {
-		return adresse;
-	}
-
-	/**
-	 * Setter
-	 * @param adresse the adresse to set
-	 */
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	/**
-	 * Getter
+	 * 
 	 * @return the ville
 	 */
 	public String getVille() {
@@ -161,6 +155,7 @@ public class FormModifInfoPersoDTO {
 
 	/**
 	 * Setter
+	 * 
 	 * @param ville the ville to set
 	 */
 	public void setVille(String ville) {
@@ -169,36 +164,38 @@ public class FormModifInfoPersoDTO {
 
 	/**
 	 * Getter
-	 * @return the codepostale
+	 * 
+	 * @return the codePostale
 	 */
-	public String getCodepostale() {
-		return codepostale;
+	public String getCodePostal() {
+		return codePostal;
 	}
 
 	/**
 	 * Setter
-	 * @param codepostale the codepostale to set
+	 * 
+	 * @param codePostale the codePostale to set
 	 */
-	public void setCodepostale(String codepostale) {
-		this.codepostale = codepostale;
+	public void setCodePostal(String codePostale) {
+		this.codePostal = codePostale;
 	}
 
 	/**
 	 * Getter
-	 * @return the pays
+	 * 
+	 * @return the email
 	 */
-	public String getPays() {
-		return pays;
+	public String getEmail() {
+		return Email;
 	}
 
 	/**
 	 * Setter
-	 * @param pays the pays to set
+	 * 
+	 * @param email the email to set
 	 */
-	public void setPays(String pays) {
-		this.pays = pays;
+	public void setEmail(String email) {
+		Email = email;
 	}
-	
-	
 
 }

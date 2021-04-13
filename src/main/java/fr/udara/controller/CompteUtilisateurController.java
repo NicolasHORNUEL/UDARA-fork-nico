@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.CompteUtilisateurDTO;
 import fr.udara.dto.form.FormInscriptionDTO;
+import fr.udara.dto.form.FormModifInfoPersoDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.CompteUtilisateur;
 import fr.udara.service.CompteUtilisateurService;
@@ -31,7 +32,7 @@ import fr.udara.service.CompteUtilisateurService;
 @RestController
 @RequestMapping("/api/compteutilisateurs")
 public class CompteUtilisateurController {
-	
+
 	/** compteUtilisateurService */
 	private final CompteUtilisateurService compteUtilisateurService;
 
@@ -67,12 +68,12 @@ public class CompteUtilisateurController {
 	}
 
 	/**
-	 * Méthode de création (ajout) d'une compteUtilisateur en DB
-	 * Requête HTTP POST http://<server_url>/api/compteUtilisateurs
+	 * Méthode de création (ajout) d'une compteUtilisateur en DB Requête HTTP POST
+	 * http://<server_url>/api/compteUtilisateurs
 	 * 
 	 * @param compteUtilisateur la compteUtilisateur à créer
-	 * @param br      le BindingResult qui nous permet d'accéder aux potentielles
-	 *                erreurs liées aux validators
+	 * @param br                le BindingResult qui nous permet d'accéder aux
+	 *                          potentielles erreurs liées aux validators
 	 * @return la compteUtilisateur créée
 	 */
 	@PostMapping()
@@ -85,22 +86,22 @@ public class CompteUtilisateurController {
 	}
 
 	/**
-	 * Méthode de modification d'une compteUtilisateur selon son id
-	 * Requête HTTP PUT http://<server_url>/api/compteUtilisateurs/:id --> Body en JSON
+	 * Méthode de modification d'une compteUtilisateur selon son id Requête HTTP PUT
+	 * http://<server_url>/api/compteUtilisateurs/:id --> Body en JSON
 	 * 
-	 * @param id l'id de la compteUtilisateur à modifier
+	 * @param id                l'id de la compteUtilisateur à modifier
 	 * @param compteUtilisateur la compteUtilisateur passée en corps de requête
 	 * @return la compteUtilisateur mise à jour
 	 */
-//	@PutMapping("{id}")
-//	public CompteUtilisateur update(@PathVariable(name = "id") Long id, @RequestBody CompteUtilisateur compteUtilisateur) {
-//		compteUtilisateur.setId(id);
-//		return compteUtilisateurService.save(compteUtilisateur);
-//	}
+	@PutMapping("{id}")
+	public void update(@PathVariable(name = "id") Long id, @RequestBody FormModifInfoPersoDTO formModifInfoPersoDTO) {
+
+		compteUtilisateurService.update(formModifInfoPersoDTO, id);
+	}
 
 	/**
-	 * Méthode de suppression d'une compteUtilisateur selon son id
-	 * Requête HTTP DELETE http://<server_url>/api/compteUtilisateurs/:id
+	 * Méthode de suppression d'une compteUtilisateur selon son id Requête HTTP
+	 * DELETE http://<server_url>/api/compteUtilisateurs/:id
 	 * 
 	 * @param id l'id de la compteUtilisateur à supprimer
 	 */
