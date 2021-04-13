@@ -27,7 +27,7 @@ import org.hibernate.validator.constraints.Length;
  *
  */
 @Entity
-@Table(name = "Compte_utilisateur", uniqueConstraints = { @UniqueConstraint(columnNames = { "mail" }),
+@Table(name = "Compte_utilisateur", uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }),
 		@UniqueConstraint(columnNames = { "nomUtilisateur" }) })
 public class CompteUtilisateur implements Serializable {
 	
