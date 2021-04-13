@@ -24,7 +24,7 @@ public interface CompteUtilisateurRepository extends JpaRepository<CompteUtilisa
 	 * @param nomUtilisateurOrMail
 	 * @return CompteUtilisateur
 	 */
-	@Query("FROM CompteUtilisateur WHERE mail=:userEmail")
+	@Query("FROM CompteUtilisateur WHERE email=:userEmail")
 	CompteUtilisateur findByEmail(String userEmail);
 	
 	/**
