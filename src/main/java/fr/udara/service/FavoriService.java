@@ -80,6 +80,7 @@ public class FavoriService {
 		for (Favori favori : listeFavoris) {
 			FavoriDTO favoriDTO = new FavoriDTO();
 			
+			favoriDTO.setId(favori.getId());
 			favoriDTO.setNom(favori.getNom());
 			favoriDTO.setEchelleTemps(favori.getEchelleTemps());;
 			
