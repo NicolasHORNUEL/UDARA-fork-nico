@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.CompteUtilisateurDTO;
+import fr.udara.dto.form.FormInscriptionDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Commune;
 import fr.udara.model.CompteUtilisateur;
+import fr.udara.model.Role;
+import fr.udara.repository.CommuneRepository;
 import fr.udara.repository.CompteUtilisateurRepository;
 
 /**
@@ -25,13 +28,18 @@ public class CompteUtilisateurService {
 	/** compteUtilisateurRepository : CompteUtilisateurRepository */
 	private CompteUtilisateurRepository compteUtilisateurRepository;
 
+	/** communeRepository : CommuneRepository */
+	private CommuneRepository communeRepository;
+
 	/**
 	 * Constructeur
 	 * 
 	 */
 	@Autowired
-	public CompteUtilisateurService(CompteUtilisateurRepository compteUtilisateurRepository) {
+	public CompteUtilisateurService(CompteUtilisateurRepository compteUtilisateurRepository,
+			CommuneRepository communeRepository) {
 		this.compteUtilisateurRepository = compteUtilisateurRepository;
+		this.communeRepository = communeRepository;
 	}
 
 	/**
@@ -39,8 +47,22 @@ public class CompteUtilisateurService {
 	 * @return l'objet CompteUtilisateur avec un id
 	 */
 	@Transactional
-	public CompteUtilisateur save(CompteUtilisateur compteUtilisateur) {
-		return compteUtilisateurRepository.save(compteUtilisateur);
+	public void save(FormInscriptionDTO formInscriptionDTO) {
+
+		CompteUtilisateur compteUtilisateur = new CompteUtilisateur();
+		compteUtilisateur.setNom(formInscriptionDTO.getNom());
+		compteUtilisateur.setPrenom(formInscriptionDTO.getPrenom());
+		compteUtilisateur.setNomUtilisateur(formInscriptionDTO.getPseudo());
+		compteUtilisateur.setMail(formInscriptionDTO.getEmail());
+		compteUtilisateur.setMotDePasse(formInscriptionDTO.getMotdepasse());
+		compteUtilisateur.setCodePostal(formInscriptionDTO.getCodepostal());
+		compteUtilisateur.setStatutActif(true);
+		compteUtilisateur.setRole(Role.ROLE_UTILISATEUR);
+		Commune commune = communeRepository.findByName(formInscriptionDTO.getVille());
+		if (commune != null) {
+			compteUtilisateur.setCommune(commune);
+		}
+		compteUtilisateurRepository.save(compteUtilisateur);
 
 	}
 
@@ -53,8 +75,8 @@ public class CompteUtilisateurService {
 	}
 
 	/**
-	 * Méthode de récupération des modèles CompteUtilisateur 
-	 * et transformations en DTO
+	 * Méthode de récupération des modèles CompteUtilisateur et transformations en
+	 * DTO
 	 * 
 	 * @return une liste d'objet CompteUtilisateurDTO
 	 */
@@ -112,24 +134,22 @@ public class CompteUtilisateurService {
 	public void delete(CompteUtilisateur compteUtilisateur) {
 		compteUtilisateurRepository.delete(compteUtilisateur);
 	}
-	
-	
+
 	/**
 	 * @param nomUtilisateurOrMail
 	 * @return
 	 */
 	public CompteUtilisateur findByEmail(String userEmail) {
-		
+
 		CompteUtilisateur compteUtilisateur = null;
-		
+
 		try {
 			compteUtilisateur = compteUtilisateurRepository.findByEmail(userEmail);
 		} catch (Exception e) {
 			throw e;
 		}
-		
+
 		return compteUtilisateur;
 	}
-	
 
 }

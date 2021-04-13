@@ -2,6 +2,7 @@ package fr.udara.service;
 
 import java.sql.Time;
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,8 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.NotificationDTO;
+import fr.udara.dto.form.FormNotificationDTO;
 import fr.udara.exception.NotFoundException;
+import fr.udara.model.Commune;
+import fr.udara.model.CompteUtilisateur;
 import fr.udara.model.Notification;
+import fr.udara.repository.CommuneRepository;
 import fr.udara.repository.CompteUtilisateurRepository;
 import fr.udara.repository.NotificationRepository;
 import fr.udara.util.DateFormatUtil;
@@ -30,6 +35,9 @@ public class NotificationService {
 	
 	/** compteUtilisateurRepository : CompteUtilisateurRepository */
 	private CompteUtilisateurRepository compteUtilisateurRepository;
+	
+	/** communeRepository : CommuneRepository */
+	private CommuneRepository communeRepository;
 
 	/** Constructeur
 	 * 
@@ -45,8 +53,31 @@ public class NotificationService {
 	 * @return l'objet Notification avec un id
 	 */
 	@Transactional
-	public Notification save(Notification notification) {
-		return notificationRepository.save(notification);
+	public void save(FormNotificationDTO notificationDTO) {
+		
+		List<CompteUtilisateur> comptesUtilisateurs = new ArrayList<>();
+		
+		Notification notification = new Notification();
+		
+		notification.setTexte(notificationDTO.getTexte());
+		notification.setLu(false);
+		notification.setHeure(LocalDateTime.now());
+		
+		
+		if (notificationDTO.getCommune() != null) {			
+			
+			comptesUtilisateurs = communeRepository.findUserByCommune(notificationDTO.getCommune());
+			notification.setCompteUtilisateurs(comptesUtilisateurs);
+			notificationRepository.save(notification);
+			
+		} else {
+			
+			comptesUtilisateurs = communeRepository.findUserByRegion(notificationDTO.getRegion());
+			notification.setCompteUtilisateurs(comptesUtilisateurs);
+			notificationRepository.save(notification);
+			
+		}
+		
 	}
 	
 	/**
@@ -101,10 +132,20 @@ public class NotificationService {
 	}
 	
 	
+	/**
+	 * @param id
+	 * @return list des notification pour un compteUtilisateur donné
+	 */
 	public List<Notification> findNotifByIdCompteUtilisateur(Long id) {
 		return compteUtilisateurRepository.findNotifByIdCompteUtilisateur(id);
 	}
 	
+	/**
+	 * Tranformation des Notification en notificationDTO
+	 * 
+	 * @param id
+	 * @return la liste des notification dto
+	 */
 	public List<NotificationDTO> findNotifDTOByIdCompteUtilisateur(Long id) {
 		
 		List<Notification> notifications = compteUtilisateurRepository.findNotifByIdCompteUtilisateur(id);

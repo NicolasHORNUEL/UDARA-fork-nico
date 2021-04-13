@@ -33,8 +33,8 @@ public class FormInscriptionDTO {
 	/** ville : String */
 	private String ville;
 
-	/** codepostale : String */
-	private String codepostale;
+	/** codepostal : String */
+	private String codepostal;
 
 	/** pays : String */
 	private String pays;
@@ -186,19 +186,19 @@ public class FormInscriptionDTO {
 	/**
 	 * Getter
 	 * 
-	 * @return the codepostale
+	 * @return the codepostal
 	 */
-	public String getCodepostale() {
-		return codepostale;
+	public String getCodepostal() {
+		return codepostal;
 	}
 
 	/**
 	 * Setter
 	 * 
-	 * @param codepostale the codepostale to set
+	 * @param codepostal the codepostal to set
 	 */
-	public void setCodepostale(String codepostale) {
-		this.codepostale = codepostale;
+	public void setCodepostal(String codepostal) {
+		this.codepostal = codepostal;
 	}
 
 	/**

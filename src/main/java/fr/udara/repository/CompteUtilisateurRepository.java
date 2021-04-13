@@ -19,7 +19,7 @@ import fr.udara.model.Notification;
 public interface CompteUtilisateurRepository extends JpaRepository<CompteUtilisateur, Long>{
 	
 	/**
-	 * Récupération d'un compte uilisateur en fonction de son nom d'utilisateur ou sont mail
+	 * Récupération d'un compte uilisateur en fonction de son mail
 	 * 
 	 * @param nomUtilisateurOrMail
 	 * @return CompteUtilisateur
