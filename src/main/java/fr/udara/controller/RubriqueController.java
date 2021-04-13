@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.form.FormRubriqueDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.Rubrique;
 import fr.udara.service.RubriqueService;
@@ -29,7 +30,7 @@ import fr.udara.service.RubriqueService;
 @RestController
 @RequestMapping("/api/rubriques")
 public class RubriqueController {
-	
+
 	/** rubriqueService */
 	private final RubriqueService rubriqueService;
 
@@ -65,40 +66,40 @@ public class RubriqueController {
 	}
 
 	/**
-	 * Méthode de création (ajout) d'une rubrique en DB
-	 * Requête HTTP POST http://<server_url>/api/rubriques
+	 * Méthode de création (ajout) d'une rubrique en DB Requête HTTP POST
+	 * http://<server_url>/api/rubriques
 	 * 
 	 * @param rubrique la rubrique à créer
-	 * @param br      le BindingResult qui nous permet d'accéder aux potentielles
-	 *                erreurs liées aux validators
-	 * @return la rubrique créée
+	 * @param br       le BindingResult qui nous permet d'accéder aux potentielles
+	 *                 erreurs liées aux validators
 	 */
 	@PostMapping()
-	public Rubrique create(@Valid @RequestBody Rubrique rubrique, BindingResult br) {
+	public void create(@Valid @RequestBody FormRubriqueDTO rubriqueDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return rubriqueService.save(rubrique);
+		rubriqueService.save(rubriqueDTO);
 	}
 
 	/**
-	 * Méthode de modification d'une rubrique selon son id
-	 * Requête HTTP PUT http://<server_url>/api/rubriques/:id --> Body en JSON
+	 * Méthode de modification d'une rubrique selon son id Requête HTTP PUT
+	 * http://<server_url>/api/rubriques/:id --> Body en JSON
 	 * 
-	 * @param id l'id de la rubrique à modifier
+	 * @param id       l'id de la rubrique à modifier
 	 * @param rubrique la rubrique passée en corps de requête
 	 * @return la rubrique mise à jour
 	 */
-	@PutMapping("{id}")
-	public Rubrique update(@PathVariable(name = "id") Long id, @RequestBody Rubrique rubrique) {
-		rubrique.setId(id);
-		return rubriqueService.save(rubrique);
+	@PutMapping("{nomRubrique}")
+	public void update(@PathVariable(name = "nomRubrique") String nomRubrique,
+			@RequestBody FormRubriqueDTO rubriqueDTO) {
+
+		rubriqueService.update(rubriqueDTO, nomRubrique);
 	}
 
 	/**
-	 * Méthode de suppression d'une rubrique selon son id
-	 * Requête HTTP DELETE http://<server_url>/api/rubriques/:id
+	 * Méthode de suppression d'une rubrique selon son id Requête HTTP DELETE
+	 * http://<server_url>/api/rubriques/:id
 	 * 
 	 * @param id l'id de la rubrique à supprimer
 	 */
