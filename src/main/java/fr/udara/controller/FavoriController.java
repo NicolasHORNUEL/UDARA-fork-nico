@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.FavoriDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.Favori;
 import fr.udara.service.FavoriService;
@@ -45,13 +46,13 @@ public class FavoriController {
 	}
 
 	/**
-	 * Méthode de récupération de tous les favoris
+	 * Méthode de récupération de tous les favorisDTO
 	 * 
-	 * @return la liste de tous les favoris
+	 * @return la liste de tous les favorisDTO
 	 */
 	@GetMapping
-	public List<Favori> findAll() {
-		return favoriService.findAll();
+	public List<FavoriDTO> findAll() {
+		return favoriService.findAllDTO();
 	}
 
 	/**
