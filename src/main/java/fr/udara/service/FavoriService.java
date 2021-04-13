@@ -76,11 +76,8 @@ public class FavoriService {
 	 */
 	public List<FavoriDTO> findAllDTO() {
 		List<Favori> listeFavoris = favoriRepository.findAll();
-
 		List<FavoriDTO> listeFavorisDTO = new ArrayList<>();
-
 		for (Favori favori : listeFavoris) {
-			
 			FavoriDTO favoriDTO = new FavoriDTO();
 			
 			favoriDTO.setNom(favori.getNom());
