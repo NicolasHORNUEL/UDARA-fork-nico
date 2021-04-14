@@ -117,7 +117,7 @@ public class IntegrationFile {
 					System.out.println("Ligne: " + nbLigneJSON_FR + "/8815 (Nombre d'occurence dans le fichier de recensement: " + nbOccurence + " ), Commune ENREGISTRÉE : " + nom);
 					nbLigneSave++;
 				} else {
-					System.err.println("Ligne: " + nbLigneJSON_FR + "/8815 (Nombre d'occurence dans le fichier de recensement: " + nbOccurence + " ), Commune ENREGISTRÉE : " + nom);
+					System.err.println("Ligne: " + nbLigneJSON_FR + "/8815 (Nombre d'occurence dans le fichier de recensement: " + nbOccurence + " ), Commune INVALIDÉE : " + nom);
 				}
 
 			}

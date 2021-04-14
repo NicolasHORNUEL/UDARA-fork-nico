@@ -14,8 +14,6 @@ public class CommuneDTO {
 
 	/** name de type String ("name":"Peyrat-le-Chateau") */
 	private String name;
-	/** country de type String ("country":"FR") Utilisé pour filter le fichier JSON */
-	private String country;
 	/** lat de type Float, coordonnées GPS latitude ("coord":{"lon":1.77233,"lat":45.815781})  */
 	private Float lat;
 	/** lon de type Float, coordonnées GPS longitude ("coord":{"lon":1.77233,"lat":45.815781}) */
@@ -32,7 +30,6 @@ public class CommuneDTO {
 	 * "id" en Long
 	 * "name" en String
 	 * "findname" en String
-	 * "country" en String
 	 * "lon" en Float de l'objet "coord" imbriqué
 	 * "lat" en Float de l'objet "coord" imbriqué
 	 * @param objet city
@@ -41,7 +38,6 @@ public class CommuneDTO {
 	@JsonProperty("city")
 	private void nested_city(Map<String, Object> city) {
 		this.name = city.get("name").toString();
-		this.country = city.get("country").toString();
 		this.lat = Float.parseFloat(((Map<String,Object>)city.get("coord")).get("lat").toString());
 		this.lon = Float.parseFloat(((Map<String,Object>)city.get("coord")).get("lon").toString());
 	}
@@ -53,8 +49,6 @@ public class CommuneDTO {
 		StringBuilder builder = new StringBuilder();
 		builder.append("CommuneDTO [name=");
 		builder.append(name);
-		builder.append(", country=");
-		builder.append(country);
 		builder.append(", lat=");
 		builder.append(lat);
 		builder.append(", lon=");
@@ -83,20 +77,6 @@ public class CommuneDTO {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/** Getter
-	 * @return the country
-	 */
-	public String getCountry() {
-		return country;
-	}
-
-	/** Setter
-	 * @param country the country to set
-	 */
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	/** Getter
