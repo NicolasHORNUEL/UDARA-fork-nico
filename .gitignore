@@ -36,7 +36,7 @@ build/
 .vscode/
 
 ### application.properties ###
-application.properties
+#application.properties
 
 ### thumbnail mac os x ###
 *.DS_Store
