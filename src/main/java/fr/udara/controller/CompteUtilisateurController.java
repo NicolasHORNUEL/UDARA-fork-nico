@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +52,7 @@ public class CompteUtilisateurController {
 	 * 
 	 * @return la liste de toutes les compteUtilisateurs
 	 */
+	@CrossOrigin
 	@GetMapping
 	public List<CompteUtilisateurDTO> findAll() {
 		return compteUtilisateurService.findAllDTO();
@@ -62,6 +64,7 @@ public class CompteUtilisateurController {
 	 * @param id id de la compteUtilisateur ciblée
 	 * @return la compteUtilisateur dont l'id est passé en paramètre
 	 */
+	@CrossOrigin
 	@GetMapping("{compteUtilisateur-id}")
 	public CompteUtilisateur findById(@PathVariable(name = "compteUtilisateur-id") Long id) {
 		return compteUtilisateurService.findById(id);
@@ -76,6 +79,7 @@ public class CompteUtilisateurController {
 	 *                          potentielles erreurs liées aux validators
 	 * @return la compteUtilisateur créée
 	 */
+	@CrossOrigin
 	@PostMapping()
 	public void create(@Valid @RequestBody FormInscriptionDTO formInscriptionDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
@@ -93,6 +97,7 @@ public class CompteUtilisateurController {
 	 * @param compteUtilisateur la compteUtilisateur passée en corps de requête
 	 * @return la compteUtilisateur mise à jour
 	 */
+	@CrossOrigin
 	@PutMapping("{id}")
 	public void update(@PathVariable(name = "id") Long id, @RequestBody FormModifInfoPersoDTO formModifInfoPersoDTO) {
 
@@ -105,6 +110,7 @@ public class CompteUtilisateurController {
 	 * 
 	 * @param id l'id de la compteUtilisateur à supprimer
 	 */
+	@CrossOrigin
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable Long id) {
 		compteUtilisateurService.deleteById(id);
