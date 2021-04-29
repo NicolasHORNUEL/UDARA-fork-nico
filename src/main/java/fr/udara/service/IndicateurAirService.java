@@ -47,6 +47,11 @@ public class IndicateurAirService {
 		return indicateurAirRepository.findAll();
 	}
 
+
+	public List<IndicateurAir> getByName(String nomCommune, String nomIndicateur) {
+		return indicateurAirRepository.getByName(nomCommune, nomIndicateur);
+	}
+
 	
 	/**
 	 * @param id d'un objet IndicateurAir

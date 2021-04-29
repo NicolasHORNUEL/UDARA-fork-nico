@@ -54,6 +54,11 @@ public class IndicateurAirController {
 		return indicateurAirService.findAll();
 	}
 
+	@GetMapping("{nomCommune}/{nomIndicateur}")
+	public List<IndicateurAir> getByName(@PathVariable(name = "nomCommune") String nomCommune, @PathVariable(name = "nomIndicateur") String nomIndicateur) {
+		return indicateurAirService.getByName(nomCommune, nomIndicateur);
+	}
+	
 	/**
 	 * Méthode de récupération d'une indicateurAir selon son id
 	 * 
