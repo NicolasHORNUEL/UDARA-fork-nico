@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.IndicateurAir;
 import fr.udara.service.IndicateurAirService;
@@ -55,7 +56,7 @@ public class IndicateurAirController {
 	}
 
 	@GetMapping("{nomCommune}/{nomIndicateur}")
-	public List<IndicateurAir> getByName(@PathVariable(name = "nomCommune") String nomCommune, @PathVariable(name = "nomIndicateur") String nomIndicateur) {
+	public List<IndicateurNiveauDTO> getByName(@PathVariable(name = "nomCommune") String nomCommune, @PathVariable(name = "nomIndicateur") String nomIndicateur) {
 		return indicateurAirService.getByName(nomCommune, nomIndicateur);
 	}
 	

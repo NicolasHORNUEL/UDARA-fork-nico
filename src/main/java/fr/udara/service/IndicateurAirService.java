@@ -3,12 +3,14 @@
  */
 package fr.udara.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.IndicateurAir;
 import fr.udara.repository.IndicateurAirRepository;
@@ -48,10 +50,21 @@ public class IndicateurAirService {
 	}
 
 
-	public List<IndicateurAir> getByName(String nomCommune, String nomIndicateur) {
-		return indicateurAirRepository.getByName(nomCommune, nomIndicateur);
-	}
+	public List<IndicateurNiveauDTO> getByName(String nomCommune, String nomIndicateur) {
+		List<IndicateurAir> listeIndicateurAir = indicateurAirRepository.getByName(nomCommune, nomIndicateur);
+		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
+		for (IndicateurAir indicateurAir : listeIndicateurAir) {
+			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
+			indicateurNiveauDTO.setNom(indicateurAir.getNom());
+			indicateurNiveauDTO.setValeur(indicateurAir.getValeur());
+			indicateurNiveauDTO.setDateReleve(indicateurAir.getDateReleve());
 
+			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
+		}
+		return listeIndicateurNiveauDTO;
+		
+	}
+	
 	
 	/**
 	 * @param id d'un objet IndicateurAir
