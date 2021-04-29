@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  *  @SpringBootApplication est une annotation pratique qui ajoute tous les éléments suivants:
@@ -17,7 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-public class UdaraApplication implements CommandLineRunner {
+public class UdaraApplication implements CommandLineRunner, WebMvcConfigurer {
 
 	
 	public static void main(String[] args) {
@@ -27,6 +29,11 @@ public class UdaraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
 	}
 
 	

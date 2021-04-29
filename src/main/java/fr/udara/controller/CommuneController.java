@@ -9,7 +9,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +51,6 @@ public class CommuneController {
 	 * 
 	 * @return la liste de toutes les communes
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("liste-commune")
 	public List<Commune> findAll() {
 		return communeService.findAll();
@@ -63,7 +61,6 @@ public class CommuneController {
 	 * 
 	 * @return la liste de toutes les communes au format DTO
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("liste-commune-dto")
 	public List<CommuneDTO> findAllDTO() {
 		return communeService.findAllDTO();
@@ -75,7 +72,6 @@ public class CommuneController {
 	 * @param id id de la commune ciblée
 	 * @return la commune dont l'id est passé en paramètre
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("{commune-id}")
 	public Commune findById(@PathVariable(name = "commune-id") Long id) {
 		return communeService.findById(id);
@@ -88,7 +84,6 @@ public class CommuneController {
 	 * @return la liste des communes dont le nom contient le terme passé en
 	 *         paramètre
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("search")
 	public List<Commune> findAllByNameLike(@RequestParam(required = true) String terme) {
 		return communeService.findAllByNameLike(terme);
@@ -103,7 +98,6 @@ public class CommuneController {
 	 *                erreurs liées aux validators
 	 * @return la commune créée
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping()
 	public Commune create(@Valid @RequestBody Commune commune, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
@@ -121,7 +115,6 @@ public class CommuneController {
 	 * @param commune la commune passée en corps de requête
 	 * @return la commune mise à jour
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("{id}")
 	public Commune update(@PathVariable(name = "id") Long id, @RequestBody Commune commune) {
 		commune.setId(id);
@@ -134,7 +127,6 @@ public class CommuneController {
 	 * 
 	 * @param id l'id de la commune à supprimer
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("{id}")
 	public void deleteById(@PathVariable Long id) {
 		communeService.deleteById(id);
