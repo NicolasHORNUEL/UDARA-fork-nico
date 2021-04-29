@@ -3,9 +3,9 @@ package fr.udara;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -19,9 +19,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 
  */
 @SpringBootApplication
-@EnableWebMvc
 @EnableScheduling
-public class UdaraApplication implements CommandLineRunner, WebMvcConfigurer {
+public class UdaraApplication implements CommandLineRunner {
 
 	
 	public static void main(String[] args) {
@@ -33,10 +32,18 @@ public class UdaraApplication implements CommandLineRunner, WebMvcConfigurer {
 		// TODO Auto-generated method stub
 	}
 	
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
-	}
+    @Bean
+    public WebMvcConfigurer corsConfigurer() 
+    {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**");
+                //registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+
+            }
+        };
+    }
 
 	
 }
