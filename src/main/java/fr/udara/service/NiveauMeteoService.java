@@ -3,12 +3,14 @@
  */
 package fr.udara.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.NiveauMeteo;
 import fr.udara.repository.NiveauMeteoRepository;
@@ -47,6 +49,32 @@ public class NiveauMeteoService {
 		return niveauMeteoRepository.findAll();
 	}
 
+	public List<IndicateurNiveauDTO> getByName(String nomCommune, String nomNiveau) {
+		List<NiveauMeteo> listeNiveauMeteo = niveauMeteoRepository.getByName(nomCommune, nomNiveau);
+		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
+		for (NiveauMeteo niveauMeteo : listeNiveauMeteo) {
+			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
+			indicateurNiveauDTO.setNom(niveauMeteo.getNom());
+			indicateurNiveauDTO.setValeur(niveauMeteo.getValeur());
+			indicateurNiveauDTO.setDateReleve(niveauMeteo.getDateReleve());
+			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
+		}
+		return listeIndicateurNiveauDTO;
+	}
+	
+	
+	public List<IndicateurNiveauDTO> getAllByName(String nomCommune) {
+		List<NiveauMeteo> listeNiveauMeteo = niveauMeteoRepository.getAllByName(nomCommune);
+		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
+		for (NiveauMeteo niveauMeteo : listeNiveauMeteo) {
+			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
+			indicateurNiveauDTO.setNom(niveauMeteo.getNom());
+			indicateurNiveauDTO.setValeur(niveauMeteo.getValeur());
+			indicateurNiveauDTO.setDateReleve(niveauMeteo.getDateReleve());
+			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
+		}
+		return listeIndicateurNiveauDTO;
+	}
 	
 	/**
 	 * @param id d'un objet NiveauMeteo

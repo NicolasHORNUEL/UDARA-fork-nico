@@ -58,11 +58,23 @@ public class IndicateurAirService {
 			indicateurNiveauDTO.setNom(indicateurAir.getNom());
 			indicateurNiveauDTO.setValeur(indicateurAir.getValeur());
 			indicateurNiveauDTO.setDateReleve(indicateurAir.getDateReleve());
-
 			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
 		}
 		return listeIndicateurNiveauDTO;
-		
+	}
+	
+	
+	public List<IndicateurNiveauDTO> getAllByName(String nomCommune) {
+		List<IndicateurAir> listeIndicateurAir = indicateurAirRepository.getAllByName(nomCommune);
+		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
+		for (IndicateurAir indicateurAir : listeIndicateurAir) {
+			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
+			indicateurNiveauDTO.setNom(indicateurAir.getNom());
+			indicateurNiveauDTO.setValeur(indicateurAir.getValeur());
+			indicateurNiveauDTO.setDateReleve(indicateurAir.getDateReleve());
+			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
+		}
+		return listeIndicateurNiveauDTO;
 	}
 	
 	

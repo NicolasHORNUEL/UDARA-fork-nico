@@ -60,6 +60,11 @@ public class IndicateurAirController {
 		return indicateurAirService.getByName(nomCommune, nomIndicateur);
 	}
 	
+	@GetMapping("{nomCommune}")
+	public List<IndicateurNiveauDTO> getAllByName(@PathVariable(name = "nomCommune") String nomCommune) {
+		return indicateurAirService.getAllByName(nomCommune);
+	}
+	
 	/**
 	 * Méthode de récupération d'une indicateurAir selon son id
 	 * 
