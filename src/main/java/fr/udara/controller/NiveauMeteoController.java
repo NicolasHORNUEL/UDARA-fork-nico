@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.EchelleTemps;
 import fr.udara.model.NiveauMeteo;
 import fr.udara.service.NiveauMeteoService;
 
@@ -55,14 +56,12 @@ public class NiveauMeteoController {
 		return niveauMeteoService.findAll();
 	}
 
-	@GetMapping("{nomCommune}/{nomNiveau}")
-	public List<IndicateurNiveauDTO> getByName(@PathVariable(name = "nomCommune") String nomCommune, @PathVariable(name = "nomNiveau") String nomNiveau) {
-		return niveauMeteoService.getByName(nomCommune, nomNiveau);
-	}
-
 	@GetMapping("search")
-	public List<IndicateurNiveauDTO> getAllByName(@RequestParam("nomCommune") String nomCommune) {
-		return niveauMeteoService.getAllByName(nomCommune);
+	public List<IndicateurNiveauDTO> getAllByName(
+			@RequestParam("nomCommune") String nomCommune,
+			@RequestParam("listIndicateur") List<String> nomNiveaux,
+			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
+		return niveauMeteoService.getAllByName(nomCommune, nomNiveaux, echelleTemps);
 	}
 	
 	/**

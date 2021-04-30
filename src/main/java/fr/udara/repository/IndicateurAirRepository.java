@@ -43,5 +43,20 @@ public interface IndicateurAirRepository extends JpaRepository<IndicateurAir, Lo
 			+ " WHERE nom =:nomCommune) "
 			+ " ORDER BY dateReleve DESC" )
 	List<IndicateurAir> getAllByName(String nomCommune);
+	
+	/**
+	 * Récupération d'une liste de valeur en fonction du nom d'une commune et du nom d'un indicateur
+	 * 
+	 * @param le nom en String d'un objet Commune et le nom d'un IndicateurAir
+	 * @return une liste de nombre décimal Float trouvé en base
+	 */
+	@Query("SELECT valeur "
+			+ " FROM IndicateurAir "
+			+ " WHERE Commune_id = (SELECT id "
+			+ " FROM Commune "
+			+ " WHERE nom =:nomCommune) "
+			+ " AND nom=:nomIndicateur"
+			+ " ORDER BY dateReleve DESC" )
+	List<Float> getValuesByName(String nomCommune, String nomIndicateur);
 
 }

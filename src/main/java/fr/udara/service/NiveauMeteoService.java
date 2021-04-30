@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.NotFoundException;
+import fr.udara.model.EchelleTemps;
 import fr.udara.model.NiveauMeteo;
 import fr.udara.repository.NiveauMeteoRepository;
 
@@ -49,32 +50,21 @@ public class NiveauMeteoService {
 		return niveauMeteoRepository.findAll();
 	}
 
-	public List<IndicateurNiveauDTO> getByName(String nomCommune, String nomNiveau) {
-		List<NiveauMeteo> listeNiveauMeteo = niveauMeteoRepository.getByName(nomCommune, nomNiveau);
+
+	
+	public List<IndicateurNiveauDTO> getAllByName(String nomCommune, List<String> nomNiveaux, EchelleTemps echelleTemps) {
 		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
-		for (NiveauMeteo niveauMeteo : listeNiveauMeteo) {
+		for (String nomNiveau : nomNiveaux) {
+			List<Float> listeIndicateurAir = niveauMeteoRepository.getValuesByName(nomCommune, nomNiveau);
 			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
-			indicateurNiveauDTO.setNom(niveauMeteo.getNom());
-			indicateurNiveauDTO.setValeur(niveauMeteo.getValeur());
-			indicateurNiveauDTO.setDateReleve(niveauMeteo.getDateReleve());
+			indicateurNiveauDTO.setNom(nomNiveau);
+			indicateurNiveauDTO.setValeurs(listeIndicateurAir);
 			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
 		}
 		return listeIndicateurNiveauDTO;
 	}
 	
 	
-	public List<IndicateurNiveauDTO> getAllByName(String nomCommune) {
-		List<NiveauMeteo> listeNiveauMeteo = niveauMeteoRepository.getAllByName(nomCommune);
-		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
-		for (NiveauMeteo niveauMeteo : listeNiveauMeteo) {
-			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
-			indicateurNiveauDTO.setNom(niveauMeteo.getNom());
-			indicateurNiveauDTO.setValeur(niveauMeteo.getValeur());
-			indicateurNiveauDTO.setDateReleve(niveauMeteo.getDateReleve());
-			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
-		}
-		return listeIndicateurNiveauDTO;
-	}
 	
 	/**
 	 * @param id d'un objet NiveauMeteo

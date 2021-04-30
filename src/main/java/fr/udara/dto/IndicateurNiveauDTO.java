@@ -1,6 +1,6 @@
 package fr.udara.dto;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Classe de données d'indicateurAir et niveauMeteo DTO
@@ -13,11 +13,8 @@ public class IndicateurNiveauDTO {
 	/** nom : String */
 	private String nom;
 
-	/** valeur : Float */
-	private Float valeur;
-
-	/** dateReleve : LocalDateTime */
-	private LocalDateTime dateReleve;
+	/** valeurs : List<Float> */
+	private List<Float> valeurs;
 
 	/** Getter
 	 * @return the nom
@@ -34,31 +31,17 @@ public class IndicateurNiveauDTO {
 	}
 
 	/** Getter
-	 * @return the valeur
+	 * @return the valeurs
 	 */
-	public Float getValeur() {
-		return valeur;
+	public List<Float> getValeurs() {
+		return valeurs;
 	}
 
 	/** Setter
-	 * @param valeur the valeur to set
+	 * @param valeurs the valeurs to set
 	 */
-	public void setValeur(Float valeur) {
-		this.valeur = valeur;
-	}
-
-	/** Getter
-	 * @return the dateReleve
-	 */
-	public LocalDateTime getDateReleve() {
-		return dateReleve;
-	}
-
-	/** Setter
-	 * @param dateReleve the dateReleve to set
-	 */
-	public void setDateReleve(LocalDateTime dateReleve) {
-		this.dateReleve = dateReleve;
+	public void setValeurs(List<Float> valeurs) {
+		this.valeurs = valeurs;
 	}
 
 	

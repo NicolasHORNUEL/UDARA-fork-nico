@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.BadRequestException;
+import fr.udara.model.EchelleTemps;
 import fr.udara.model.IndicateurAir;
 import fr.udara.service.IndicateurAirService;
 
@@ -55,15 +56,13 @@ public class IndicateurAirController {
 		return indicateurAirService.findAll();
 	}
 
-	@GetMapping("{nomCommune}/{nomIndicateur}")
-	public List<IndicateurNiveauDTO> getByName(@PathVariable(name = "nomCommune") String nomCommune,
-			@PathVariable(name = "nomIndicateur") String nomIndicateur) {
-		return indicateurAirService.getByName(nomCommune, nomIndicateur);
-	}
 
 	@GetMapping("search")
-	public List<IndicateurNiveauDTO> getAllByName(@RequestParam("nomCommune") String nomCommune) {
-		return indicateurAirService.getAllByName(nomCommune);
+	public List<IndicateurNiveauDTO> getAllByName(
+			@RequestParam("nomCommune") String nomCommune,
+			@RequestParam("listIndicateur") List<String> nomIndicateurs,
+			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
+		return indicateurAirService.getAllByName(nomCommune, nomIndicateurs, echelleTemps);
 	}
 
 	/**
