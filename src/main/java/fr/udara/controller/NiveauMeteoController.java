@@ -59,7 +59,7 @@ public class NiveauMeteoController {
 	@GetMapping("search")
 	public List<IndicateurNiveauDTO> getAllByName(
 			@RequestParam("nomCommune") String nomCommune,
-			@RequestParam("listIndicateur") List<String> nomNiveaux,
+			@RequestParam("listNiveaux") List<String> nomNiveaux,
 			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
 		return niveauMeteoService.getAllByName(nomCommune, nomNiveaux, echelleTemps);
 	}
