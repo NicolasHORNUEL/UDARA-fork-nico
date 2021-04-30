@@ -85,7 +85,7 @@ public class CommuneController {
 	 *         paramètre
 	 */
 	@GetMapping("search")
-	public List<Commune> findAllByNameLike(@RequestParam(required = true) String terme) {
+	public List<CommuneDTO> findAllByNameLike(@RequestParam(required = true) String terme) {
 		return communeService.findAllByNameLike(terme);
 	}
 

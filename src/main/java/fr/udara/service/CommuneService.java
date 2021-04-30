@@ -48,9 +48,25 @@ public class CommuneService {
 	 * @param nom d'une commune en String.
 	 * @return une liste de Commune.
 	 */
-	public List<Commune> findAllByNameLike(String name) {
-		return communeRepository.findAllByNameLike(name);
+	public List<CommuneDTO> findAllByNameLike(String name) {
+		
+		List<Commune> listeCommunes = communeRepository.findAllByNameLike(name);
+
+		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
+
+		for (Commune commune : listeCommunes) {
+			CommuneDTO communeDTO = new CommuneDTO();
+			communeDTO.setName(commune.getNom().toUpperCase());
+			communeDTO.setRegion(commune.getRegion());
+			communeDTO.setDepartement(commune.getDepartement());
+			communeDTO.setPopulation(commune.getPopulation());
+			communeDTO.setLat(commune.getyCoordonnee());
+			communeDTO.setLon(commune.getxCoordonnee());
+			listeCommunesDTO.add(communeDTO);
+		}
+		return listeCommunesDTO;
 	}
+
 
 	/**
 	 * @param un objet Commune sans id
