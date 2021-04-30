@@ -38,10 +38,18 @@ public class CommuneService {
 	 * @param nom d'une commune en String.
 	 * @return un objet Commune.
 	 */
-	public Commune findByName(String name) {
-		return communeRepository.findByName(name);
+	public CommuneDTO findByName(String name) {
+		Commune commune = communeRepository.findByName(name);
+		CommuneDTO communeDTO = new CommuneDTO();
+		communeDTO.setName(commune.getNom().toUpperCase());
+		communeDTO.setRegion(commune.getRegion());
+		communeDTO.setDepartement(commune.getDepartement());
+		communeDTO.setPopulation(commune.getPopulation());
+		communeDTO.setLat(commune.getyCoordonnee());
+		communeDTO.setLon(commune.getxCoordonnee());
+		return communeDTO;
 	}
-	
+
 	/**
 	 * Pour récupérer une liste d'objet Commune.
 	 * 
@@ -49,7 +57,7 @@ public class CommuneService {
 	 * @return une liste de Commune.
 	 */
 	public List<CommuneDTO> findAllByNameLike(String name) {
-		
+
 		List<Commune> listeCommunes = communeRepository.findAllByNameLike(name);
 
 		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
@@ -67,7 +75,6 @@ public class CommuneService {
 		return listeCommunesDTO;
 	}
 
-
 	/**
 	 * @param un objet Commune sans id
 	 * @return l'objet Commune avec un id
@@ -84,7 +91,7 @@ public class CommuneService {
 	public List<Commune> findAll() {
 		return communeRepository.findAll();
 	}
-	
+
 	/**
 	 * Méthode de récupération des Communes au format DTO
 	 * 
@@ -115,21 +122,21 @@ public class CommuneService {
 	public Commune findById(Long id) {
 		return communeRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
-	
+
 	/**
 	 * @return la liste des region
 	 */
-	public List<String> findRegion(){
+	public List<String> findRegion() {
 		return communeRepository.findRegion();
 	}
-	
+
 	/**
 	 * @return la les de toute les communes
 	 */
 	public List<String> findAllNomCommune() {
 		return communeRepository.findAllNomCommune();
 	}
-	
+
 	/**
 	 * @param region
 	 * @return la liste des commune pour une region donné
