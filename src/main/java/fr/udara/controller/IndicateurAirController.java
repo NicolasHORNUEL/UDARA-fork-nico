@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.IndicateurNiveauDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.IndicateurAir;
 import fr.udara.service.IndicateurAirService;
-
 
 /**
  * @author UDARA
@@ -31,7 +31,7 @@ import fr.udara.service.IndicateurAirService;
 @RestController
 @RequestMapping("/api/indicateurair")
 public class IndicateurAirController {
-	
+
 	/** indicateurAirService */
 	private final IndicateurAirService indicateurAirService;
 
@@ -56,15 +56,16 @@ public class IndicateurAirController {
 	}
 
 	@GetMapping("{nomCommune}/{nomIndicateur}")
-	public List<IndicateurNiveauDTO> getByName(@PathVariable(name = "nomCommune") String nomCommune, @PathVariable(name = "nomIndicateur") String nomIndicateur) {
+	public List<IndicateurNiveauDTO> getByName(@PathVariable(name = "nomCommune") String nomCommune,
+			@PathVariable(name = "nomIndicateur") String nomIndicateur) {
 		return indicateurAirService.getByName(nomCommune, nomIndicateur);
 	}
-	
-	@GetMapping("{nomCommune}")
-	public List<IndicateurNiveauDTO> getAllByName(@PathVariable(name = "nomCommune") String nomCommune) {
+
+	@GetMapping("search")
+	public List<IndicateurNiveauDTO> getAllByName(@RequestParam("nomCommune") String nomCommune) {
 		return indicateurAirService.getAllByName(nomCommune);
 	}
-	
+
 	/**
 	 * Méthode de récupération d'une indicateurAir selon son id
 	 * 
@@ -77,12 +78,12 @@ public class IndicateurAirController {
 	}
 
 	/**
-	 * Méthode de création (ajout) d'une indicateurAir en DB
-	 * Requête HTTP POST http://<server_url>/api/indicateurAirs
+	 * Méthode de création (ajout) d'une indicateurAir en DB Requête HTTP POST
+	 * http://<server_url>/api/indicateurAirs
 	 * 
 	 * @param indicateurAir la indicateurAir à créer
-	 * @param br      le BindingResult qui nous permet d'accéder aux potentielles
-	 *                erreurs liées aux validators
+	 * @param br            le BindingResult qui nous permet d'accéder aux
+	 *                      potentielles erreurs liées aux validators
 	 * @return la indicateurAir créée
 	 */
 	@PostMapping()
@@ -95,10 +96,10 @@ public class IndicateurAirController {
 	}
 
 	/**
-	 * Méthode de modification d'une indicateurAir selon son id
-	 * Requête HTTP PUT http://<server_url>/api/indicateurAirs/:id --> Body en JSON
+	 * Méthode de modification d'une indicateurAir selon son id Requête HTTP PUT
+	 * http://<server_url>/api/indicateurAirs/:id --> Body en JSON
 	 * 
-	 * @param id l'id de la indicateurAir à modifier
+	 * @param id            l'id de la indicateurAir à modifier
 	 * @param indicateurAir la indicateurAir passée en corps de requête
 	 * @return la indicateurAir mise à jour
 	 */
@@ -109,8 +110,8 @@ public class IndicateurAirController {
 	}
 
 	/**
-	 * Méthode de suppression d'une indicateurAir selon son id
-	 * Requête HTTP DELETE http://<server_url>/api/indicateurAirs/:id
+	 * Méthode de suppression d'une indicateurAir selon son id Requête HTTP DELETE
+	 * http://<server_url>/api/indicateurAirs/:id
 	 * 
 	 * @param id l'id de la indicateurAir à supprimer
 	 */
