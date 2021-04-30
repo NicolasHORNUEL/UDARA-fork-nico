@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.IndicateurNiveauDTO;
@@ -58,11 +59,12 @@ public class NiveauMeteoController {
 	public List<IndicateurNiveauDTO> getByName(@PathVariable(name = "nomCommune") String nomCommune, @PathVariable(name = "nomNiveau") String nomNiveau) {
 		return niveauMeteoService.getByName(nomCommune, nomNiveau);
 	}
-	
-	@GetMapping("{nomCommune}")
-	public List<IndicateurNiveauDTO> getAllByName(@PathVariable(name = "nomCommune") String nomCommune) {
+
+	@GetMapping("search")
+	public List<IndicateurNiveauDTO> getAllByName(@RequestParam("nomCommune") String nomCommune) {
 		return niveauMeteoService.getAllByName(nomCommune);
 	}
+	
 	/**
 	 * Méthode de récupération d'une niveauMeteo selon son id
 	 * 
