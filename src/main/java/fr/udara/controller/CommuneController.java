@@ -49,11 +49,11 @@ public class CommuneController {
 	/**
 	 * Méthode de récupération de toutes les communes
 	 * 
-	 * @return la liste de toutes les communes
+	 * @return la liste de tous les noms de communes
 	 */
 	@GetMapping("liste-commune")
-	public List<Commune> findAll() {
-		return communeService.findAll();
+	public List<String> findAll() {
+		return communeService.findAllNomCommune();
 	}
 
 	/**
