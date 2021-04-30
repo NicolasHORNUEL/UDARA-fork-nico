@@ -56,7 +56,7 @@ public interface NiveauMeteoRepository extends JpaRepository<NiveauMeteo, Long>{
 			+ " WHERE Commune_id = (SELECT id "
 			+ " FROM Commune "
 			+ " WHERE nom =:nomCommune) "
-			+ " AND nom=:nomIndicateur"
+			+ " AND nom=:nomNiveau"
 			+ " ORDER BY dateReleve DESC" )
 	List<Float> getValuesByName(String nomCommune, String nomNiveau);
 
