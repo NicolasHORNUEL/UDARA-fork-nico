@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,7 @@ import fr.udara.repository.NiveauMeteoRepository;
 public class NiveauMeteoService {
 	
 	private NiveauMeteoRepository niveauMeteoRepository;
+	private Pageable pageable = PageRequest.of(0, 7);
 
 	/** Constructeur
 	 * 
@@ -51,19 +54,44 @@ public class NiveauMeteoService {
 	}
 
 
-	
-	public List<IndicateurNiveauDTO> getAllByName(String nomCommune, List<String> nomNiveaux, EchelleTemps echelleTemps) {
+	//////////////////////////////////////// COMMUNE //////////////////////////////////////////	
+	public List<IndicateurNiveauDTO> getValuesByNiveauNameByCommuneName(String nomCommune, List<String> nomNiveaux, EchelleTemps echelleTemps) {
 		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
 		for (String nomNiveau : nomNiveaux) {
-			List<Float> listeIndicateurAir = niveauMeteoRepository.getValuesByName(nomCommune, nomNiveau);
+			List<Float> listeNiveauMeteo = new ArrayList<>();
+			if (echelleTemps.equals(EchelleTemps.JOURNALIERE)) {
+				listeNiveauMeteo = niveauMeteoRepository.getValuesByNiveauNameByDayByCommuneName(nomCommune, nomNiveau, this.pageable);
+			} else if (echelleTemps.equals(EchelleTemps.HEBDOMADAIRE)) {
+				listeNiveauMeteo = niveauMeteoRepository.getValuesByNiveauNameByWeekByCommuneName(nomCommune, nomNiveau, this.pageable);
+			} else if (echelleTemps.equals(EchelleTemps.MENSUEL)) {
+				listeNiveauMeteo = niveauMeteoRepository.getValuesByNiveauNameByMonthByCommuneName(nomCommune, nomNiveau, this.pageable);
+			}
 			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
 			indicateurNiveauDTO.setNom(nomNiveau);
-			indicateurNiveauDTO.setValeurs(listeIndicateurAir);
+			indicateurNiveauDTO.setValeurs(listeNiveauMeteo);
 			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
 		}
 		return listeIndicateurNiveauDTO;
 	}
-	
+	//////////////////////////////////////// FRANCE //////////////////////////////////////////
+	public List<IndicateurNiveauDTO> getAveragesByNiveauNameFR(List<String> nomNiveaux, EchelleTemps echelleTemps) {
+		List<IndicateurNiveauDTO> listeIndicateurNiveauDTO = new ArrayList<>();
+		for (String nomNiveau : nomNiveaux) {
+			List<Float> listeNiveauMeteo = new ArrayList<>();
+			if (echelleTemps.equals(EchelleTemps.JOURNALIERE)) {
+				listeNiveauMeteo = niveauMeteoRepository.getAveragesByNiveauNameByDayFR(nomNiveau, this.pageable);
+			} else if (echelleTemps.equals(EchelleTemps.HEBDOMADAIRE)) {
+				listeNiveauMeteo = niveauMeteoRepository.getAveragesByNiveauNameByWeekFR(nomNiveau, this.pageable);
+			} else if (echelleTemps.equals(EchelleTemps.MENSUEL)) {
+				listeNiveauMeteo = niveauMeteoRepository.getAveragesByNiveauNameByMonthFR(nomNiveau, this.pageable);
+			}
+			IndicateurNiveauDTO indicateurNiveauDTO = new IndicateurNiveauDTO();
+			indicateurNiveauDTO.setNom(nomNiveau);
+			indicateurNiveauDTO.setValeurs(listeNiveauMeteo);
+			listeIndicateurNiveauDTO.add(indicateurNiveauDTO);
+		}
+		return listeIndicateurNiveauDTO;
+	}
 	
 	
 	/**

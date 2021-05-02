@@ -55,13 +55,20 @@ public class NiveauMeteoController {
 	public List<NiveauMeteo> findAll() {
 		return niveauMeteoService.findAll();
 	}
-
+	
 	@GetMapping("search")
-	public List<IndicateurNiveauDTO> getAllByName(
-			@RequestParam("nomCommune") String nomCommune,
-			@RequestParam("listNiveaux") List<String> nomNiveaux,
+	public List<IndicateurNiveauDTO> getAveragesByNiveauNameFR(
+			@RequestParam("listNiveau") List<String> nomNiveaux,
 			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
-		return niveauMeteoService.getAllByName(nomCommune, nomNiveaux, echelleTemps);
+		return niveauMeteoService.getAveragesByNiveauNameFR(nomNiveaux, echelleTemps);
+	}
+
+	@GetMapping("searchByCommune")
+	public List<IndicateurNiveauDTO> getValuesByNiveauNameByCommuneName(
+			@RequestParam("nomCommune") String nomCommune,
+			@RequestParam("listNiveau") List<String> nomNiveaux,
+			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
+		return niveauMeteoService.getValuesByNiveauNameByCommuneName(nomCommune, nomNiveaux, echelleTemps);
 	}
 	
 	/**

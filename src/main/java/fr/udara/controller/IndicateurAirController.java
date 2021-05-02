@@ -56,13 +56,19 @@ public class IndicateurAirController {
 		return indicateurAirService.findAll();
 	}
 
-
 	@GetMapping("search")
-	public List<IndicateurNiveauDTO> getAllByName(
+	public List<IndicateurNiveauDTO> getAveragesByIndicateurNameFR(
+			@RequestParam("listIndicateur") List<String> nomIndicateurs,
+			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
+		return indicateurAirService.getAveragesByIndicateurNameFR(nomIndicateurs, echelleTemps);
+	}
+
+	@GetMapping("searchByCommune")
+	public List<IndicateurNiveauDTO> getValuesByIndicateurNameByCommuneName(
 			@RequestParam("nomCommune") String nomCommune,
 			@RequestParam("listIndicateur") List<String> nomIndicateurs,
 			@RequestParam("echelleTemps") EchelleTemps echelleTemps ) {
-		return indicateurAirService.getAllByName(nomCommune, nomIndicateurs, echelleTemps);
+		return indicateurAirService.getValuesByIndicateurNameByCommuneName(nomCommune, nomIndicateurs, echelleTemps);
 	}
 
 	/**
