@@ -35,7 +35,7 @@ public interface NiveauMeteoRepository extends JpaRepository<NiveauMeteo, Long>{
 	 * @param le nom en String d'un objet Commune et le nom d'un NiveauMeteo
 	 * @return une liste de moyenne/semaine
 	 */
-	@Query("SELECT AVG(valeur) FROM NiveauMeteo WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
+	@Query("SELECT ROUND(AVG(valeur),2) FROM NiveauMeteo WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
 			+ " AND nom=:nomNiveau GROUP BY week(dateReleve) ORDER BY week(dateReleve) DESC " )
 	List<Float> getValuesByNiveauNameByWeekByCommuneName(String nomCommune, String nomNiveau, Pageable pageable);
 	/**
@@ -43,7 +43,7 @@ public interface NiveauMeteoRepository extends JpaRepository<NiveauMeteo, Long>{
 	 * @param le nom en String d'un objet Commune et le nom d'un NiveauMeteo
 	 * @return une liste de moyenne/semaine
 	 */
-	@Query("SELECT AVG(valeur) FROM NiveauMeteo WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
+	@Query("SELECT ROUND(AVG(valeur),2) FROM NiveauMeteo WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
 			+ " AND nom=:nomNiveau GROUP BY month(dateReleve) ORDER BY month(dateReleve) DESC " )
 	List<Float> getValuesByNiveauNameByMonthByCommuneName(String nomCommune, String nomNiveau, Pageable pageable);
 	
@@ -56,21 +56,21 @@ public interface NiveauMeteoRepository extends JpaRepository<NiveauMeteo, Long>{
 	 * @param le nom d'un NiveauMeteo, une pagination (début, fin)
 	 * @return une liste de moyenne/jour
 	 */
-	@Query("SELECT AVG(valeur) FROM NiveauMeteo WHERE nom=:nomNiveau GROUP BY day(dateReleve) ORDER BY day(dateReleve) DESC " )
+	@Query("SELECT ROUND(AVG(valeur),2) FROM NiveauMeteo WHERE nom=:nomNiveau GROUP BY day(dateReleve) ORDER BY day(dateReleve) DESC " )
 	List<Float> getAveragesByNiveauNameByDayFR(String nomNiveau, Pageable pageable);
 	/** 
 	 * MOYENNE HEBDOMADAIRE pour LA FRANCE ENTIERE d'un NiveauMeteo
 	 * @param le nom d'un NiveauMeteo, une pagination (début, fin)
 	 * @return une liste de moyenne/jour
 	 */
-	@Query("SELECT AVG(valeur) FROM NiveauMeteo WHERE nom=:nomNiveau GROUP BY week(dateReleve, 1) ORDER BY week(dateReleve, 1) DESC " )
+	@Query("SELECT ROUND(AVG(valeur),2) FROM NiveauMeteo WHERE nom=:nomNiveau GROUP BY week(dateReleve, 1) ORDER BY week(dateReleve, 1) DESC " )
 	List<Float> getAveragesByNiveauNameByWeekFR(String nomNiveau, Pageable pageable);
 	/**
 	 * MOYENNE MENSUELLE pour LA FRANCE ENTIERE d'un NiveauMeteo
 	 * @param le nom d'un NiveauMeteo, une pagination (début, fin)
 	 * @return une liste de moyenne/jour
 	 */
-	@Query("SELECT AVG(valeur) FROM NiveauMeteo WHERE nom=:nomNiveau GROUP BY month(dateReleve) ORDER BY month(dateReleve) DESC " )
+	@Query("SELECT ROUND(AVG(valeur),2) FROM NiveauMeteo WHERE nom=:nomNiveau GROUP BY month(dateReleve) ORDER BY month(dateReleve) DESC " )
 	List<Float> getAveragesByNiveauNameByMonthFR(String nomNiveau, Pageable pageable);
 
 }

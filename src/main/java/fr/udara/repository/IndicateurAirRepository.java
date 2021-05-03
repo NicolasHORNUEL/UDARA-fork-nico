@@ -35,7 +35,7 @@ public interface IndicateurAirRepository extends JpaRepository<IndicateurAir, Lo
 	 * @param le nom en String d'un objet Commune et le nom d'un IndicateurAir
 	 * @return une liste de moyenne/semaine
 	 */
-	@Query("SELECT AVG(valeur) FROM IndicateurAir WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
+	@Query("SELECT ROUND(AVG(valeur),2) FROM IndicateurAir WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
 			+ " AND nom=:nomIndicateur GROUP BY week(dateReleve) ORDER BY week(dateReleve) DESC " )
 	List<Float> getValuesByIndicateurNameByWeekByCommuneName(String nomCommune, String nomIndicateur, Pageable pageable);
 	/**
@@ -43,7 +43,7 @@ public interface IndicateurAirRepository extends JpaRepository<IndicateurAir, Lo
 	 * @param le nom en String d'un objet Commune et le nom d'un IndicateurAir
 	 * @return une liste de moyenne/semaine
 	 */
-	@Query("SELECT AVG(valeur) FROM IndicateurAir WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
+	@Query("SELECT ROUND(AVG(valeur),2) FROM IndicateurAir WHERE Commune_id = (SELECT id FROM Commune WHERE nom =:nomCommune) "
 			+ " AND nom=:nomIndicateur GROUP BY month(dateReleve) ORDER BY month(dateReleve) DESC " )
 	List<Float> getValuesByIndicateurNameByMonthByCommuneName(String nomCommune, String nomIndicateur, Pageable pageable);
 	
@@ -56,21 +56,21 @@ public interface IndicateurAirRepository extends JpaRepository<IndicateurAir, Lo
 	 * @param le nom d'un indicateur, une pagination (début, fin)
 	 * @return une liste de moyenne/jour
 	 */
-	@Query("SELECT AVG(valeur) FROM IndicateurAir WHERE nom=:nomIndicateur GROUP BY day(dateReleve) ORDER BY day(dateReleve) DESC " )
+	@Query("SELECT ROUND(AVG(valeur),2) FROM IndicateurAir WHERE nom=:nomIndicateur GROUP BY day(dateReleve) ORDER BY day(dateReleve) DESC " )
 	List<Float> getAveragesByIndicateurNameByDayFR(String nomIndicateur, Pageable pageable);
 	/** 
 	 * MOYENNE HEBDOMADAIRE pour LA FRANCE ENTIERE d'un indicateur
 	 * @param le nom d'un indicateur, une pagination (début, fin)
 	 * @return une liste de moyenne/jour
 	 */
-	@Query("SELECT AVG(valeur) FROM IndicateurAir WHERE nom=:nomIndicateur GROUP BY week(dateReleve, 1) ORDER BY week(dateReleve, 1) DESC " )
+	@Query("SELECT ROUND(AVG(valeur),2) FROM IndicateurAir WHERE nom=:nomIndicateur GROUP BY week(dateReleve, 1) ORDER BY week(dateReleve, 1) DESC " )
 	List<Float> getAveragesByIndicateurNameByWeekFR(String nomIndicateur, Pageable pageable);
 	/**
 	 * MOYENNE MENSUELLE pour LA FRANCE ENTIERE d'un indicateur
 	 * @param le nom d'un indicateur, une pagination (début, fin)
 	 * @return une liste de moyenne/jour
 	 */
-	@Query("SELECT AVG(valeur) FROM IndicateurAir WHERE nom=:nomIndicateur GROUP BY month(dateReleve) ORDER BY month(dateReleve) DESC " )
+	@Query("SELECT ROUND(AVG(valeur),2) FROM IndicateurAir WHERE nom=:nomIndicateur GROUP BY month(dateReleve) ORDER BY month(dateReleve) DESC " )
 	List<Float> getAveragesByIndicateurNameByMonthFR(String nomIndicateur, Pageable pageable);
 
 
