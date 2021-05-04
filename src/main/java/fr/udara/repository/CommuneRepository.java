@@ -66,7 +66,7 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	 * @param département
 	 * @return la liste des commune pour un département
 	 */
-	@Query("SELECT c.nom FROM Commune c WHERE c.departement =: departement")
+	@Query("SELECT nom FROM Commune WHERE departement=:departement")
 	List<String> findNomCommuneByDepartement(String departement);
 	
 	/**
