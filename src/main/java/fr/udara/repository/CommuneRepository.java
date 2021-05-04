@@ -41,7 +41,7 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	 * 
 	 * @return {@link List<Strin>} la liste des departement 
 	 */
-	@Query("SELECT departement FROM Commune")
+	@Query("SELECT DISTINCT departement FROM Commune")
 	List<String> findDepartement();
 	
 	/**

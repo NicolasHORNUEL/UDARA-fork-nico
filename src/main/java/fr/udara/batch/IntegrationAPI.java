@@ -86,7 +86,7 @@ public class IntegrationAPI {
 	 * @Scheduled est utilisable sur des méthodes avec un type de retour VOID.
 	 */
 	//@Scheduled(cron = "0 0 6,12,18 * * *") 	// tous les jours à 6h00, 12h00 et 18h00
-	@Scheduled(cron = "0 0 12 * * *") 	// tous les jours à 12h00
+	@Scheduled(cron = "0 0 18 * * *") 	// tous les jours à 12h00
 	//@Scheduled(initialDelay = 0, fixedRate = Long.MAX_VALUE)
 	//@Scheduled(cron = "0 12 15 * * *") 		// tous les jours à 15h12
 	//@Scheduled(cron = "*/20 * * * * *") 		// toutes les 20 secondes
