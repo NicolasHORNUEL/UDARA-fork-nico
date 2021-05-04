@@ -115,9 +115,7 @@ public class CompteUtilisateurService {
 			utilisateurDTO.setNom(compteUtilisateur.getNom().toUpperCase());
 			utilisateurDTO.setPrenom(compteUtilisateur.getPrenom());
 			utilisateurDTO.setNomUtilisateur(compteUtilisateur.getNomUtilisateur());
-			System.out.println(compteUtilisateur.getCommune());
-			//System.out.println(compteUtilisateur.getCommune().getNom());
-			//utilisateurDTO.setCommune(compteUtilisateur.getCommune().getNom());
+			utilisateurDTO.setCommune(compteUtilisateur.getCommune().getNom());
 			comptesDTO.add(utilisateurDTO);
 		}
 		System.out.println(comptesDTO.toString());
