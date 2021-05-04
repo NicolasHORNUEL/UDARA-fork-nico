@@ -37,6 +37,14 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	List<Commune> findAllByNameLike(String nom);
 	
 	/**
+	 * Récupération de la liste des departement dans la table commune
+	 * 
+	 * @return {@link List<Strin>} la liste des departement 
+	 */
+	@Query("SELECT departement FROM Commune")
+	List<String> findDepartement();
+	
+	/**
 	 * Récupération de la liste des region dans la table commune
 	 * 
 	 * @return {@link List<Strin>} la liste des region 
@@ -51,6 +59,15 @@ public interface CommuneRepository extends JpaRepository<Commune, Long> {
 	 */
 	@Query("SElECT nom FROM Commune")
 	List<String> findAllNomCommune();
+	
+	/**
+	 * recupére la liste des communes pour un département donné
+	 * 
+	 * @param département
+	 * @return la liste des commune pour un département
+	 */
+	@Query("SELECT c.nom FROM Commune c WHERE c.departement =: departement")
+	List<String> findNomCommuneByDepartement(String departement);
 	
 	/**
 	 * recupére la liste des communes pour une région donnée

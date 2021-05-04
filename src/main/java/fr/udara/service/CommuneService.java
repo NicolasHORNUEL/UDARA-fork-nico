@@ -131,12 +131,28 @@ public class CommuneService {
 	}
 
 	/**
+	 * @return la liste des departement
+	 */
+	public List<String> findDepartement() {
+		return communeRepository.findDepartement();
+	}
+	
+	/**
 	 * @return la les de toute les communes
 	 */
 	public List<String> findAllNomCommune() {
 		return communeRepository.findAllNomCommune();
 	}
 
+
+	/**
+	 * @param region
+	 * @return la liste des commune pour un département donné
+	 */
+	public List<String> findNomCommuneByDepartement(String departement) {
+		return communeRepository.findNomCommuneByDepartement(departement);
+	}
+	
 	/**
 	 * @param region
 	 * @return la liste des commune pour une region donné

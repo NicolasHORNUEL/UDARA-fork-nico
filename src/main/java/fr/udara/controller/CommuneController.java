@@ -57,6 +57,28 @@ public class CommuneController {
 	}
 
 	/**
+	 * Méthode de récupération de tous les noms de département
+	 * 
+	 * @return la liste de tous les noms de département
+	 */
+	@GetMapping("liste-departement")
+	public List<String> findDepartement() {
+		return communeService.findDepartement();
+	}
+	
+	/**
+	 * Méthode de récupération de toutes les noms de communes pour un département donné
+	 * 
+	 * @param departement
+	 * @return la liste des noms de communes pour un département donné
+	 */
+	@GetMapping("searchByDepartement")
+	public List<String> findNomCommuneByDepartement(@RequestParam(required = true) String departement) {
+		return communeService.findNomCommuneByDepartement(departement);
+	}
+	
+	
+	/**
 	 * Méthode de récupération de toutes les communes en CommuneDTO
 	 * 
 	 * @return la liste de toutes les communes au format DTO
