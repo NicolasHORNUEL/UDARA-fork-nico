@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.CompteUtilisateurDTO;
-import fr.udara.dto.form.FormInscriptionDTO;
-import fr.udara.dto.form.FormModifInfoPersoDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.CompteUtilisateur;
 import fr.udara.service.CompteUtilisateurService;
@@ -79,12 +77,12 @@ public class CompteUtilisateurController {
 	 * @return la compteUtilisateur créée
 	 */
 	@PostMapping()
-	public void create(@Valid @RequestBody FormInscriptionDTO formInscriptionDTO, BindingResult br) {
+	public void create(@Valid @RequestBody CompteUtilisateurDTO compteUtilisateurDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		compteUtilisateurService.save(formInscriptionDTO);
+		compteUtilisateurService.save(compteUtilisateurDTO);
 	}
 
 	/**
@@ -96,9 +94,9 @@ public class CompteUtilisateurController {
 	 * @return la compteUtilisateur mise à jour
 	 */
 	@PutMapping("{id}")
-	public void update(@PathVariable(name = "id") Long id, @RequestBody FormModifInfoPersoDTO formModifInfoPersoDTO) {
+	public void update(@PathVariable(name = "id") Long id, @RequestBody CompteUtilisateurDTO compteUtilisateurDTO) {
 
-		compteUtilisateurService.update(formModifInfoPersoDTO, id);
+		compteUtilisateurService.update(compteUtilisateurDTO, id);
 	}
 
 	/**

@@ -92,11 +92,11 @@ public class RubriqueController {
 	 * @param rubrique la rubrique passée en corps de requête
 	 * @return la rubrique mise à jour
 	 */
-	@PutMapping("{nomRubrique}")
-	public void update(@PathVariable(name = "nomRubrique") String nomRubrique,
+	@PutMapping("{id}")
+	public void update(@PathVariable(name = "id") Long id,
 			@RequestBody FormRubriqueDTO rubriqueDTO) {
 
-		rubriqueService.update(rubriqueDTO, nomRubrique);
+		rubriqueService.update(rubriqueDTO, id);
 	}
 
 	/**

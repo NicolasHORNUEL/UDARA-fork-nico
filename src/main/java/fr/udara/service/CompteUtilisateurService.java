@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.CompteUtilisateurDTO;
-import fr.udara.dto.form.FormInscriptionDTO;
-import fr.udara.dto.form.FormModifInfoPersoDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Commune;
 import fr.udara.model.CompteUtilisateur;
@@ -48,18 +46,18 @@ public class CompteUtilisateurService {
 	 * @return l'objet CompteUtilisateur avec un id
 	 */
 	@Transactional
-	public void save(FormInscriptionDTO formInscriptionDTO) {
+	public void save(CompteUtilisateurDTO compteUtilisateurDTO) {
 
 		CompteUtilisateur compteUtilisateur = new CompteUtilisateur();
-		compteUtilisateur.setNom(formInscriptionDTO.getNom());
-		compteUtilisateur.setPrenom(formInscriptionDTO.getPrenom());
-		compteUtilisateur.setNomUtilisateur(formInscriptionDTO.getNomUtilisateur());
-		compteUtilisateur.setEmail(formInscriptionDTO.getEmail());
-		compteUtilisateur.setMotDePasse(formInscriptionDTO.getMotDePasse());
-		compteUtilisateur.setCodePostal(formInscriptionDTO.getCodePostal());
+		compteUtilisateur.setNom(compteUtilisateurDTO.getNom());
+		compteUtilisateur.setPrenom(compteUtilisateurDTO.getPrenom());
+		compteUtilisateur.setNomUtilisateur(compteUtilisateurDTO.getNomUtilisateur());
+		compteUtilisateur.setEmail(compteUtilisateurDTO.getEmail());
+		compteUtilisateur.setMotDePasse(compteUtilisateurDTO.getMotDePasse());
+		compteUtilisateur.setCodePostal(compteUtilisateurDTO.getCodePostal());
 		compteUtilisateur.setStatutActif(true);
 		compteUtilisateur.setRole(Role.ROLE_UTILISATEUR);
-		Commune commune = communeRepository.findByName(formInscriptionDTO.getVille());
+		Commune commune = communeRepository.findByName(compteUtilisateurDTO.getCommune());
 		if (commune != null) {
 			compteUtilisateur.setCommune(commune);
 		}
@@ -73,21 +71,22 @@ public class CompteUtilisateurService {
 	 * @param formModif
 	 * @param id
 	 */
-	public void update(FormModifInfoPersoDTO formModif, Long id) {
+	@Transactional
+	public void update(CompteUtilisateurDTO compteUtilisateurDTO, Long id) {
 
 		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException());
 
-		compteUtilisateur.setNom(formModif.getNom());
-		compteUtilisateur.setPrenom(formModif.getPrenom());
-		compteUtilisateur.setNomUtilisateur(formModif.getNomUtilisateur());
-		compteUtilisateur.setMotDePasse(formModif.getMotDePasse());
-		compteUtilisateur.setMotDePasse(formModif.getConfirmerMotDePasse());
-		compteUtilisateur.setMotDePasse(formModif.getNouveauMotDePasse());
-		compteUtilisateur.setMotDePasse(formModif.getVille());
-		compteUtilisateur.setCodePostal(formModif.getCodePostal());
-		compteUtilisateur.setEmail(formModif.getEmail());
-		compteUtilisateur.setStatutActif(formModif.getStatutActif());
+
+		compteUtilisateur.setNom(compteUtilisateurDTO.getNom());
+		compteUtilisateur.setPrenom(compteUtilisateurDTO.getPrenom());
+		compteUtilisateur.setMotDePasse(compteUtilisateurDTO.getMotDePasse());
+		compteUtilisateur.setCodePostal(compteUtilisateurDTO.getCodePostal());
+		compteUtilisateur.setStatutActif(compteUtilisateurDTO.getStatutActif());
+		Commune commune = communeRepository.findByName(compteUtilisateurDTO.getCommune());
+		if (commune != null) {
+			compteUtilisateur.setCommune(commune);
+		}
 		
 		compteUtilisateurRepository.save(compteUtilisateur);
 	}

@@ -45,9 +45,9 @@ public class RubriqueService {
 	}
 
 	@Transactional
-	public void update(FormRubriqueDTO rubriqueDTO, String nomRubrique) {
+	public void update(FormRubriqueDTO rubriqueDTO, Long id) {
 
-		Rubrique rubrique = rubriqueRepository.findByNom(nomRubrique);
+		Rubrique rubrique = rubriqueRepository.findById(id).orElseThrow(() -> new NotFoundException());
 
 		rubrique.setNom(rubriqueDTO.getNom());
 
