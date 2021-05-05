@@ -112,6 +112,7 @@ public class CompteUtilisateurService {
 
 		for (CompteUtilisateur compteUtilisateur : comptes) {
 			CompteUtilisateurDTO utilisateurDTO = new CompteUtilisateurDTO();
+			utilisateurDTO.setId(compteUtilisateur.getId());
 			utilisateurDTO.setNom(compteUtilisateur.getNom().toUpperCase());
 			utilisateurDTO.setPrenom(compteUtilisateur.getPrenom());
 			utilisateurDTO.setNomUtilisateur(compteUtilisateur.getNomUtilisateur());

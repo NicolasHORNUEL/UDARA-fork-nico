@@ -10,6 +10,9 @@ package fr.udara.dto;
  */
 public class CompteUtilisateurDTO {
 	
+	/** id : Long */
+	private Long id;
+	
 	/** nom : String */
 	private String nom;
 
@@ -21,6 +24,20 @@ public class CompteUtilisateurDTO {
 
 	/** commune : String */
 	private String commune;
+
+	/** Getter
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/** Setter
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/**
 	 * Getter
