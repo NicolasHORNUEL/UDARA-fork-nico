@@ -21,6 +21,6 @@ public interface RubriqueRepository extends JpaRepository<Rubrique, Long> {
 	 * @param id
 	 * @return String nom
 	 */
-	@Query("FROM Rubrique WHERE nom =: nomRubrique")
+	@Query("FROM Rubrique WHERE nom=:nomRubString")
 	Rubrique findByNom(String nomRubString);
 }

@@ -118,7 +118,6 @@ public class CompteUtilisateurService {
 			utilisateurDTO.setCommune(compteUtilisateur.getCommune().getNom());
 			comptesDTO.add(utilisateurDTO);
 		}
-		System.out.println(comptesDTO.toString());
 		return comptesDTO;
 	}
 
