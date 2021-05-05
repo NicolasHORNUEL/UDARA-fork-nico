@@ -9,7 +9,6 @@ package fr.udara.dto.form;
  */
 public class FormModifInfoPersoDTO {
 
-	/** MotDePasse : String */
 	private String motDePasse;
 
 	/** nouveauMotDePasse : String */
@@ -35,6 +34,9 @@ public class FormModifInfoPersoDTO {
 
 	/** codePostale : Email */
 	private String Email;
+	
+	/** statutActif : Boolean */
+	private Boolean statutActif;
 
 	/**
 	 * Getter
@@ -196,6 +198,20 @@ public class FormModifInfoPersoDTO {
 	 */
 	public void setEmail(String email) {
 		Email = email;
+	}
+
+	/** Getter
+	 * @return the statutActif
+	 */
+	public Boolean getStatutActif() {
+		return statutActif;
+	}
+
+	/** Setter
+	 * @param statutActif the statutActif to set
+	 */
+	public void setStatutActif(Boolean statutActif) {
+		this.statutActif = statutActif;
 	}
 
 }

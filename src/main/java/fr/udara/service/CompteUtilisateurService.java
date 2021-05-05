@@ -87,6 +87,7 @@ public class CompteUtilisateurService {
 		compteUtilisateur.setMotDePasse(formModif.getVille());
 		compteUtilisateur.setCodePostal(formModif.getCodePostal());
 		compteUtilisateur.setEmail(formModif.getEmail());
+		compteUtilisateur.setStatutActif(formModif.getStatutActif());
 		
 		compteUtilisateurRepository.save(compteUtilisateur);
 	}
