@@ -3,10 +3,7 @@ package fr.udara;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  *  @SpringBootApplication est une annotation pratique qui ajoute tous les éléments suivants:
@@ -32,18 +29,18 @@ public class UdaraApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 	}
 	
-    @Bean
-    public WebMvcConfigurer corsConfigurer() 
-    {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                //registry.addMapping("/**").allowedOrigins("*");
-                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() 
+//    {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                //registry.addMapping("/**").allowedOrigins("*");
+//                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+//
+//            }
+//        };
+//    }
     
 //    @Bean
 //    public CorsFilter corsFilter() {
