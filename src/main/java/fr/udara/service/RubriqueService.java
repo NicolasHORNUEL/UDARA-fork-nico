@@ -40,7 +40,7 @@ public class RubriqueService {
 	public void save(FormRubriqueDTO rubriqueDTO) {
 		Rubrique rubrique = new Rubrique();
 
-		rubrique.setNom(rubrique.getNom());
+		rubrique.setNom(rubriqueDTO.getNom());
 		rubriqueRepository.save(rubrique);
 	}
 
