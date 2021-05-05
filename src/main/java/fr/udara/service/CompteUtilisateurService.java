@@ -117,6 +117,10 @@ public class CompteUtilisateurService {
 			utilisateurDTO.setPrenom(compteUtilisateur.getPrenom());
 			utilisateurDTO.setNomUtilisateur(compteUtilisateur.getNomUtilisateur());
 			utilisateurDTO.setCommune(compteUtilisateur.getCommune().getNom());
+			utilisateurDTO.setEmail(compteUtilisateur.getEmail());
+			utilisateurDTO.setMotDePasse(compteUtilisateur.getMotDePasse());
+			utilisateurDTO.setCodePostal(compteUtilisateur.getCodePostal());
+			utilisateurDTO.setStatutActif(compteUtilisateur.getStatutActif());
 			comptesDTO.add(utilisateurDTO);
 		}
 		return comptesDTO;

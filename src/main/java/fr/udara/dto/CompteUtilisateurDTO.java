@@ -25,6 +25,18 @@ public class CompteUtilisateurDTO {
 	/** commune : String */
 	private String commune;
 
+	/** email : String */
+	private String email;
+
+	/** motDePasse : String */
+	private String motDePasse;
+
+	/** codePostal : String */
+	private String codePostal;
+	
+	/** statutActif : Boolean */
+	private Boolean statutActif;
+
 	/** Getter
 	 * @return the id
 	 */
@@ -109,6 +121,62 @@ public class CompteUtilisateurDTO {
 	 */
 	public void setCommune(String commune) {
 		this.commune = commune;
+	}
+
+	/** Getter
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/** Setter
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/** Getter
+	 * @return the motDePasse
+	 */
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	/** Setter
+	 * @param motDePasse the motDePasse to set
+	 */
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+	/** Getter
+	 * @return the codePostal
+	 */
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	/** Setter
+	 * @param codePostal the codePostal to set
+	 */
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	/** Getter
+	 * @return the statutActif
+	 */
+	public Boolean getStatutActif() {
+		return statutActif;
+	}
+
+	/** Setter
+	 * @param statutActif the statutActif to set
+	 */
+	public void setStatutActif(Boolean statutActif) {
+		this.statutActif = statutActif;
 	}
 
 }
