@@ -1,5 +1,6 @@
 package fr.udara.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,18 +56,32 @@ public class RubriqueService {
 	}
 
 	/**
-	 * @return une liste d'objet Rubrique
+	 * @return une liste d'objet FormRubriqueDTO
 	 */
-	public List<Rubrique> findAll() {
-		return rubriqueRepository.findAll();
+	public List<FormRubriqueDTO> findAll() {
+		List<Rubrique> rubriques = rubriqueRepository.findAll();
+		List<FormRubriqueDTO> rubriquesDTO = new ArrayList<>();
+
+		for (Rubrique rubrique : rubriques) {
+			FormRubriqueDTO rubriqueDTO = new FormRubriqueDTO();
+			rubriqueDTO.setId(rubrique.getId());
+			rubriqueDTO.setNom(rubrique.getNom());
+			rubriquesDTO.add(rubriqueDTO);
+		}
+		return rubriquesDTO;
 	}
 
 	/**
 	 * @param id d'un objet Rubrique
 	 * @return une éventuelle liste d'objet Rubrique
 	 */
-	public Rubrique findById(Long id) {
-		return rubriqueRepository.findById(id).orElseThrow(() -> new NotFoundException());
+	public FormRubriqueDTO findById(Long id) {
+		Rubrique rubrique = rubriqueRepository.findById(id).orElseThrow(() -> new NotFoundException());
+		FormRubriqueDTO rubriqueDTO = new FormRubriqueDTO();
+		rubriqueDTO.setId(rubrique.getId());
+		rubriqueDTO.setNom(rubrique.getNom());
+		return rubriqueDTO;
+
 	}
 
 	/**

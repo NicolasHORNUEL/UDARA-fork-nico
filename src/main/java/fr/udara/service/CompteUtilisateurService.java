@@ -77,7 +77,6 @@ public class CompteUtilisateurService {
 		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException());
 
-
 		compteUtilisateur.setNom(compteUtilisateurDTO.getNom());
 		compteUtilisateur.setPrenom(compteUtilisateurDTO.getPrenom());
 		compteUtilisateur.setMotDePasse(compteUtilisateurDTO.getMotDePasse());
@@ -169,17 +168,23 @@ public class CompteUtilisateurService {
 	 * @param nomUtilisateurOrMail
 	 * @return
 	 */
-	public CompteUtilisateur findByEmail(String userEmail) {
+	public CompteUtilisateurDTO findByEmail(String userEmail) {
 
-		CompteUtilisateur compteUtilisateur = null;
-
-		try {
-			compteUtilisateur = compteUtilisateurRepository.findByEmail(userEmail);
-		} catch (Exception e) {
-			throw e;
-		}
-
-		return compteUtilisateur;
+		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findByEmail(userEmail);
+		CompteUtilisateurDTO compteUtilisateurDTO = new CompteUtilisateurDTO();
+		if (compteUtilisateur != null) {
+			compteUtilisateurDTO.setId(compteUtilisateur.getId());
+			compteUtilisateurDTO.setNom(compteUtilisateur.getNom().toUpperCase());
+			compteUtilisateurDTO.setPrenom(compteUtilisateur.getPrenom());
+			compteUtilisateurDTO.setNomUtilisateur(compteUtilisateur.getNomUtilisateur());
+			compteUtilisateurDTO.setEmail(compteUtilisateur.getEmail());
+			compteUtilisateurDTO.setMotDePasse(compteUtilisateur.getMotDePasse());
+			compteUtilisateurDTO.setCodePostal(compteUtilisateur.getCodePostal());
+			compteUtilisateurDTO.setStatutActif(compteUtilisateur.getStatutActif());
+			compteUtilisateurDTO.setCommune(compteUtilisateur.getCommune().getNom());
+		} 
+		return compteUtilisateurDTO;
 	}
+	
 
 }

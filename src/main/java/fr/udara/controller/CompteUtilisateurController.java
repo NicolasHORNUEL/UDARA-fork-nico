@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.CompteUtilisateurDTO;
@@ -66,6 +67,17 @@ public class CompteUtilisateurController {
 	public CompteUtilisateur findById(@PathVariable(name = "compteUtilisateur-id") Long id) {
 		return compteUtilisateurService.findById(id);
 	}
+	
+		/**
+		 * Méthode de récupération d'un compteUtilisateurDTO par son email
+		 * 
+		 * @param email en string
+		 * @return un éventuel compteUtilisateur
+		 */
+		@GetMapping("searchByEmail")
+		public CompteUtilisateurDTO findByEmail(@RequestParam(required = true) String userEmail) {
+			return compteUtilisateurService.findByEmail(userEmail);
+		}
 
 	/**
 	 * Méthode de création (ajout) d'une compteUtilisateur en DB Requête HTTP POST

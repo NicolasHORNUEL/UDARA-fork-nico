@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.model.CompteUtilisateur;
 import fr.udara.model.Role;
+import fr.udara.repository.CompteUtilisateurRepository;
 import fr.udara.service.CompteUtilisateurService;
 
 /**
@@ -27,6 +28,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	private CompteUtilisateurService compteUtilisateurService;
 
+	/** compteUtilisateurRepository : CompteUtilisateurRepository */
+	@Autowired
+	private CompteUtilisateurRepository compteUtilisateurRepository;
 	/**
 	 *
 	 */
@@ -38,7 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("Le nom d'utilisateur est vide !");
 		}
 
-		CompteUtilisateur user = compteUtilisateurService.findByEmail(userEmail);
+		CompteUtilisateur user = compteUtilisateurRepository.findByEmail(userEmail);
 
 		if (user == null) {
 			throw new UsernameNotFoundException("Ce compte n'existe pas!");

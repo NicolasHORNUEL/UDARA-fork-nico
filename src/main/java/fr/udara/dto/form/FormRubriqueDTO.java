@@ -9,8 +9,25 @@ package fr.udara.dto.form;
  */
 public class FormRubriqueDTO {
 
+	/** id : Long */
+	private Long id;
+	
 	/** nom : String */
 	private String nom;
+
+	/** Getter
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/** Setter
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/**
 	 * Getter

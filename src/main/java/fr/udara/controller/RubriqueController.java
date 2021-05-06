@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.form.FormRubriqueDTO;
 import fr.udara.exception.BadRequestException;
-import fr.udara.model.Rubrique;
 import fr.udara.service.RubriqueService;
 
 /**
@@ -52,7 +51,7 @@ public class RubriqueController {
 	 * @return la liste de toutes les rubriques
 	 */
 	@GetMapping
-	public List<Rubrique> findAll() {
+	public List<FormRubriqueDTO> findAll() {
 		return rubriqueService.findAll();
 	}
 
@@ -63,7 +62,7 @@ public class RubriqueController {
 	 * @return la rubrique dont l'id est passé en paramètre
 	 */
 	@GetMapping("{rubrique-id}")
-	public Rubrique findById(@PathVariable(name = "rubrique-id") Long id) {
+	public FormRubriqueDTO findById(@PathVariable(name = "rubrique-id") Long id) {
 		return rubriqueService.findById(id);
 	}
 
