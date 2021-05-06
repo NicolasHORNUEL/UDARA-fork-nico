@@ -78,12 +78,12 @@ public class FavoriController {
 	 * @return le favori créé
 	 */
 	@PostMapping()
-	public Favori create(@Valid @RequestBody Favori favori, BindingResult br) {
+	public void create(@Valid @RequestBody FavoriDTO favoriDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
 		}
-		return favoriService.save(favori);
+		favoriService.save(favoriDTO);
 	}
 
 	/**
@@ -95,9 +95,9 @@ public class FavoriController {
 	 * @return la favori mise à jour
 	 */
 	@PutMapping("{id}")
-	public Favori update(@PathVariable(name = "id") Long id, @RequestBody Favori favori) {
-		favori.setId(id);
-		return favoriService.save(favori);
+	public void update(@PathVariable(name = "id") Long id, @RequestBody FavoriDTO favoriDTO) {
+		favoriDTO.setId(id);
+		favoriService.save(favoriDTO);
 	}
 
 	/**

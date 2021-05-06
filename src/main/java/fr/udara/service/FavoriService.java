@@ -10,7 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.FavoriDTO;
 import fr.udara.exception.NotFoundException;
+import fr.udara.model.Commune;
+import fr.udara.model.CompteUtilisateur;
 import fr.udara.model.Favori;
+import fr.udara.repository.CommuneRepository;
+import fr.udara.repository.CompteUtilisateurRepository;
 import fr.udara.repository.FavoriRepository;
 
 
@@ -22,14 +26,21 @@ import fr.udara.repository.FavoriRepository;
 @Service
 public class FavoriService {
 	
+	/** FavoriRepository : FavoriRepository */
 	private FavoriRepository favoriRepository;
+	/** compteUtilisateurRepository : CompteUtilisateurRepository */
+	private CompteUtilisateurRepository compteUtilisateurRepository;
+	/** communeRepository : CommuneRepository */
+	private CommuneRepository communeRepository;
 
 	/** Constructeur
 	 * 
 	 */
 	@Autowired
-	public FavoriService(FavoriRepository favoriRepository) {
+	public FavoriService(FavoriRepository favoriRepository, CommuneRepository communeRepository, CompteUtilisateurRepository compteUtilisateurRepository) {
 		this.favoriRepository = favoriRepository;
+		this.communeRepository = communeRepository;
+		this.compteUtilisateurRepository = compteUtilisateurRepository;
 	}
 	
 	/**
@@ -54,14 +65,46 @@ public class FavoriService {
 
 	
 	/**
-	 * @param un objet Favori sans id
-	 * @return l'objet Favori avec un id
+	 * @param un objet FavoriDTO
 	 */
 	@Transactional
-	public Favori save(Favori favori) {
-		return favoriRepository.save(favori);
+	public void save(FavoriDTO favoriDTO) {
 		
+		Favori favori = new Favori();
+		
+		favori.setNom(favoriDTO.getNom());
+		
+		List<String> listeIndicateur = favoriDTO.getIndicateurAir();
+		StringBuilder sbIndicateur = new StringBuilder();
+		for (int i = 0; i < listeIndicateur.size(); i++) {
+			sbIndicateur.append(listeIndicateur.get(i));
+			sbIndicateur.append(",");
+		}
+		favori.setIndicateurAir(sbIndicateur.toString());
+		
+	      
+		List<String> listeNiveau = favoriDTO.getNiveauMeteo();
+		StringBuilder sbNiveau = new StringBuilder();
+		for (int i = 0; i < listeNiveau.size(); i++) {
+			sbNiveau.append(listeNiveau.get(i));
+			sbNiveau.append(",");
+		}
+		favori.setNiveauMeteo(sbNiveau.toString());
+
+		favori.setEchelleTemps(favoriDTO.getEchelleTemps());
+		
+		Commune commune = communeRepository.findByName(favoriDTO.getCommune());
+		if (commune != null) {
+			favori.setCommune(commune);
+		}
+		
+		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findByEmail(favoriDTO.getCompteUtilisateur());
+		if (compteUtilisateur != null) {
+			favori.setCompteUtilisateur(compteUtilisateur);
+		}
+		favoriRepository.save(favori);
 	}
+	
 	/**
 	 * @return une liste d'objet Favori
 	 */

@@ -21,6 +21,11 @@ public class FavoriDTO {
 	private List<String> indicateurAir;
 	/** echelleTemps : EchelleTemps */
 	private EchelleTemps echelleTemps;
+	/** commune : String */
+	private String commune;
+	/** compteUtilisateur : String */
+	private String compteUtilisateur;
+	
 	/** Getter
 	 * @return the id
 	 */
@@ -80,6 +85,30 @@ public class FavoriDTO {
 	 */
 	public void setEchelleTemps(EchelleTemps echelleTemps) {
 		this.echelleTemps = echelleTemps;
+	}
+	/** Getter
+	 * @return the commune
+	 */
+	public String getCommune() {
+		return commune;
+	}
+	/** Setter
+	 * @param commune the commune to set
+	 */
+	public void setCommune(String commune) {
+		this.commune = commune;
+	}
+	/** Getter
+	 * @return the compteUtilisateur
+	 */
+	public String getCompteUtilisateur() {
+		return compteUtilisateur;
+	}
+	/** Setter
+	 * @param compteUtilisateur the compteUtilisateur to set
+	 */
+	public void setCompteUtilisateur(String compteUtilisateur) {
+		this.compteUtilisateur = compteUtilisateur;
 	}
 	
 

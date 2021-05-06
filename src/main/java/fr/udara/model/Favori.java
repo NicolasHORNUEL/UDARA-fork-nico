@@ -210,4 +210,32 @@ public class Favori {
 		this.echelleTemps = echelleTemps;
 	}
 
+	/** Getter
+	 * @return the commune
+	 */
+	public Commune getCommune() {
+		return commune;
+	}
+
+	/** Setter
+	 * @param commune the commune to set
+	 */
+	public void setCommune(Commune commune) {
+		this.commune = commune;
+	}
+
+	/** Getter
+	 * @return the compteUtilisateur
+	 */
+	public CompteUtilisateur getCompteUtilisateur() {
+		return compteUtilisateur;
+	}
+
+	/** Setter
+	 * @param compteUtilisateur the compteUtilisateur to set
+	 */
+	public void setCompteUtilisateur(CompteUtilisateur compteUtilisateur) {
+		this.compteUtilisateur = compteUtilisateur;
+	}
+
 }
