@@ -78,7 +78,9 @@ public class FavoriService {
 		StringBuilder sbIndicateur = new StringBuilder();
 		for (int i = 0; i < listeIndicateur.size(); i++) {
 			sbIndicateur.append(listeIndicateur.get(i));
-			sbIndicateur.append(",");
+			if (i < listeIndicateur.size()-1) {
+				sbIndicateur.append(",");
+			}
 		}
 		favori.setIndicateurAir(sbIndicateur.toString());
 		
@@ -87,8 +89,11 @@ public class FavoriService {
 		StringBuilder sbNiveau = new StringBuilder();
 		for (int i = 0; i < listeNiveau.size(); i++) {
 			sbNiveau.append(listeNiveau.get(i));
-			sbNiveau.append(",");
+			if (i < listeNiveau.size()-1) {
+				sbNiveau.append(",");
+			}
 		}
+		
 		favori.setNiveauMeteo(sbNiveau.toString());
 
 		favori.setEchelleTemps(favoriDTO.getEchelleTemps());
@@ -134,6 +139,9 @@ public class FavoriService {
 			String[] decoupageMeteo = favori.getNiveauMeteo().split(",");
 			List<String> decoupageMeteoDTO = Arrays.asList(decoupageMeteo);
 			favoriDTO.setNiveauMeteo(decoupageMeteoDTO);
+			
+			favoriDTO.setCommune(favori.getCommune().getNom());
+			favoriDTO.setCompteUtilisateur(favori.getCompteUtilisateur().getEmail());
 			
 			listeFavorisDTO.add(favoriDTO);
 		}

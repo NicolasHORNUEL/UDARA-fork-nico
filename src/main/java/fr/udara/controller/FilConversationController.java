@@ -64,6 +64,17 @@ public class FilConversationController {
 		return filConversationService.findById(id);
 	}
 
+    /**
+     * Methode de recuparation de la liste des fil de conversation pour une seu rubrique
+     * 
+     * @param id
+     * @return la liste des dil de conversation pour une rubrique donnée par son id
+     */
+    @GetMapping("rubrique/{filConversation-idRubrique}")
+    public List<FilConversationDTO> findByRubriqueId(@PathVariable(name = "filConversation-idRubrique") Long id) {
+        return filConversationService.findByRubriqueId(id);
+    }
+    
 	/**
 	 * Méthode de création (ajout) d'une filConversation en DB
 	 * Requête HTTP POST http://<server_url>/api/filConversations

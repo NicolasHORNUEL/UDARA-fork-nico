@@ -101,6 +101,29 @@ public class FilConversationService {
 		filConversationDTO.setRubrique(rubriqueDTO);
 		return filConversationDTO;
 	}
+	
+    /**
+     * @param id de la rubrique
+     * @return la liste de  tout les filc= de conversation pour une rubrique 
+     */
+    public List<FilConversationDTO> findByRubriqueId(Long id) {
+        List<FilConversation> filConversationByRubrique = filConversationRepository.finByRubriqueId(id);
+        List<FilConversationDTO> listFilConversationDTO = new ArrayList<>();
+        for (FilConversation filConversation : filConversationByRubrique) {
+            FilConversationDTO filConversationDTO = new FilConversationDTO();
+            
+            filConversationDTO.setId(filConversation.getId());
+            filConversationDTO.setNom(filConversation.getNom().toUpperCase());
+            
+            Rubrique rubrique = filConversation.getRubrique();
+            RubriqueDTO rubriqueDTO = new RubriqueDTO();
+            rubriqueDTO.setId(rubrique.getId());
+            rubriqueDTO.setNom(rubrique.getNom());
+            filConversationDTO.setRubrique(rubriqueDTO);
+            listFilConversationDTO.add(filConversationDTO);
+        }
+        return listFilConversationDTO;
+    }
 
 	/**
 	 * @param id d'un objet FilConversation
