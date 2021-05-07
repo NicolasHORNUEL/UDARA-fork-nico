@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.udara.dto.FilConversationDTO;
-import fr.udara.dto.form.FormFilConversationDTO;
+import fr.udara.dto.RubriqueDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.FilConversation;
 import fr.udara.model.Rubrique;
@@ -24,11 +24,14 @@ import fr.udara.repository.RubriqueRepository;
 @Service
 public class FilConversationService {
 
+	
+	
 	/** filConversationRepository : FilConversationRepository */
 	private FilConversationRepository filConversationRepository;
-	
 	/** rubriqueRepository : RubriqueRepository */
 	private RubriqueRepository rubriqueRepository;
+	
+	
 
 	/**
 	 * Constructeur
@@ -39,28 +42,22 @@ public class FilConversationService {
 		this.filConversationRepository = filConversationRepository;
 	}
 
+	
+	
 	/**
 	 * @param un objet FilConversation sans id
-	 * @return l'objet FilConversation avec un id
 	 */
 	@Transactional
-	public void save(FormFilConversationDTO filConversationDTO) {
-		
+	public void save(FilConversationDTO filConversationDTO) {
 		FilConversation filConversation = new FilConversation();
-		
 		filConversation.setNom(filConversationDTO.getNom());
-		
-		Rubrique rubrique = new Rubrique();
-		rubrique = rubriqueRepository.findByNom(filConversationDTO.getRubrique());
-		
+		Rubrique rubrique = rubriqueRepository.findByNom(filConversationDTO.getRubrique().getNom());
 		filConversation.setRubrique(rubrique);
-		
 		filConversationRepository.save(filConversation);
-
 	}
 
 	/**
-	 * @return une liste d'objet FilConversation
+	 * @return une liste d'objet FilConversationDTO
 	 */
 	public List<FilConversation> findAll() {
 		return filConversationRepository.findAll();
@@ -72,26 +69,36 @@ public class FilConversationService {
 	 */
 	public List<FilConversationDTO> findAllDTO() {
 		List<FilConversation> conversations = filConversationRepository.findAll();
-
-		List<FilConversationDTO> conversationsDTO = new ArrayList<>();
-
+		List<FilConversationDTO> listFilConversationDTO = new ArrayList<>();
 		for (FilConversation filConversation : conversations) {
 			FilConversationDTO filConversationDTO = new FilConversationDTO();
+			filConversationDTO.setId(filConversation.getId());
 			filConversationDTO.setNom(filConversation.getNom().toUpperCase());
-			conversationsDTO.add(filConversationDTO);
+			Rubrique rubrique = filConversation.getRubrique();
+			RubriqueDTO rubriqueDTO = new RubriqueDTO();
+			rubriqueDTO.setId(rubrique.getId());
+			rubriqueDTO.setNom(rubrique.getNom());
+			filConversationDTO.setRubrique(rubriqueDTO);
+			listFilConversationDTO.add(filConversationDTO);
 		}
-		return conversationsDTO;
+		return listFilConversationDTO;
 	}
+	
 
 	/**
 	 * @param id d'un objet FilConversation
 	 * @return une liste d'objet FilConversation
 	 */
 	public FilConversationDTO findById(Long id) {
-		FilConversationDTO filConversationDTO = new FilConversationDTO();
 		FilConversation filConversation = filConversationRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException());
+		FilConversationDTO filConversationDTO = new FilConversationDTO();
 		filConversationDTO.setNom(filConversation.getNom());
+		Rubrique rubrique = filConversation.getRubrique();
+		RubriqueDTO rubriqueDTO = new RubriqueDTO();
+		rubriqueDTO.setId(rubrique.getId());
+		rubriqueDTO.setNom(rubrique.getNom());
+		filConversationDTO.setRubrique(rubriqueDTO);
 		return filConversationDTO;
 	}
 

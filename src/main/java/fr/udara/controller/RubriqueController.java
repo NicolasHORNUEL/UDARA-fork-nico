@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.udara.dto.form.FormRubriqueDTO;
+import fr.udara.dto.RubriqueDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.service.RubriqueService;
 
@@ -51,7 +51,7 @@ public class RubriqueController {
 	 * @return la liste de toutes les rubriques
 	 */
 	@GetMapping
-	public List<FormRubriqueDTO> findAll() {
+	public List<RubriqueDTO> findAll() {
 		return rubriqueService.findAll();
 	}
 
@@ -62,7 +62,7 @@ public class RubriqueController {
 	 * @return la rubrique dont l'id est passé en paramètre
 	 */
 	@GetMapping("{rubrique-id}")
-	public FormRubriqueDTO findById(@PathVariable(name = "rubrique-id") Long id) {
+	public RubriqueDTO findById(@PathVariable(name = "rubrique-id") Long id) {
 		return rubriqueService.findById(id);
 	}
 
@@ -75,7 +75,7 @@ public class RubriqueController {
 	 *                 erreurs liées aux validators
 	 */
 	@PostMapping()
-	public void create(@Valid @RequestBody FormRubriqueDTO rubriqueDTO, BindingResult br) {
+	public void create(@Valid @RequestBody RubriqueDTO rubriqueDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();
@@ -93,7 +93,7 @@ public class RubriqueController {
 	 */
 	@PutMapping("{id}")
 	public void update(@PathVariable(name = "id") Long id,
-			@RequestBody FormRubriqueDTO rubriqueDTO) {
+			@RequestBody RubriqueDTO rubriqueDTO) {
 
 		rubriqueService.update(rubriqueDTO, id);
 	}

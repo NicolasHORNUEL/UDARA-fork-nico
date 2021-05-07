@@ -1,13 +1,13 @@
 /**
  * 
  */
-package fr.udara.dto.form;
+package fr.udara.dto;
 
 /**
  * @author Udara
  *
  */
-public class FormRubriqueDTO {
+public class RubriqueDTO {
 
 	/** id : Long */
 	private Long id;

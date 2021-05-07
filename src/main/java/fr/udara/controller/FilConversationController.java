@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.FilConversationDTO;
-import fr.udara.dto.form.FormFilConversationDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.service.FilConversationService;
 
@@ -75,7 +74,7 @@ public class FilConversationController {
 	 * @return la filConversation créée
 	 */
 	@PostMapping()
-	public void create(@Valid @RequestBody FormFilConversationDTO filConversationDTO, BindingResult br) {
+	public void create(@Valid @RequestBody FilConversationDTO filConversationDTO, BindingResult br) {
 		if (!br.getAllErrors().isEmpty()) {
 			System.out.println(br.getAllErrors());
 			throw new BadRequestException();

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.udara.dto.form.FormRubriqueDTO;
+import fr.udara.dto.RubriqueDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Rubrique;
 import fr.udara.repository.RubriqueRepository;
@@ -38,46 +38,43 @@ public class RubriqueService {
 	 * @param rubriqueDTO
 	 */
 	@Transactional
-	public void save(FormRubriqueDTO rubriqueDTO) {
+	public void save(RubriqueDTO rubriqueDTO) {
 		Rubrique rubrique = new Rubrique();
-
 		rubrique.setNom(rubriqueDTO.getNom());
 		rubriqueRepository.save(rubrique);
 	}
 
+	
 	@Transactional
-	public void update(FormRubriqueDTO rubriqueDTO, Long id) {
-
+	public void update(RubriqueDTO rubriqueDTO, Long id) {
 		Rubrique rubrique = rubriqueRepository.findById(id).orElseThrow(() -> new NotFoundException());
-
 		rubrique.setNom(rubriqueDTO.getNom());
-
 		rubriqueRepository.save(rubrique);
 	}
 
+	
 	/**
-	 * @return une liste d'objet FormRubriqueDTO
+	 * @return une liste d'objet RubriqueDTO
 	 */
-	public List<FormRubriqueDTO> findAll() {
+	public List<RubriqueDTO> findAll() {
 		List<Rubrique> rubriques = rubriqueRepository.findAll();
-		List<FormRubriqueDTO> rubriquesDTO = new ArrayList<>();
-
+		List<RubriqueDTO> listRubriqueDTO = new ArrayList<>();
 		for (Rubrique rubrique : rubriques) {
-			FormRubriqueDTO rubriqueDTO = new FormRubriqueDTO();
+			RubriqueDTO rubriqueDTO = new RubriqueDTO();
 			rubriqueDTO.setId(rubrique.getId());
 			rubriqueDTO.setNom(rubrique.getNom());
-			rubriquesDTO.add(rubriqueDTO);
+			listRubriqueDTO.add(rubriqueDTO);
 		}
-		return rubriquesDTO;
+		return listRubriqueDTO;
 	}
 
 	/**
 	 * @param id d'un objet Rubrique
 	 * @return une éventuelle liste d'objet Rubrique
 	 */
-	public FormRubriqueDTO findById(Long id) {
+	public RubriqueDTO findById(Long id) {
 		Rubrique rubrique = rubriqueRepository.findById(id).orElseThrow(() -> new NotFoundException());
-		FormRubriqueDTO rubriqueDTO = new FormRubriqueDTO();
+		RubriqueDTO rubriqueDTO = new RubriqueDTO();
 		rubriqueDTO.setId(rubrique.getId());
 		rubriqueDTO.setNom(rubrique.getNom());
 		return rubriqueDTO;
