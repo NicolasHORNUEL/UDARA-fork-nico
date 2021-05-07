@@ -51,7 +51,8 @@ public class FilConversationService {
 	public void save(FilConversationDTO filConversationDTO) {
 		FilConversation filConversation = new FilConversation();
 		filConversation.setNom(filConversationDTO.getNom());
-		Rubrique rubrique = rubriqueRepository.findByNom(filConversationDTO.getRubrique().getNom());
+		Rubrique rubrique = rubriqueRepository.findById(filConversationDTO.getRubrique().getId())
+				.orElseThrow(() -> new NotFoundException());
 		filConversation.setRubrique(rubrique);
 		filConversationRepository.save(filConversation);
 	}
