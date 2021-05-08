@@ -111,6 +111,52 @@ public class FavoriService {
 	}
 	
 	/**
+	 * @param un objet FavoriDTO
+	 */
+	@Transactional
+	public void update(FavoriDTO favoriDTO, Long id) {
+		
+
+		Favori favori = favoriRepository.findById(id).orElseThrow(() -> new NotFoundException());
+		
+		favori.setNom(favoriDTO.getNom());
+		
+		List<String> listeIndicateur = favoriDTO.getIndicateurAir();
+		StringBuilder sbIndicateur = new StringBuilder();
+		for (int i = 0; i < listeIndicateur.size(); i++) {
+			sbIndicateur.append(listeIndicateur.get(i));
+			if (i < listeIndicateur.size()-1) {
+				sbIndicateur.append(",");
+			}
+		}
+		favori.setIndicateurAir(sbIndicateur.toString());
+	      
+		List<String> listeNiveau = favoriDTO.getNiveauMeteo();
+		StringBuilder sbNiveau = new StringBuilder();
+		for (int i = 0; i < listeNiveau.size(); i++) {
+			sbNiveau.append(listeNiveau.get(i));
+			if (i < listeNiveau.size()-1) {
+				sbNiveau.append(",");
+			}
+		}
+		
+		favori.setNiveauMeteo(sbNiveau.toString());
+
+		favori.setEchelleTemps(favoriDTO.getEchelleTemps());
+		
+		Commune commune = communeRepository.findByName(favoriDTO.getCommune());
+		if (commune != null) {
+			favori.setCommune(commune);
+		}
+		
+		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findByEmail(favoriDTO.getCompteUtilisateur());
+		if (compteUtilisateur != null) {
+			favori.setCompteUtilisateur(compteUtilisateur);
+		}
+		favoriRepository.save(favori);
+	}
+	
+	/**
 	 * @return une liste d'objet Favori
 	 */
 	public List<Favori> findAll() {

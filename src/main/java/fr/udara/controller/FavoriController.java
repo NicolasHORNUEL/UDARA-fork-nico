@@ -96,8 +96,7 @@ public class FavoriController {
 	 */
 	@PutMapping("{id}")
 	public void update(@PathVariable(name = "id") Long id, @RequestBody FavoriDTO favoriDTO) {
-		favoriDTO.setId(id);
-		favoriService.save(favoriDTO);
+		favoriService.update(favoriDTO, id);
 	}
 
 	/**
