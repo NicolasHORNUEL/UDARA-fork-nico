@@ -34,23 +34,53 @@ import fr.udara.service.CommuneService;
 @RestController
 @RequestMapping("/api/communes")
 public class CommuneController {
-
+	
 	/** communeService */
 	private final CommuneService communeService;
-
+	
 	/**
 	 * Constructeur
-	 * 
 	 * @param communeService
 	 */
 	@Autowired
 	public CommuneController(CommuneService communeService) {
 		this.communeService = communeService;
 	}
-
+	
+	//////////////////////////////////////////////////////////////////////
+	////                                                             /////
+	//// ACCÈS À UNE LISTE DE NOM DE COMMUNES PAR FILTRES SUCCESSIFS /////
+	////                                                             /////
+	//////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * @return une liste de tous les noms de region 
+	 */
+	@GetMapping("liste-region")
+	public List<String> findRegion() {
+		return communeService.findRegion();
+	}
+	/**
+	 * @param un nom d'une region en string
+	 * @return une liste de codes departement en string
+	 */
+	@GetMapping("liste-departement-by-region")
+	public List<String> findNomDepartementByRegion(@RequestParam(required = true) String region) {
+		return communeService.findNomDepartementByRegion(region);
+	}
+	/**
+	 * @param un code departement en string
+	 * @return une liste de noms de commune en string 
+	 */
+	@GetMapping("liste-commune-by-departement")
+	public List<String> findNomCommuneByDepartement(@RequestParam(required = true) String departement) {
+		return communeService.findNomCommuneByDepartement(departement);
+	}	
+	
+	//////////////////////////////////////////////////////////////////////
+	
 	/**
 	 * Méthode de récupération de toutes les communes
-	 * 
 	 * @return la liste de tous les noms de communes
 	 */
 	@GetMapping("liste-commune")
@@ -60,7 +90,6 @@ public class CommuneController {
 
 	/**
 	 * Méthode de récupération de tous les noms de département
-	 * 
 	 * @return la liste de tous les noms de département
 	 */
 	@GetMapping("liste-departement")
@@ -68,18 +97,7 @@ public class CommuneController {
 		return communeService.findDepartement();
 	}
 	
-	/**
-	 * Méthode de récupération de toutes les noms de communes pour un département donné
-	 * 
-	 * @param departement
-	 * @return la liste des noms de communes pour un département donné
-	 */
-	@GetMapping("searchByDepartement")
-	public List<String> findNomCommuneByDepartement(@RequestParam(required = true) String departement) {
-		return communeService.findNomCommuneByDepartement(departement);
-	}
-	
-	
+
 	/**
 	 * Méthode de récupération de toutes les communes en CommuneDTO
 	 * 

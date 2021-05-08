@@ -31,7 +31,35 @@ public class CommuneService {
 	public CommuneService(CommuneRepository communeRepository) {
 		this.communeRepository = communeRepository;
 	}
+	
+	//////////////////////////////////////////////////////////////////////
+	////                                                             /////
+	//// ACCÈS À UNE LISTE DE NOM DE COMMUNES PAR FILTRES SUCCESSIFS /////
+	////                                                             /////
+	//////////////////////////////////////////////////////////////////////
+	/**
+	 * @return une liste de tous les noms de region
+	 */
+	public List<String> findRegion() {
+		return communeRepository.findRegion();
+	}
+	/**
+	 * @param un nom d'une region en string
+	 * @return une liste de codes departement en string 
+	 */
+	public List<String> findNomDepartementByRegion(String region) {
+		return communeRepository.findNomDepartementByRegion(region);
+	}
+	/**
+	 * @param un code departement en string
+	 * @return une liste de noms de commune en string
+	 */
+	public List<String> findNomCommuneByDepartement(String departement) {
+		return communeRepository.findNomCommuneByDepartement(departement);
+	}	
+	//////////////////////////////////////////////////////////////////////
 
+	
 	/**
 	 * Pour récupérer un objet Commune par son nom.
 	 * 
@@ -52,16 +80,12 @@ public class CommuneService {
 
 	/**
 	 * Pour récupérer une liste d'objet Commune.
-	 * 
 	 * @param nom d'une commune en String.
 	 * @return une liste de Commune.
 	 */
 	public List<CommuneDTO> findAllByNameLike(String name) {
-
 		List<Commune> listeCommunes = communeRepository.findAllByNameLike(name);
-
 		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
-
 		for (Commune commune : listeCommunes) {
 			CommuneDTO communeDTO = new CommuneDTO();
 			communeDTO.setName(commune.getNom().toUpperCase());
@@ -99,9 +123,7 @@ public class CommuneService {
 	 */
 	public List<CommuneDTO> findAllDTO() {
 		List<Commune> listeCommunes = communeRepository.findAll();
-
 		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
-
 		for (Commune commune : listeCommunes) {
 			CommuneDTO communeDTO = new CommuneDTO();
 			communeDTO.setName(commune.getNom().toUpperCase());
@@ -123,12 +145,7 @@ public class CommuneService {
 		return communeRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
-	/**
-	 * @return la liste des region
-	 */
-	public List<String> findRegion() {
-		return communeRepository.findRegion();
-	}
+
 
 	/**
 	 * @return la liste des departement
@@ -136,31 +153,19 @@ public class CommuneService {
 	public List<String> findDepartement() {
 		return communeRepository.findDepartement();
 	}
-	
 	/**
 	 * @return la les de toute les communes
 	 */
 	public List<String> findAllNomCommune() {
 		return communeRepository.findAllNomCommune();
 	}
-
-
 	/**
 	 * @param region
-	 * @return la liste des commune pour un département donné
-	 */
-	public List<String> findNomCommuneByDepartement(String departement) {
-		return communeRepository.findNomCommuneByDepartement(departement);
-	}
-	
-	/**
-	 * @param region
-	 * @return la liste des commune pour une region donné
+	 * @return la liste des communes pour une région donnée
 	 */
 	public List<String> findNomCommuneByRegion(String region) {
 		return communeRepository.findNomCommuneByRegion(region);
 	}
-
 	/**
 	 * @param id d'un objet Commune
 	 * @return true si l'id existe
