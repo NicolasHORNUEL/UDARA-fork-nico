@@ -82,6 +82,7 @@ public class CompteUtilisateurService {
 		compteUtilisateur.setMotDePasse(compteUtilisateurDTO.getMotDePasse());
 		compteUtilisateur.setCodePostal(compteUtilisateurDTO.getCodePostal());
 		compteUtilisateur.setStatutActif(compteUtilisateurDTO.getStatutActif());
+		compteUtilisateur.setRole(Role.valueOf(compteUtilisateurDTO.getRole()));
 		Commune commune = communeRepository.findByName(compteUtilisateurDTO.getCommune());
 		if (commune != null) {
 			compteUtilisateur.setCommune(commune);
@@ -120,6 +121,7 @@ public class CompteUtilisateurService {
 			utilisateurDTO.setMotDePasse(compteUtilisateur.getMotDePasse());
 			utilisateurDTO.setCodePostal(compteUtilisateur.getCodePostal());
 			utilisateurDTO.setStatutActif(compteUtilisateur.getStatutActif());
+			utilisateurDTO.setRole(compteUtilisateur.getRole().toString());
 			comptesDTO.add(utilisateurDTO);
 		}
 		return comptesDTO;
@@ -182,6 +184,8 @@ public class CompteUtilisateurService {
 			compteUtilisateurDTO.setCodePostal(compteUtilisateur.getCodePostal());
 			compteUtilisateurDTO.setStatutActif(compteUtilisateur.getStatutActif());
 			compteUtilisateurDTO.setCommune(compteUtilisateur.getCommune().getNom());
+			compteUtilisateurDTO.setRole(compteUtilisateur.getRole().toString());
+
 		} 
 		return compteUtilisateurDTO;
 	}

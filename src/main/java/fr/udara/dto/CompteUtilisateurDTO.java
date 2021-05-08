@@ -36,6 +36,9 @@ public class CompteUtilisateurDTO {
 	
 	/** statutActif : Boolean */
 	private Boolean statutActif;
+	
+	/** role : String */
+	private String role;
 
 	/** Getter
 	 * @return the id
@@ -177,6 +180,20 @@ public class CompteUtilisateurDTO {
 	 */
 	public void setStatutActif(Boolean statutActif) {
 		this.statutActif = statutActif;
+	}
+
+	/** Getter
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/** Setter
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }
