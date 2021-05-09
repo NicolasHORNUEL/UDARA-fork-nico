@@ -1,5 +1,7 @@
 package fr.udara.dto;
 
+import java.time.LocalDateTime;
+
 /**
  * DTO associé a l'affichage d'une notification
  * 
@@ -8,14 +10,31 @@ package fr.udara.dto;
  */
 public class NotificationDTO {
 	
+	/** id : Long */
+	private Long id;
+	
 	/** texte : String */
 	private String texte;
 	
-	/** heure : String */
-	private String heure;
+	/** heure : LocalDateTime  */
+	private LocalDateTime  heure;
 	
 	/** lu : Boolean */
 	private Boolean lu;
+
+	/** Getter
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/** Setter
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/**
 	 * Getter
@@ -40,7 +59,7 @@ public class NotificationDTO {
 	 *
 	 * @return the heure
 	 */
-	public String getHeure() {
+	public LocalDateTime  getHeure() {
 		return heure;
 	}
 
@@ -49,7 +68,7 @@ public class NotificationDTO {
 	 *
 	 * @param heure the heure to set
 	 */
-	public void setHeure(String heure) {
+	public void setHeure(LocalDateTime  heure) {
 		this.heure = heure;
 	}
 

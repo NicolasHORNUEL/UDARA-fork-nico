@@ -1,10 +1,7 @@
 package fr.udara.service;
 
-import java.sql.Time;
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.udara.dto.NotificationDTO;
 import fr.udara.dto.form.FormNotificationDTO;
 import fr.udara.exception.NotFoundException;
-import fr.udara.model.Commune;
 import fr.udara.model.CompteUtilisateur;
 import fr.udara.model.Notification;
 import fr.udara.repository.CommuneRepository;
 import fr.udara.repository.CompteUtilisateurRepository;
 import fr.udara.repository.NotificationRepository;
-import fr.udara.util.DateFormatUtil;
 
 /**
  * Classe de service pour l'entité Notification
@@ -83,8 +78,19 @@ public class NotificationService {
 	/**
 	 * @return une liste d'objet Notification
 	 */
-	public List<Notification> findAll() {
-		return notificationRepository.findAll();
+	public List<NotificationDTO> findAll() {
+		List<Notification> listeNotification = notificationRepository.findAll();
+		List<NotificationDTO> listeNotificationDTO = new ArrayList<>();
+		for (Notification notification : listeNotification) {
+			NotificationDTO notificationDTO = new NotificationDTO();
+			notificationDTO.setId(notification.getId());
+			notificationDTO.setHeure(notification.getHeure());
+			notificationDTO.setTexte(notification.getTexte());
+			notificationDTO.setLu(notification.isLu());
+			listeNotificationDTO.add(notificationDTO);
+		}
+		return listeNotificationDTO;
+		
 	}
 
 	
@@ -156,7 +162,7 @@ public class NotificationService {
 			
 			NotificationDTO notificationDTO = new NotificationDTO();
 			notificationDTO.setTexte(notification.getTexte());
-			notificationDTO.setHeure(DateFormatUtil.paseDateToString(notification.getHeure()));
+			notificationDTO.setHeure(notification.getHeure());
 			notificationDTO.setLu(notification.isLu());
 			notificationsDTO.add(notificationDTO);
 		}
