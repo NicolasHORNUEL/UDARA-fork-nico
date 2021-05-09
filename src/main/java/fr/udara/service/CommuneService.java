@@ -69,6 +69,7 @@ public class CommuneService {
 	public CommuneDTO findByName(String name) {
 		Commune commune = communeRepository.findByName(name);
 		CommuneDTO communeDTO = new CommuneDTO();
+		communeDTO.setId(commune.getId());
 		communeDTO.setName(commune.getNom().toUpperCase());
 		communeDTO.setRegion(commune.getRegion());
 		communeDTO.setDepartement(commune.getDepartement());
@@ -88,6 +89,7 @@ public class CommuneService {
 		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
 		for (Commune commune : listeCommunes) {
 			CommuneDTO communeDTO = new CommuneDTO();
+			communeDTO.setId(commune.getId());
 			communeDTO.setName(commune.getNom().toUpperCase());
 			communeDTO.setRegion(commune.getRegion());
 			communeDTO.setDepartement(commune.getDepartement());
@@ -126,6 +128,7 @@ public class CommuneService {
 		List<CommuneDTO> listeCommunesDTO = new ArrayList<>();
 		for (Commune commune : listeCommunes) {
 			CommuneDTO communeDTO = new CommuneDTO();
+			communeDTO.setId(commune.getId());
 			communeDTO.setName(commune.getNom().toUpperCase());
 			communeDTO.setRegion(commune.getRegion());
 			communeDTO.setDepartement(commune.getDepartement());

@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class CommuneDTO {
 
+	/** id : Long */
+	private Long id;
 	/** name de type String ("name":"Peyrat-le-Chateau") */
 	private String name;
 	/** lat de type Float, coordonnées GPS latitude ("coord":{"lon":1.77233,"lat":45.815781})  */
@@ -61,6 +63,24 @@ public class CommuneDTO {
 		builder.append(population);
 		builder.append("]");
 		return builder.toString();
+	}
+
+
+
+	/** Getter
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+
+
+	/** Setter
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

@@ -47,7 +47,6 @@ public class CompteUtilisateurService {
 	 */
 	@Transactional
 	public void save(CompteUtilisateurDTO compteUtilisateurDTO) {
-
 		CompteUtilisateur compteUtilisateur = new CompteUtilisateur();
 		compteUtilisateur.setNom(compteUtilisateurDTO.getNom());
 		compteUtilisateur.setPrenom(compteUtilisateurDTO.getPrenom());
@@ -76,7 +75,6 @@ public class CompteUtilisateurService {
 
 		CompteUtilisateur compteUtilisateur = compteUtilisateurRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException());
-
 		compteUtilisateur.setNom(compteUtilisateurDTO.getNom());
 		compteUtilisateur.setPrenom(compteUtilisateurDTO.getPrenom());
 		compteUtilisateur.setMotDePasse(compteUtilisateurDTO.getMotDePasse());
