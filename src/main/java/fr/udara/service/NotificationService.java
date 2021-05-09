@@ -16,6 +16,7 @@ import fr.udara.model.Notification;
 import fr.udara.repository.CommuneRepository;
 import fr.udara.repository.CompteUtilisateurRepository;
 import fr.udara.repository.NotificationRepository;
+import fr.udara.util.DateFormatUtil;
 
 /**
  * Classe de service pour l'entité Notification
@@ -84,7 +85,7 @@ public class NotificationService {
 		for (Notification notification : listeNotification) {
 			NotificationDTO notificationDTO = new NotificationDTO();
 			notificationDTO.setId(notification.getId());
-			notificationDTO.setHeure(notification.getHeure());
+			notificationDTO.setHeure(DateFormatUtil.paseDateToString(notification.getHeure()));
 			notificationDTO.setTexte(notification.getTexte());
 			notificationDTO.setLu(notification.isLu());
 			listeNotificationDTO.add(notificationDTO);
@@ -162,7 +163,7 @@ public class NotificationService {
 			
 			NotificationDTO notificationDTO = new NotificationDTO();
 			notificationDTO.setTexte(notification.getTexte());
-			notificationDTO.setHeure(notification.getHeure());
+			notificationDTO.setHeure(DateFormatUtil.paseDateToString(notification.getHeure()));
 			notificationDTO.setLu(notification.isLu());
 			notificationsDTO.add(notificationDTO);
 		}
