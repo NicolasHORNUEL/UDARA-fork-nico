@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.udara.dto.MessageDTO;
@@ -72,8 +71,8 @@ public class MessageController {
 	 * @param email en string
 	 * @return un éventuel compteUtilisateur
 	 */
-	@GetMapping("searchByFilConversation")
-	public List<MessageDTO> searchByFilConversation(@RequestParam(required = true) Long id) {
+	@GetMapping("searchByFilConversationId/{filConversation-id}")
+	public List<MessageDTO> searchByFilConversation(@PathVariable(name = "filConversation-id") Long id) {
 		return messageService.searchByFilConversation(id);
 	}
 	
