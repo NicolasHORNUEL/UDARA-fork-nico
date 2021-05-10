@@ -51,7 +51,9 @@ public class MessageService {
 			MessageDTO messageDTO = new MessageDTO();
 			messageDTO.setId(message.getId());
 			messageDTO.setNom(message.getNom());
-			messageDTO.setDate(message.getDate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm")));
+			messageDTO.setDate(message.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			System.out.println("tostring : " + message.getDate().toString());
+			System.out.println("tostring : " + message.getDate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm")));
 			listeMessageDTO.add(messageDTO);
 		}
 		return listeMessageDTO;
