@@ -23,6 +23,6 @@ public interface FilConversationRepository extends JpaRepository<FilConversation
      * @return
      */
     @Query("FROM FilConversation WHERE Rubrique_id =:id")
-    List<FilConversation> finByRubriqueId(Long id); 
+    List<FilConversation> findByRubriqueId(Long id); 
     
 }

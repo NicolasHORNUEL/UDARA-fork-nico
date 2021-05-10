@@ -31,7 +31,7 @@ public class Message {
 
 	/** filConversation : FilConversation */
 	@ManyToOne
-	@JoinColumn(name = "FilConversation_id")
+	@JoinColumn(name = "Filconversation_id")
 	private FilConversation filConversation;
 
 	/** compteUtilisateur : CompteUtilisateur */

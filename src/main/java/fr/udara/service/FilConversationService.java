@@ -108,7 +108,7 @@ public class FilConversationService {
      * @return la liste de  tout les filc= de conversation pour une rubrique 
      */
     public List<FilConversationDTO> findByRubriqueId(Long id) {
-        List<FilConversation> filConversationByRubrique = filConversationRepository.finByRubriqueId(id);
+        List<FilConversation> filConversationByRubrique = filConversationRepository.findByRubriqueId(id);
         List<FilConversationDTO> listFilConversationDTO = new ArrayList<>();
         for (FilConversation filConversation : filConversationByRubrique) {
             FilConversationDTO filConversationDTO = new FilConversationDTO();

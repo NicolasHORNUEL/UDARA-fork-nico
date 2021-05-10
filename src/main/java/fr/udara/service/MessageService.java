@@ -45,15 +45,13 @@ public class MessageService {
 	 * @return une liste d'objet Message
 	 */
 	public List<MessageDTO> findAll() {
-		List<Message> listeMessage = messageRepository.findAll();
+		List<Message> listeMessage = messageRepository.findAll();;
 		List<MessageDTO> listeMessageDTO = new ArrayList<>();
 		for (Message message : listeMessage) {
 			MessageDTO messageDTO = new MessageDTO();
 			messageDTO.setId(message.getId());
 			messageDTO.setNom(message.getNom());
-			messageDTO.setDate(message.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-			System.out.println("tostring : " + message.getDate().toString());
-			System.out.println("tostring : " + message.getDate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm")));
+			messageDTO.setDate(message.getDate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm")));
 			listeMessageDTO.add(messageDTO);
 		}
 		return listeMessageDTO;
@@ -70,7 +68,8 @@ public class MessageService {
 
 
 	public List<MessageDTO> searchByFilConversation(Long id) {
-		List<Message> listeMessage = messageRepository.searchByFilConversation(id);
+		List<Message> listeMessage = messageRepository.findByFilConversation(id);
+
 		List<MessageDTO> listeMessageDTO = new ArrayList<>();
 		for (Message message : listeMessage) {
 			MessageDTO messageDTO = new MessageDTO();
