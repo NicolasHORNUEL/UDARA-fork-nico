@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.udara.dto.MessageDTO;
 import fr.udara.exception.BadRequestException;
 import fr.udara.model.Message;
 import fr.udara.service.MessageService;
@@ -51,7 +53,7 @@ public class MessageController {
 	 * @return la liste de toutes les messages
 	 */
 	@GetMapping
-	public List<Message> findAll() {
+	public List<MessageDTO> findAll() {
 		return messageService.findAll();
 	}
 
@@ -66,6 +68,16 @@ public class MessageController {
 		return messageService.findById(id);
 	}
 
+	/**
+	 * @param email en string
+	 * @return un éventuel compteUtilisateur
+	 */
+	@GetMapping("searchByFilConversation")
+	public List<MessageDTO> searchByFilConversation(@RequestParam(required = true) Long id) {
+		return messageService.searchByFilConversation(id);
+	}
+	
+	
 	/**
 	 * Méthode de création (ajout) d'une message en DB
 	 * Requête HTTP POST http://<server_url>/api/messages

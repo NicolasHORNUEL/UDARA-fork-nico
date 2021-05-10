@@ -1,11 +1,14 @@
 package fr.udara.service;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.udara.dto.MessageDTO;
 import fr.udara.exception.NotFoundException;
 import fr.udara.model.Message;
 import fr.udara.repository.MessageRepository;
@@ -41,8 +44,17 @@ public class MessageService {
 	/**
 	 * @return une liste d'objet Message
 	 */
-	public List<Message> findAll() {
-		return messageRepository.findAll();
+	public List<MessageDTO> findAll() {
+		List<Message> listeMessage = messageRepository.findAll();
+		List<MessageDTO> listeMessageDTO = new ArrayList<>();
+		for (Message message : listeMessage) {
+			MessageDTO messageDTO = new MessageDTO();
+			messageDTO.setId(message.getId());
+			messageDTO.setNom(message.getNom());
+			messageDTO.setDate(message.getDate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm")));
+			listeMessageDTO.add(messageDTO);
+		}
+		return listeMessageDTO;
 	}
 
 	
@@ -54,6 +66,20 @@ public class MessageService {
 		return messageRepository.findById(id).orElseThrow(() -> new NotFoundException());
 	}
 
+
+	public List<MessageDTO> searchByFilConversation(Long id) {
+		List<Message> listeMessage = messageRepository.searchByFilConversation(id);
+		List<MessageDTO> listeMessageDTO = new ArrayList<>();
+		for (Message message : listeMessage) {
+			MessageDTO messageDTO = new MessageDTO();
+			messageDTO.setId(message.getId());
+			messageDTO.setNom(message.getNom());
+			messageDTO.setDate(message.getDate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd-HH.mm")));
+			listeMessageDTO.add(messageDTO);
+		}
+		return listeMessageDTO;
+	}
+	
 	
 	/**
 	 * @param id d'un objet Message
